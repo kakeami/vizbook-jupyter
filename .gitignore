@@ -1,22 +1,29 @@
-private/
-tmp/
-refs/
-jupyterbook-env/
+# --- OS & IDE ---
 .DS_Store
-.ipynb_checkpoints/
 .git-rewrite/
-.*.ipynb
-.RData
-.Rhistory
-
-*.doctree
-*.pptx
 *.swp
 *.swo
+tmp/
 
+# --- Python & Jupyter ---
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.*.ipynb
+jupyterbook-env/
 mypy.ini
 mypy_files.txt
 
-config.json
+# --- R Language ---
+.RData
+.Rhistory
 
-requirements_jupyterbook.txt
+# --- Jupyter Book (Sphinx) ---
+_build/
+*.doctree
+
+# --- Project Specific (Private/Temp) ---
+private/
+refs/
+config.json
+*.pptx
