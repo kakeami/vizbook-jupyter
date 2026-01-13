@@ -7,7 +7,7 @@ set -e
 EXPECTED_REPO="kakeami/vizbook-jupyter"
 ENV_NAME="jupyterbook-env"
 BOOK_DIR="book"
-BUILD_DIR="_build/html"
+BUILD_DIR="book/_build/html"
 REMOTE="origin"
 BRANCH="main"
 PUB_BRANCH="gh-pages"
