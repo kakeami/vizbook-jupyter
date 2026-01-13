@@ -1,0 +1,2129 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>前処理 &#8212; マンガ・アニメ・ゲームと学ぶデータビジュアライゼーション</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="基礎分析" href="eda.html" />
+    <link rel="prev" title="ようこそ" href="../index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">マンガ・アニメ・ゲームと学ぶデータビジュアライゼーション</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  2章 マンガデータによるハンズオン
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   前処理
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="eda.html">
+   基礎分析
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="amounts.html">
+   量を見るための手法
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dists.html">
+   分布を見るための手法
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="props.html">
+   比率を見るための手法
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="assocs.html">
+   変数間の関係を見るための手法
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  4章 基礎分析
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04/an_eda.html">
+   アニメデータの基礎分析
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04/gm_eda.html">
+   ゲームデータの基礎分析
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  5章 量を見るための手法
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05/bar.html">
+   棒グラフ
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05/gbar.html">
+   集合棒グラフ
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05/sbar.html">
+   積上げ棒グラフ
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05/heatmap.html">
+   ヒートマップ
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  6章 分布を見るための手法
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06/hist.html">
+   ヒストグラム
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06/box.html">
+   箱ひげ図
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06/density.html">
+   密度プロット
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06/violin.html">
+   バイオリンプロット
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06/ridge.html">
+   リッジラインプロット
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  7章 比率を見るための手法
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07/pie.html">
+   円グラフ
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07/sbar.html">
+   積上げ棒グラフ
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07/area.html">
+   積上げ密度プロット
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07/mosaic.html">
+   モザイクプロット
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07/tree.html">
+   ツリーマップ
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07/parallel.html">
+   パラレルセットグラフ
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  8章 変数間の関係を見るための手法
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../08/scatter.html">
+   散布図
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../08/bubble.html">
+   バブルチャート
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../08/matrix.html">
+   散布図行列
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../08/2d.html">
+   二次元ヒストグラム
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../08/contour.html">
+   等高線プロット
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../08/line.html">
+   折れ線グラフ
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../08/connected.html">
+   接続散布図
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  9章 メディアミックス分析
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../09/eda.html">
+   基礎分析
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../09/amounts.html">
+   量を見るための手法
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../09/dists.html">
+   分布を見るための手法
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../09/props.html">
+   比率を見るための手法
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../09/assocs.html">
+   変数間の関係を見るための手法
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Appendix
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../appendix/setup.html">
+   環境構築
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../appendix/an_preprocess.html">
+   アニメデータの前処理
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../appendix/gm_preprocess.html">
+   ゲームデータの前処理
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../appendix/mix_preprocess.html">
+   マンガデータとアニメデータの前処理
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/kakeami/vizbook/master?urlpath=tree/book/02/preprocess.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/kakeami/vizbook"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/kakeami/vizbook/issues/new?title=Issue%20on%20page%20%2F02/preprocess.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/02/preprocess.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#import">
+   Import
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   定数
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   関数
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id4">
+   出力先の生成
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id5">
+   解凍
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id6">
+   入力ファイルの一次処理
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     対象
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cm105">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       cm105
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cm102">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       cm102
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cm106">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       cm106
+      </span>
+     </code>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id8">
+   出力ファイルの作成と保存
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cc-csv">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       cc.csv
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#crt-csv">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       crt.csv
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cc-crt-csv">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       cc_crt.csv
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mi-csv">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       mi.csv
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ce-csv">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       ce.csv
+      </span>
+     </code>
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>前処理</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#import">
+   Import
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   定数
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   関数
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id4">
+   出力先の生成
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id5">
+   解凍
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id6">
+   入力ファイルの一次処理
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     対象
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cm105">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       cm105
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cm102">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       cm102
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cm106">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       cm106
+      </span>
+     </code>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id8">
+   出力ファイルの作成と保存
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cc-csv">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       cc.csv
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#crt-csv">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       crt.csv
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cc-crt-csv">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       cc_crt.csv
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mi-csv">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       mi.csv
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ce-csv">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       ce.csv
+      </span>
+     </code>
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>前処理<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h1>
+<p>MADB Lab v1.0の以下のデータを前処理して</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cm105</span></code>：マンガ雑誌</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cm102</span></code>：雑誌各号</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cm106</span></code>：掲載作品</p></li>
+</ul>
+<p>以下のデータを作成します．</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">mi.csv</span></code>：Magazine Items</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ce.csv</span></code>：Comic Episodes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cc.csv</span></code>：Comic Collections</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">crt.csv</span></code>：Creators．作者</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cc_crt.csv</span></code>: CCとCRTのリレーション</p></li>
+</ul>
+<div class="tip admonition">
+<p class="admonition-title">[PR]以下については書籍を参照ください</p>
+<ul class="simple">
+<li><p>MADB Labが提供する各データの概要</p></li>
+<li><p>前処理の意図と注意点</p></li>
+<li><p>前処理後のデータの概要</p></li>
+</ul>
+</div>
+<section id="import">
+<h2>Import<a class="headerlink" href="#import" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="c1"># あまり行儀が良くないですが</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">glob</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">zipfile</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
+
+<span class="kn">import</span> <span class="nn">ijson</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm_notebook</span> <span class="k">as</span> <span class="n">tqdm</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id2">
+<h2>定数<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">DIR_IN</span> <span class="o">=</span> <span class="s2">&quot;../../madb/data/json-ld&quot;</span>
+<span class="n">DIR_TMP</span> <span class="o">=</span> <span class="s2">&quot;../../data/cm/tmp&quot;</span>
+<span class="n">DIR_OUT</span> <span class="o">=</span> <span class="s2">&quot;../../data/cm/input&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># MADBの読み込み対象</span>
+<span class="n">FNS_CM</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;cm102&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;cm105&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;cm106&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 分析対象とする雑誌名</span>
+<span class="n">MCNAMES</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;週刊少年ジャンプ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;週刊少年マガジン&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;週刊少年サンデー&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;週刊少年チャンピオン&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># cm105のうち利用するキー名</span>
+<span class="n">COLS_CM105</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;identifier&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;label&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># cm102, genre==&quot;雑誌巻号&quot;のうち利用するキー名</span>
+<span class="n">COLS_MI</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;identifier&quot;</span><span class="p">:</span> <span class="s2">&quot;miid&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;miname&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;datePublished&quot;</span><span class="p">:</span> <span class="s2">&quot;date&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;isPartOf&quot;</span><span class="p">:</span> <span class="s2">&quot;mcid&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;price&quot;</span><span class="p">:</span> <span class="s2">&quot;price&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># cm102, genre==&quot;マンガ作品&quot;のうち利用するキー名</span>
+<span class="n">COLS_CE</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;relatedCollection&quot;</span><span class="p">:</span> <span class="s2">&quot;ccid&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;alternativeHeadline&quot;</span><span class="p">:</span> <span class="s2">&quot;cename&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;pageStart&quot;</span><span class="p">:</span> <span class="s2">&quot;page_start&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;pageEnd&quot;</span><span class="p">:</span> <span class="s2">&quot;page_end&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;isPartOf&quot;</span><span class="p">:</span> <span class="s2">&quot;miid&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># cm106のうち利用するキー名</span>
+<span class="n">COLS_CC</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;identifier&quot;</span><span class="p">:</span> <span class="s2">&quot;ccid&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;ccname&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;creator&quot;</span><span class="p">:</span> <span class="s2">&quot;crtname&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;originalWorkCreator&quot;</span><span class="p">:</span> <span class="s2">&quot;ocrtname&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 許容するpageEnd，pageStartの最大値</span>
+<span class="n">MAX_PAGES</span> <span class="o">=</span> <span class="mi">1000</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id3">
+<h2>関数<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">read_json</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;jsonファイルを辞書として読み込む&quot;&quot;&quot;</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">dct</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">dct</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">save_json</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">dct</span><span class="p">:</span> <span class="n">Dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;辞書をjson形式で保存する関数．&quot;&quot;&quot;</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">dct</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">read_json_w_filters</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">items</span><span class="p">:</span> <span class="n">List</span><span class="p">,</span> <span class="n">filters</span><span class="p">:</span> <span class="n">Dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;itemsのうち，filtersの条件を満たすもののみを抽出&quot;&quot;&quot;</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">parse</span> <span class="o">=</span> <span class="n">ijson</span><span class="o">.</span><span class="n">items</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">items</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">parse</span><span class="p">:</span>
+            <span class="c1"># filtersの条件をすべて満足するもの以外はbreak</span>
+            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">filters</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">item</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                    <span class="k">break</span>
+                <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">v</span><span class="p">:</span>
+                    <span class="k">break</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># breakしなかった場合はoutに追加</span>
+                <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">out</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">try_mkdirs</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;mkdirsにtry&quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">FileExistsError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">pass</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">format_magazine_name</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;nameからpublished_nameを取得&quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">name</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">str</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">x</span>
+    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No magazine name in </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">format_cols</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">cols_rename</span><span class="p">:</span> <span class="n">List</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;cols_renameのcolのみを抽出し，renmae&quot;&quot;&quot;</span>
+    <span class="n">df_new</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">df_new</span> <span class="o">=</span> <span class="n">df_new</span><span class="p">[</span><span class="n">cols_rename</span><span class="o">.</span><span class="n">keys</span><span class="p">()]</span>
+    <span class="n">df_new</span> <span class="o">=</span> <span class="n">df_new</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">cols_rename</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">df_new</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_items_by_genre</span><span class="p">(</span><span class="n">graph</span><span class="p">:</span> <span class="n">List</span><span class="p">,</span> <span class="n">genre</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;graphから所定のgenreのアイテム群を取得&quot;&quot;&quot;</span>
+    <span class="n">items</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">graph</span> <span class="k">if</span> <span class="s2">&quot;genre&quot;</span> <span class="ow">in</span> <span class="n">x</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="ow">and</span> <span class="n">x</span><span class="p">[</span><span class="s2">&quot;genre&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">genre</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">items</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_id_from_uri</span><span class="p">(</span><span class="n">uri</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;uri表記から末尾のidを取得&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">uri</span> <span class="ow">is</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">uri</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">format_name</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;nameから名称情報を抽出</span>
+<span class="sd">    ccname, crtname, ocrtnameに利用&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">name</span>
+    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">list</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">name</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">str</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">x</span>
+
+    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No name in </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">format_price</span><span class="p">(</span><span class="n">price</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;priceを整形&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">price</span> <span class="ow">is</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">elif</span> <span class="n">price</span> <span class="o">==</span> <span class="s2">&quot;JUMPガラガラウなかも&quot;</span><span class="p">:</span>
+        <span class="c1"># M544740, 週刊少年ジャンプ 1971年 表示号数47</span>
+        <span class="c1"># price = &#39;JUMPガラガラウなかも&#39;</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">elif</span> <span class="n">price</span> <span class="o">==</span> <span class="s2">&quot;238p&quot;</span><span class="p">:</span>
+        <span class="c1"># M542801, 週刊少年ジャンプ 2010年 表示号数42</span>
+        <span class="c1"># price = &#39;238p&#39;</span>
+        <span class="k">return</span> <span class="mi">238</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">price_new</span> <span class="o">=</span> <span class="n">price</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;円&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;+税&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">price_new</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">preprocess_df_mi</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">mcids</span><span class="p">:</span> <span class="n">List</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;pathとmcidsからdf_miを構築&quot;&quot;&quot;</span>
+    <span class="n">filters</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;genre&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;雑誌巻号&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;isPartOf&quot;</span><span class="p">:</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;https://mediaarts-db.bunka.go.jp/id/</span><span class="si">{</span><span class="n">mcid</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">mcid</span> <span class="ow">in</span> <span class="n">mcids</span><span class="p">],</span>
+    <span class="p">}</span>
+    <span class="n">mi</span> <span class="o">=</span> <span class="n">read_json_w_filters</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;@graph.item&quot;</span><span class="p">,</span> <span class="n">filters</span><span class="p">)</span>
+    <span class="n">df_mi</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">mi</span><span class="p">)</span>
+
+    <span class="c1"># 列を整理</span>
+    <span class="n">df_mi</span> <span class="o">=</span> <span class="n">format_cols</span><span class="p">(</span><span class="n">df_mi</span><span class="p">,</span> <span class="n">COLS_MI</span><span class="p">)</span>
+    <span class="c1"># mcidを取得</span>
+    <span class="n">df_mi</span><span class="p">[</span><span class="s2">&quot;mcid&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_mi</span><span class="p">[</span><span class="s2">&quot;mcid&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">get_id_from_uri</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+    <span class="c1"># mcnameを設定</span>
+    <span class="n">df_mi</span><span class="p">[</span><span class="s2">&quot;mcname&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_mi</span><span class="p">[</span><span class="s2">&quot;mcid&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">mcid2mcname</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+    <span class="c1"># dateでソート</span>
+    <span class="n">df_mi</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df_mi</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">])</span>
+    <span class="n">df_mi</span> <span class="o">=</span> <span class="n">df_mi</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;date&quot;</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="c1"># priceを整形</span>
+    <span class="n">df_mi</span><span class="p">[</span><span class="s2">&quot;price&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_mi</span><span class="p">[</span><span class="s2">&quot;price&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">format_price</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">df_mi</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">preprocess_df_ce</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">miids</span><span class="p">:</span> <span class="n">List</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;pathとmiidsからdf_ceを構築&quot;&quot;&quot;</span>
+    <span class="n">filters</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;genre&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;マンガ作品&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;isPartOf&quot;</span><span class="p">:</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;https://mediaarts-db.bunka.go.jp/id/</span><span class="si">{</span><span class="n">miid</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">miid</span> <span class="ow">in</span> <span class="n">miids</span><span class="p">],</span>
+    <span class="p">}</span>
+    <span class="n">ce</span> <span class="o">=</span> <span class="n">read_json_w_filters</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;@graph.item&quot;</span><span class="p">,</span> <span class="n">filters</span><span class="p">)</span>
+    <span class="n">df_ce</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">ce</span><span class="p">)</span>
+
+    <span class="c1"># 列を整形</span>
+    <span class="n">df_ce</span> <span class="o">=</span> <span class="n">format_cols</span><span class="p">(</span><span class="n">df_ce</span><span class="p">,</span> <span class="n">COLS_CE</span><span class="p">)</span>
+    <span class="c1"># uri表記から各idを取得</span>
+    <span class="n">df_ce</span><span class="p">[</span><span class="s2">&quot;ccid&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_ce</span><span class="p">[</span><span class="s2">&quot;ccid&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">get_id_from_uri</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+    <span class="n">df_ce</span><span class="p">[</span><span class="s2">&quot;miid&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_ce</span><span class="p">[</span><span class="s2">&quot;miid&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">get_id_from_uri</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">df_ce</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_crtname_from_text</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;textからcrtnameを抽出&quot;&quot;&quot;</span>
+    <span class="c1"># [原作]，［原作］等を削除</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s2">&quot;\［.*\］&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s2">&quot;\[.*\]&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+    <span class="c1"># 全角/半角カギカッコが混ざったコーナーケース</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;［原作]&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s2">&quot;\s*&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">text</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_crtnames_from_text</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;textからcrtnameのリストを抽出する&quot;&quot;&quot;</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">format_name</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">text</span> <span class="ow">is</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span> <span class="ow">or</span> <span class="n">text</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">crtnames</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;[/&amp;＆／]&quot;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+        <span class="n">crtnames</span> <span class="o">=</span> <span class="p">[</span><span class="n">get_crtname_from_text</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">crtnames</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">c</span><span class="p">)]</span>
+        <span class="k">return</span> <span class="n">crtnames</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">preprocess_df_cc</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">ccids</span><span class="p">:</span> <span class="n">List</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;df_ccの前処理&quot;&quot;&quot;</span>
+    <span class="n">cm106</span> <span class="o">=</span> <span class="n">read_json</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="c1"># 雑誌掲載ジャンルのアイテムを抽出</span>
+    <span class="n">cc</span> <span class="o">=</span> <span class="n">get_items_by_genre</span><span class="p">(</span><span class="n">cm106</span><span class="p">[</span><span class="s2">&quot;@graph&quot;</span><span class="p">],</span> <span class="s2">&quot;雑誌掲載&quot;</span><span class="p">)</span>
+    <span class="c1"># DataFrame化</span>
+    <span class="n">df_cc</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">cc</span><span class="p">)</span>
+    <span class="c1"># カラムを整理</span>
+    <span class="n">df_cc</span> <span class="o">=</span> <span class="n">format_cols</span><span class="p">(</span><span class="n">df_cc</span><span class="p">,</span> <span class="n">COLS_CC</span><span class="p">)</span>
+    <span class="c1"># ccidでフィルタ</span>
+    <span class="n">df_cc</span> <span class="o">=</span> <span class="n">df_cc</span><span class="p">[</span><span class="n">df_cc</span><span class="p">[</span><span class="s2">&quot;ccid&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">ccids</span><span class="p">)]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="c1"># ccnameを整形</span>
+    <span class="n">df_cc</span><span class="p">[</span><span class="s2">&quot;ccname&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_cc</span><span class="p">[</span><span class="s2">&quot;ccname&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">format_name</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+    <span class="c1"># 著者名を取得</span>
+    <span class="n">df_cc</span><span class="p">[</span><span class="s2">&quot;crtname&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_cc</span><span class="p">[</span><span class="s2">&quot;crtname&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">get_crtnames_from_text</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+    <span class="c1"># 原作者名を取得</span>
+    <span class="n">df_cc</span><span class="p">[</span><span class="s2">&quot;ocrtname&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_cc</span><span class="p">[</span><span class="s2">&quot;ocrtname&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">get_crtnames_from_text</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">df_cc</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">read_csvs</span><span class="p">(</span><span class="n">pathes</span><span class="p">:</span> <span class="n">List</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;pathesのcsvを順番に呼び出し，concat&quot;&quot;&quot;</span>
+    <span class="n">df_all</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">pathes</span><span class="p">:</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+        <span class="n">df_all</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_all</span><span class="p">,</span> <span class="n">df</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">df_all</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sort_by_date</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">col_date</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;dfをcol_dateでソート&quot;&quot;&quot;</span>
+    <span class="n">df_new</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">df_new</span><span class="p">[</span><span class="n">col_date</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df_new</span><span class="p">[</span><span class="n">col_date</span><span class="p">])</span>
+    <span class="n">df_new</span> <span class="o">=</span> <span class="n">df_new</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">col_date</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">df_new</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cast_str_to_list</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;str形式をリストに再変換</span>
+<span class="sd">    絶対他に良い方法がある気がする&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">text</span> <span class="ow">is</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[]</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;[&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;]&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&#39;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id4">
+<h2>出力先の生成<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">try_mkdirs</span><span class="p">(</span><span class="n">DIR_TMP</span><span class="p">)</span>
+<span class="n">try_mkdirs</span><span class="p">(</span><span class="n">DIR_OUT</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id5">
+<h2>解凍<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h2>
+<p>マンガ関連のデータ（<code class="docutils literal notranslate"><span class="pre">*cm*</span></code>）のみ<code class="docutils literal notranslate"><span class="pre">DIR_TMP</span></code>に解凍します．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ps_cm</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">DIR_IN</span><span class="si">}</span><span class="s2">/*_cm*&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">p_from</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">ps_cm</span><span class="p">):</span>
+    <span class="n">p_to</span> <span class="o">=</span> <span class="n">p_from</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">DIR_IN</span><span class="p">,</span> <span class="n">DIR_TMP</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;.zip&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">p_from</span><span class="p">)</span> <span class="k">as</span> <span class="n">z</span><span class="p">:</span>
+        <span class="n">z</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">p_to</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "e44582202a2748fe90e463a0b31ab3fc", "version_major": 2, "version_minor": 0}
+</script></div>
+</div>
+</section>
+<section id="id6">
+<h2>入力ファイルの一次処理<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h2>
+<p>元ファイルは大きすぎるので，本書の分析に必要なデータだけを抜き出します．</p>
+<section id="id7">
+<h3>対象<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ps_cm</span> <span class="o">=</span> <span class="p">{</span><span class="n">cm</span><span class="p">:</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">DIR_TMP</span><span class="si">}</span><span class="s2">/*</span><span class="si">{</span><span class="n">cm</span><span class="si">}</span><span class="s2">*/*&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">cm</span> <span class="ow">in</span> <span class="n">FNS_CM</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="cm105">
+<h3><code class="docutils literal notranslate"><span class="pre">cm105</span></code><a class="headerlink" href="#cm105" title="Permalink to this headline">#</a></h3>
+<p>COLS_CM105の雑誌名に該当するmcidを取得するため，辞書を生成します．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cm105</span> <span class="o">=</span> <span class="n">read_json</span><span class="p">(</span><span class="n">ps_cm</span><span class="p">[</span><span class="s2">&quot;cm105&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">df_cm105</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">cm105</span><span class="p">[</span><span class="s2">&quot;@graph&quot;</span><span class="p">])[</span><span class="n">COLS_CM105</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 雑誌名を取得</span>
+<span class="n">df_cm105</span><span class="p">[</span><span class="s2">&quot;mcname&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_cm105</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">format_magazine_name</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># {雑誌ID:雑誌名}</span>
+<span class="n">mcid2mcname</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">df_cm105</span><span class="p">[</span><span class="n">df_cm105</span><span class="p">[</span><span class="s2">&quot;mcname&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">MCNAMES</span><span class="p">)]</span>
+    <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;identifier&quot;</span><span class="p">)[</span><span class="s2">&quot;mcname&quot;</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">first</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># こんな感じの辞書です</span>
+<span class="n">mcid2mcname</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;C117607&#39;: &#39;週刊少年サンデー&#39;,
+ &#39;C119033&#39;: &#39;週刊少年マガジン&#39;,
+ &#39;C119459&#39;: &#39;週刊少年ジャンプ&#39;,
+ &#39;C120282&#39;: &#39;週刊少年チャンピオン&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 保存</span>
+<span class="n">save_json</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DIR_TMP</span><span class="p">,</span> <span class="s2">&quot;mcid2mcname.json&quot;</span><span class="p">),</span> <span class="n">mcid2mcname</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="cm102">
+<h3><code class="docutils literal notranslate"><span class="pre">cm102</span></code><a class="headerlink" href="#cm102" title="Permalink to this headline">#</a></h3>
+<p>雑誌巻号およびマンガ作品に関するデータを整形し，一次保存します．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">enumerate</span><span class="p">(</span><span class="n">ps_cm</span><span class="p">[</span><span class="s2">&quot;cm102&quot;</span><span class="p">])):</span>
+    <span class="n">mcids</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">mcid2mcname</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+    <span class="n">df_mi</span> <span class="o">=</span> <span class="n">preprocess_df_mi</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">mcids</span><span class="p">)</span>
+    <span class="c1"># 雑誌巻号のmiidを取得し，epsの抽出に利用</span>
+    <span class="n">miids</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">df_mi</span><span class="p">[</span><span class="s2">&quot;miid&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+    <span class="n">df_ce</span> <span class="o">=</span> <span class="n">preprocess_df_ce</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">miids</span><span class="p">)</span>
+
+    <span class="c1"># 保存</span>
+    <span class="n">fn_mi</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DIR_TMP</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;mi_</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">:</span><span class="s2">05</span><span class="si">}</span><span class="s2">.csv&quot;</span><span class="p">)</span>
+    <span class="n">fn_ce</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DIR_TMP</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;ce_</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">:</span><span class="s2">05</span><span class="si">}</span><span class="s2">.csv&quot;</span><span class="p">)</span>
+    <span class="n">df_mi</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">fn_mi</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">df_ce</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">fn_ce</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "81eae48421b34a1c8cdccbcefdd70ee2", "version_major": 2, "version_minor": 0}
+</script></div>
+</div>
+</section>
+<section id="cm106">
+<h3><code class="docutils literal notranslate"><span class="pre">cm106</span></code><a class="headerlink" href="#cm106" title="Permalink to this headline">#</a></h3>
+<p>掲載作品に関するデータを整形し，一次保存します．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ps_ce</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">DIR_TMP</span><span class="si">}</span><span class="s2">/ce_*.csv&quot;</span><span class="p">)</span>
+<span class="n">df_ce</span> <span class="o">=</span> <span class="n">read_csvs</span><span class="p">(</span><span class="n">ps_ce</span><span class="p">)</span>
+<span class="c1"># 抽出対象対象とするccidのリスト</span>
+<span class="n">ccids</span> <span class="o">=</span> <span class="n">df_ce</span><span class="p">[</span><span class="s2">&quot;ccid&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">enumerate</span><span class="p">(</span><span class="n">ps_cm</span><span class="p">[</span><span class="s2">&quot;cm106&quot;</span><span class="p">])):</span>
+    <span class="n">df_cc</span> <span class="o">=</span> <span class="n">preprocess_df_cc</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">ccids</span><span class="p">)</span>
+
+    <span class="c1"># 保存</span>
+    <span class="n">fn_cc</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DIR_TMP</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;cc_</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">:</span><span class="s2">05</span><span class="si">}</span><span class="s2">.csv&quot;</span><span class="p">)</span>
+    <span class="n">df_cc</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">fn_cc</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "3a6836a3baa347f5bf21be32ee072324", "version_major": 2, "version_minor": 0}
+</script></div>
+</div>
+</section>
+</section>
+<section id="id8">
+<h2>出力ファイルの作成と保存<a class="headerlink" href="#id8" title="Permalink to this headline">#</a></h2>
+<section id="cc-csv">
+<h3><code class="docutils literal notranslate"><span class="pre">cc.csv</span></code><a class="headerlink" href="#cc-csv" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ps_cc</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">DIR_TMP</span><span class="si">}</span><span class="s2">/cc_*.csv&quot;</span><span class="p">)</span>
+<span class="n">df_cc</span> <span class="o">=</span> <span class="n">read_csvs</span><span class="p">(</span><span class="n">ps_cc</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 必要な列に絞ってIDでソート</span>
+<span class="n">df_cc</span> <span class="o">=</span> <span class="n">df_cc</span><span class="p">[[</span><span class="s2">&quot;ccid&quot;</span><span class="p">,</span> <span class="s2">&quot;ccname&quot;</span><span class="p">]]</span>
+<span class="n">df_cc</span> <span class="o">=</span> <span class="n">df_cc</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;ccid&quot;</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 先頭5行を確認</span>
+<span class="n">df_cc</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ccid</th>
+      <th>ccname</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>C102235</td>
+      <td>さばげぶっ！</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>C109295</td>
+      <td>マウンドの稲妻</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>C109296</td>
+      <td>SCRAP三太夫</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>C109297</td>
+      <td>IN THE TRAIN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>C110879</td>
+      <td>[編集後記]</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 保存</span>
+<span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DIR_OUT</span><span class="p">,</span> <span class="s2">&quot;cc.csv&quot;</span><span class="p">)</span>
+<span class="n">df_cc</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="crt-csv">
+<h3><code class="docutils literal notranslate"><span class="pre">crt.csv</span></code><a class="headerlink" href="#crt-csv" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ps_cc</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">DIR_TMP</span><span class="si">}</span><span class="s2">/cc_*.csv&quot;</span><span class="p">)</span>
+<span class="n">df_cc</span> <span class="o">=</span> <span class="n">read_csvs</span><span class="p">(</span><span class="n">ps_cc</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># crtnamesの集合を作成</span>
+<span class="n">crtnames</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">df_cc</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="s2">&quot;record&quot;</span><span class="p">):</span>
+    <span class="n">crtname</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">cast_str_to_list</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s2">&quot;crtname&quot;</span><span class="p">]))</span>
+    <span class="n">ocrtname</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">cast_str_to_list</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s2">&quot;ocrtname&quot;</span><span class="p">]))</span>
+    <span class="c1"># 原作者も特に区別せずに管理</span>
+    <span class="n">crtnames</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">crtname</span><span class="p">)</span>
+    <span class="n">crtnames</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">ocrtname</span><span class="p">)</span>
+<span class="n">crtnames</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">crtnames</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># DataFrame化</span>
+<span class="n">crtids</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;CCRT</span><span class="si">{</span><span class="n">i</span><span class="si">:</span><span class="s2">05</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">crtnames</span><span class="p">))]</span>
+<span class="n">df_crt</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;crtid&quot;</span><span class="p">:</span> <span class="n">crtids</span><span class="p">,</span> <span class="s2">&quot;crtname&quot;</span><span class="p">:</span> <span class="n">crtnames</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 先頭5行を確認</span>
+<span class="n">df_crt</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>crtid</th>
+      <th>crtname</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>CCRT00000</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>CCRT00001</td>
+      <td>AKU</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>CCRT00002</td>
+      <td>AOKO</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>CCRT00003</td>
+      <td>AR-V</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>CCRT00004</td>
+      <td>Applibot</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 保存</span>
+<span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DIR_OUT</span><span class="p">,</span> <span class="s2">&quot;crt.csv&quot;</span><span class="p">)</span>
+<span class="n">df_crt</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="cc-crt-csv">
+<h3><code class="docutils literal notranslate"><span class="pre">cc_crt.csv</span></code><a class="headerlink" href="#cc-crt-csv" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ps_cc</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">DIR_TMP</span><span class="si">}</span><span class="s2">/cc_*.csv&quot;</span><span class="p">)</span>
+<span class="n">ps_crt</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">DIR_OUT</span><span class="si">}</span><span class="s2">/crt.csv&quot;</span><span class="p">)</span>
+
+<span class="n">df_cc</span> <span class="o">=</span> <span class="n">read_csvs</span><span class="p">(</span><span class="n">ps_cc</span><span class="p">)</span>
+<span class="n">df_crt</span> <span class="o">=</span> <span class="n">read_csvs</span><span class="p">(</span><span class="n">ps_crt</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># {crtname: crtid}</span>
+<span class="n">crtname2crtid</span> <span class="o">=</span> <span class="n">df_crt</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;crtname&quot;</span><span class="p">)[</span><span class="s2">&quot;crtid&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">first</span><span class="p">()</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cc_crt</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">df_cc</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="s2">&quot;record&quot;</span><span class="p">):</span>
+    <span class="n">ccid</span> <span class="o">=</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;ccid&quot;</span><span class="p">]</span>
+    <span class="n">crtnames</span> <span class="o">=</span> <span class="n">cast_str_to_list</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s2">&quot;crtname&quot;</span><span class="p">])</span>
+    <span class="c1"># 作画と原作を区別せず</span>
+    <span class="n">crtnames</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">cast_str_to_list</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s2">&quot;ocrtname&quot;</span><span class="p">]))</span>
+    <span class="k">for</span> <span class="n">crtname</span> <span class="ow">in</span> <span class="n">crtnames</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">crtname</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+            <span class="k">continue</span>
+
+        <span class="n">crtid</span> <span class="o">=</span> <span class="n">crtname2crtid</span><span class="p">[</span><span class="n">crtname</span><span class="p">]</span>
+        <span class="n">cc_crt</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">ccid</span><span class="p">,</span> <span class="n">crtid</span><span class="p">])</span>
+<span class="n">df_cc_crt</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;ccid&quot;</span><span class="p">,</span> <span class="s2">&quot;crtid&quot;</span><span class="p">],</span> <span class="n">data</span><span class="o">=</span><span class="n">cc_crt</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 冒頭5行を確認</span>
+<span class="n">df_cc_crt</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ccid</th>
+      <th>crtid</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>C87429</td>
+      <td>CCRT01604</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>C87430</td>
+      <td>CCRT02117</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>C87430</td>
+      <td>CCRT03152</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>C87431</td>
+      <td>CCRT01415</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>C87432</td>
+      <td>CCRT01979</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 保存</span>
+<span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DIR_OUT</span><span class="p">,</span> <span class="s2">&quot;cc_crt.csv&quot;</span><span class="p">)</span>
+<span class="n">df_cc_crt</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="mi-csv">
+<h3><code class="docutils literal notranslate"><span class="pre">mi.csv</span></code><a class="headerlink" href="#mi-csv" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ps_mi</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">DIR_TMP</span><span class="si">}</span><span class="s2">/mi_*.csv&quot;</span><span class="p">)</span>
+<span class="n">df_mi</span> <span class="o">=</span> <span class="n">read_csvs</span><span class="p">(</span><span class="n">ps_mi</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_mi</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df_mi</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">])</span>
+<span class="c1"># 全雑誌のうちDBに存在する期間が最も短いものに合わせる</span>
+<span class="n">date_min</span> <span class="o">=</span> <span class="n">df_mi</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;mcid&quot;</span><span class="p">)[</span><span class="s2">&quot;date&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="n">date_max</span> <span class="o">=</span> <span class="n">df_mi</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;mcid&quot;</span><span class="p">)[</span><span class="s2">&quot;date&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+<span class="n">df_mi</span> <span class="o">=</span> <span class="n">df_mi</span><span class="p">[(</span><span class="n">df_mi</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">date_min</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df_mi</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">date_max</span><span class="p">)]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span>
+    <span class="n">drop</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 列順を整理</span>
+<span class="n">col_mi</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;miid&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;miname&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;mcid&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;mcname&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;date&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;price&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">df_mi</span> <span class="o">=</span> <span class="n">df_mi</span><span class="p">[</span><span class="n">col_mi</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 冒頭5行を確認</span>
+<span class="n">df_mi</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>miid</th>
+      <th>miname</th>
+      <th>mcid</th>
+      <th>mcname</th>
+      <th>date</th>
+      <th>price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>M616363</td>
+      <td>週刊少年ジャンプ 1970年 表示号数31</td>
+      <td>C119459</td>
+      <td>週刊少年ジャンプ</td>
+      <td>1970-07-27</td>
+      <td>80.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>M537473</td>
+      <td>週刊少年マガジン 1970年 表示号数32</td>
+      <td>C119033</td>
+      <td>週刊少年マガジン</td>
+      <td>1970-08-02</td>
+      <td>80.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>M544796</td>
+      <td>週刊少年ジャンプ 1970年 表示号数32</td>
+      <td>C119459</td>
+      <td>週刊少年ジャンプ</td>
+      <td>1970-08-03</td>
+      <td>80.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>M544795</td>
+      <td>週刊少年ジャンプ 1970年 表示号数33</td>
+      <td>C119459</td>
+      <td>週刊少年ジャンプ</td>
+      <td>1970-08-10</td>
+      <td>80.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>M579284</td>
+      <td>週刊少年サンデー 1970年 表示号数34</td>
+      <td>C117607</td>
+      <td>週刊少年サンデー</td>
+      <td>1970-08-16</td>
+      <td>90.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 保存</span>
+<span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DIR_OUT</span><span class="p">,</span> <span class="s2">&quot;mi.csv&quot;</span><span class="p">)</span>
+<span class="n">df_mi</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ce-csv">
+<h3><code class="docutils literal notranslate"><span class="pre">ce.csv</span></code><a class="headerlink" href="#ce-csv" title="Permalink to this headline">#</a></h3>
+<p>以下の処理を施します</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">page_start</span></code>，<code class="docutils literal notranslate"><span class="pre">page_end</span></code>でフィルタ</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pages</span></code>列を追加</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">page_start_position</span></code>を追加</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ceid</span></code>を生成</p></li>
+<li><p>列順を整理</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ps_ce</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">DIR_TMP</span><span class="si">}</span><span class="s2">/ce_*.csv&quot;</span><span class="p">)</span>
+<span class="n">df_ce</span> <span class="o">=</span> <span class="n">read_csvs</span><span class="p">(</span><span class="n">ps_ce</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># miidとpage_startでソート</span>
+<span class="n">df_ce</span> <span class="o">=</span> <span class="n">df_ce</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s2">&quot;miid&quot;</span><span class="p">,</span> <span class="s2">&quot;page_start&quot;</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 適切なpage_startとpage_endでフィルタ</span>
+<span class="c1">## page_startがpage_end以下であること</span>
+<span class="n">filter_ps_pe</span> <span class="o">=</span> <span class="n">df_ce</span><span class="p">[</span><span class="s2">&quot;page_start&quot;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">df_ce</span><span class="p">[</span><span class="s2">&quot;page_end&quot;</span><span class="p">]</span>
+<span class="c1">## page_endがMAX_PAGES以下であること</span>
+<span class="n">filter_pe</span> <span class="o">=</span> <span class="n">df_ce</span><span class="p">[</span><span class="s2">&quot;page_end&quot;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">MAX_PAGES</span>
+
+<span class="n">df_ce</span> <span class="o">=</span> <span class="n">df_ce</span><span class="p">[(</span><span class="n">filter_ps_pe</span> <span class="o">&amp;</span> <span class="n">filter_pe</span><span class="p">)]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># pages列を追加</span>
+<span class="n">df_ce</span><span class="p">[</span><span class="s2">&quot;pages&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_ce</span><span class="p">[</span><span class="s2">&quot;page_end&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df_ce</span><span class="p">[</span><span class="s2">&quot;page_start&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># page_start_positionを追加</span>
+<span class="c1">## 各雑誌巻号の最終ページ</span>
+<span class="n">miid2page</span> <span class="o">=</span> <span class="n">df_ce</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;miid&quot;</span><span class="p">)[</span><span class="s2">&quot;page_end&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+<span class="n">df_ce</span><span class="p">[</span><span class="s2">&quot;page_end_max&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_ce</span><span class="p">[</span><span class="s2">&quot;miid&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">miid2page</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+<span class="c1">## page_start_positonを計算</span>
+<span class="n">df_ce</span><span class="p">[</span><span class="s2">&quot;page_start_position&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_ce</span><span class="p">[</span><span class="s2">&quot;page_start&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">df_ce</span><span class="p">[</span><span class="s2">&quot;page_end_max&quot;</span><span class="p">]</span>
+<span class="c1">## page_end_maxは不要なのでdrop</span>
+<span class="n">df_ce</span> <span class="o">=</span> <span class="n">df_ce</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;page_end_max&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ceidを生成</span>
+<span class="n">df_ce</span><span class="p">[</span><span class="s2">&quot;ceid&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;CE</span><span class="si">{</span><span class="n">i</span><span class="si">:</span><span class="s2">05</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">df_ce</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 列順を整理</span>
+<span class="n">cols_ce</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;ceid&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;cename&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ccid&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;miid&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;page_start&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;page_end&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;pages&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;page_start_position&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">df_ce</span> <span class="o">=</span> <span class="n">df_ce</span><span class="p">[</span><span class="n">cols_ce</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 冒頭5行を確認</span>
+<span class="n">df_ce</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ceid</th>
+      <th>cename</th>
+      <th>ccid</th>
+      <th>miid</th>
+      <th>page_start</th>
+      <th>page_end</th>
+      <th>pages</th>
+      <th>page_start_position</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>CE00000</td>
+      <td>第238話/この世代</td>
+      <td>C90829</td>
+      <td>M535428</td>
+      <td>10.0</td>
+      <td>31.0</td>
+      <td>22.0</td>
+      <td>0.021368</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>CE00001</td>
+      <td>#134 話の続き</td>
+      <td>C90482</td>
+      <td>M535428</td>
+      <td>33.0</td>
+      <td>50.0</td>
+      <td>18.0</td>
+      <td>0.070513</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>CE00002</td>
+      <td>第5話 チア・ザ・マシンガン!</td>
+      <td>C90297</td>
+      <td>M535428</td>
+      <td>51.0</td>
+      <td>68.0</td>
+      <td>18.0</td>
+      <td>0.108974</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>CE00003</td>
+      <td>第233話 妖精の輝き</td>
+      <td>C89978</td>
+      <td>M535428</td>
+      <td>69.0</td>
+      <td>88.0</td>
+      <td>20.0</td>
+      <td>0.147436</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>CE00004</td>
+      <td>-BOUT 71- From Dark Zone</td>
+      <td>C89929</td>
+      <td>M535428</td>
+      <td>89.0</td>
+      <td>108.0</td>
+      <td>20.0</td>
+      <td>0.190171</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 保存</span>
+<span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DIR_OUT</span><span class="p">,</span> <span class="s2">&quot;ce.csv&quot;</span><span class="p">)</span>
+<span class="n">df_ce</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./02"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="../index.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">ようこそ</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="eda.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">基礎分析</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By kakeami<br/>
+  
+    <div class="extra_footer">
+      © Copyright 2021 by <a rel="kakeami" href="https://github.com/kakeami"> Kakeami </a>. この作品は<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">クリエイティブ・コモンズ 表示 - 非営利 - 改変禁止 4.0 国際 ライセンス</a>の下に提供されています． <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="クリエイティブ・コモンズ・ライセンス" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>　ただし，作品中のコードセル部分は<a rel="license" href="https://opensource.org/licenses/MIT">MITライセンス</a>の下に提供されています．
+
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

@@ -1,0 +1,964 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>本書の再現と発展 &#8212; データ可視化技術入門</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'appendix/setup';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="icon" href="../_static/pen.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="参考文献" href="references.html" />
+    <link rel="prev" title="【解答例】" href="../vol2/06/practice_a.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">データ可視化技術入門</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">上巻</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../vol1/03/index.html">3章 マンガデータ分析①</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../vol1/03/cm_preprocess.html">マンガデータの前処理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol1/03/eda.html">マンガデータの基礎分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol1/03/practice_q.html">【練習問題】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol1/03/practice_a.html">【解答例】</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../vol1/04/index.html">4章 マンガデータ分析②</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../vol1/04/amounts.html">マンガデータの量を見る</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol1/04/dists.html">マンガデータの分布を見る</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol1/04/props.html">マンガデータの内訳を見る</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol1/04/assocs.html">マンガデータの関係を見る</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol1/04/practice_q.html">【練習問題】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol1/04/practice_a.html">【解答例】</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../vol1/05/index.html">5章 Python/Pandas/Plotly</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../vol1/05/python.html">Pythonの基本</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol1/05/pandas.html">Pandasの基本</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol1/05/plotly.html">Plotlyの基本</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol1/05/practice_q.html">【練習問題】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol1/05/practice_a.html">【解答例】</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../vol1/06/index.html">6章 取得/前処理/基礎分析</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../vol1/06/an_preprocess.html">アニメデータの前処理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol1/06/an_eda.html">アニメデータの基礎分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol1/06/gm_preprocess.html">ゲームデータの前処理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol1/06/gm_eda.html">ゲームデータの基礎分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol1/06/practice_q.html">【練習問題】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol1/06/practice_a.html">【解答例】</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">下巻</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../vol2/01/index.html">1章 量を見る手法</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/01/bar.html">棒グラフ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/01/gbar.html">集合棒グラフ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/01/sbar.html">積上げ棒グラフ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/01/heatmap.html">ヒートマップ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/01/practice_q.html">【練習問題】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/01/practice_a.html">【解答例】</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../vol2/02/index.html">2章 分布を見る手法</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/02/hist.html">ヒストグラム</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/02/density.html">密度プロット</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/02/box.html">箱ひげ図</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/02/violin.html">バイオリンプロット</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/02/ridge.html">リッジラインプロット</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/02/practice_q.html">【練習問題】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/02/practice_a.html">【解答例】</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../vol2/03/index.html">3章 内訳を見る手法</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/03/pie.html">円グラフ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/03/bar.html">棒グラフ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/03/mosaic.html">モザイクプロット</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/03/area.html">積上げ密度プロット</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/03/tree.html">ツリーマップ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/03/parallel.html">パラレルセットグラフ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/03/practice_q.html">【練習問題】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/03/practice_a.html">【解答例】</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../vol2/04/index.html">4章 関係を見る手法</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/04/scatter.html">散布図</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/04/bubble.html">バブルチャート</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/04/matrix.html">散布図行列</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/04/2d.html">二次元ヒストグラム</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/04/contour.html">等値線図</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/04/line.html">折れ線グラフ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/04/connected.html">連結散布図</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/04/practice_q.html">【練習問題】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/04/practice_a.html">【解答例】</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../vol2/05/index.html">5章 メディア展開データ分析①</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/05/mix_preprocess.html">メディア展開データの前処理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/05/eda.html">メディア展開データの基礎分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/05/practice_q.html">【練習問題】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/05/practice_a.html">【解答例】</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../vol2/06/index.html">6章 メディア展開データ分析②</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/06/amounts.html">メディア展開データの量を見る</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/06/dists.html">メディア展開データの分布を見る</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/06/props.html">メディア展開データの内訳を見る</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/06/assocs.html">メディア展開データの関係を見る</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/06/practice_q.html">【練習問題】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/06/practice_a.html">【解答例】</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">本書の再現と発展</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">参考文献</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/kakeami/vizbook" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/kakeami/vizbook/issues/new?title=Issue%20on%20page%20%2Fappendix/setup.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/appendix/setup.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>本書の再現と発展</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">前提</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">想定環境</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#github">GitHubリポジトリのクローン</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-lab">Jupyter Labの起動</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Jupyter Labのパスワードの変更</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">本書の再現</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">本書の発展</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">分析対象の変更</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ac-cc-csv"><code class="docutils literal notranslate"><span class="pre">ac_cc.csv</span></code>の修正</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">おわりに</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>本書の再現と発展<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p>本章では、本書で紹介した可視化手法を再現し、発展させるための環境構築方法を解説します。</p>
+<section id="id2">
+<h2>前提<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<section id="id3">
+<h3>想定環境<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>事前に下記がインストールされていることが前提です。</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.docker.com/">Docker</a></p></li>
+<li><p><a class="reference external" href="https://docs.docker.jp/compose/toc.html">Docker Compose</a></p></li>
+<li><p><a class="reference external" href="https://git-scm.com/">Git</a></p></li>
+</ul>
+<p>なお、私の環境は：</p>
+<ul class="simple">
+<li><p>macOS Monterey Version 12.5</p></li>
+<li><p>Docker version 20.10.17, build 100c701</p></li>
+<li><p>docker-compose version 1.29.2, build 5becea4c</p></li>
+<li><p>git version 2.39.0</p></li>
+</ul>
+<p>です。</p>
+</section>
+<section id="github">
+<h3>GitHubリポジトリのクローン<a class="headerlink" href="#github" title="Link to this heading">#</a></h3>
+<p><a class="reference external" href="https://github.com/kakeami/vizbook-jupyter">本書のGitHubリポジトリ</a>からソースコードと前処理後のデータをダウンロードしてください。
+例えば、</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>--recursive<span class="w"> </span>https://github.com/kakeami/vizbook-jupyter.git
+</pre></div>
+</div>
+<p>とターミナルでコマンドを打てば、<code class="docutils literal notranslate"><span class="pre">vizbook-jupyter</span></code>ディレクトリが作成され、
+再現に必要なデータとJupyter notebookが全てダウンロードされます。</p>
+<p><code class="docutils literal notranslate"><span class="pre">--recursive</span></code>オプションを付けることで、MADB Labのデータを格納する<code class="docutils literal notranslate"><span class="pre">madb</span></code>ディレクトリも含めてクローンしています。
+今後の分析では<code class="docutils literal notranslate"><span class="pre">madb</span></code>ディレクトリがあることが前提となりますので、必ず<code class="docutils literal notranslate"><span class="pre">--recursive</span></code>オプションをつけるようご注意ください。</p>
+<p>データサイズが大きいため、ダウンロードにはしばらく時間がかかります。</p>
+<p>最終的に、以下のような<code class="docutils literal notranslate"><span class="pre">vizbook-jupyter</span></code>ディレクトリをダウンロードできれば準備は完了です。</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>tree<span class="w"> </span>-L<span class="w"> </span><span class="m">2</span><span class="w"> </span>vizbook-jupyter
+<span class="c1"># vizbook-jupyter</span>
+<span class="c1">#├── Dockerfile</span>
+<span class="c1">#├── LICENSE</span>
+<span class="c1">#├── README.md</span>
+<span class="c1">#├── book</span>
+<span class="c1">#│   ├── _build</span>
+<span class="c1">#│   ├── _config.yml</span>
+<span class="c1">#│   ├── _toc.yml</span>
+<span class="c1">#│   ├── appendix</span>
+<span class="c1">#│   ├── images</span>
+<span class="c1">#│   ├── index.md</span>
+<span class="c1">#│   ├── references.bib</span>
+<span class="c1">#│   ├── requirements.txt</span>
+<span class="c1">#│   ├── vol1</span>
+<span class="c1">#│   └── vol2</span>
+<span class="c1">#├── build.sh</span>
+<span class="c1">#├── data</span>
+<span class="c1">#│   ├── an</span>
+<span class="c1">#│   ├── cm</span>
+<span class="c1">#│   ├── gm</span>
+<span class="c1">#│   ├── mix</span>
+<span class="c1">#│   └── sandbox</span>
+<span class="c1">#├── docker-compose.yml</span>
+<span class="c1">#├── madb</span>
+<span class="c1">#│   ├── README.md</span>
+<span class="c1">#│   ├── data</span>
+<span class="c1">#│   └── doc</span>
+<span class="c1">#└── src</span>
+<span class="c1">#    └── hide_cells.py</span>
+</pre></div>
+</div>
+</section>
+<section id="jupyter-lab">
+<h3>Jupyter Labの起動<a class="headerlink" href="#jupyter-lab" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">vizbook-jupyter</span></code>ディレクトリに移動し、下記のコマンドでコンテナを立ち上げてください。</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>docker-compose<span class="w"> </span>up<span class="w"> </span>-d
+</pre></div>
+</div>
+<p>このとき、パスワードの入力を求められるかもしれません。
+その際、現在ログインしているユーザー（あなた自身）のパスワードを入力するようにしてください。</p>
+<p>なお、ターミナルの仕様上、パスワードを入力しても画面には文字や <code class="docutils literal notranslate"><span class="pre">*</span></code>  （アスタリスク）が表示されません。
+カーソルが動かなくても受け付けられていますので、そのままパスワードを入力して <code class="docutils literal notranslate"><span class="pre">Enter</span></code> キーを押してください。</p>
+<p>ブラウザから<code class="docutils literal notranslate"><span class="pre">localhost:9999</span></code>にアクセスすると、下図のようにパスワード入力画面が表示されます。</p>
+<p><img alt="" src="../_images/login.png" /></p>
+<p>パスワードは<code class="docutils literal notranslate"><span class="pre">1101</span></code>です。
+左のエクスプローラーから、<code class="docutils literal notranslate"><span class="pre">work</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">book</span></code>の順に選択し、解析用ディレクトリに移動してください。</p>
+<p><img alt="" src="../_images/book.png" /></p>
+<p>上図のような画面が表示されたら、準備は完了です。
+以下のコマンドでコンテナを停止し、ブラウザを閉じましょう。</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>docker-compose<span class="w"> </span>stop
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h3>Jupyter Labのパスワードの変更<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<p>周知のパスワードを使い回すのは危険なので、必ず変更しましょう。</p>
+<p><code class="docutils literal notranslate"><span class="pre">vizbook-jupyter</span></code>ディレクトリ直下にある<code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code>の最終行がパスワードに対応します。</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;3&quot;</span>
+<span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">jupyterlab</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">build</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">context</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;./:/home/jovyan/work&quot;</span>
+<span class="w">    </span><span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">root</span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;9999:8888&quot;</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">NB_UID</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">      </span><span class="nt">NB_GID</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">      </span><span class="nt">GRANT_SUDO</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;yes&quot;</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">start.sh jupyter lab --NotebookApp.password=&quot;sha1:4eff59f3895c:eca7017bd2f8f800bac660191a9a77413ed0a487&quot;</span>
+</pre></div>
+</div>
+<p>最後の<code class="docutils literal notranslate"><span class="pre">&quot;sha1:4ef...&quot;</span></code>を適宜変更しましょう。
+例えば<code class="docutils literal notranslate"><span class="pre">45510</span></code>としたい場合は、pythonで</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">notebook.auth</span><span class="w"> </span><span class="kn">import</span> <span class="n">passwd</span>
+<span class="n">passwd</span><span class="p">(</span><span class="s2">&quot;45510&quot;</span><span class="p">,</span> <span class="s2">&quot;sha1&quot;</span><span class="p">)</span>
+<span class="c1"># &#39;sha1:3e37a5120c15:28f9e774cfe2bc350773d360a40daafc87dc42af&#39;</span>
+</pre></div>
+</div>
+<p>とすればトークンを生成できます。</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>このまま利用せず、必ず<code class="docutils literal notranslate"><span class="pre">1101</span></code>あるいは<code class="docutils literal notranslate"><span class="pre">45510</span></code>以外のパスワード<a class="footnote-reference brackets" href="#four-years" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>を設定するようにしてください。</p>
+</div>
+</section>
+</section>
+<section id="id6">
+<h2>本書の再現<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">book</span></code>以下のNotebook（<code class="docutils literal notranslate"><span class="pre">*.ipynb</span></code>形式のファイル）と本書の対応関係は以下のとおりです<a class="footnote-reference brackets" href="#minor-change" id="id7" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>。
+適宜コードを追加・修正することで、独自の分析を実施いただけます。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+├── vol1
+│   ├── 03
+│   │   ├── cm_preprocess.ipynb # マンガデータの前処理（再実行不要）
+│   │   ├── eda.ipynb           # マンガデータの基礎分析
+│   │   └── index.md
+│   ├── 04
+│   │   ├── amounts.ipynb       # マンガデータの量を見る
+│   │   ├── assocs.ipynb        # マンガデータの関係を見る
+│   │   ├── dists.ipynb         # マンガデータの分布を見る
+│   │   ├── index.md
+│   │   └── props.ipynb         # マンガデータの内訳を見る
+│   ├── 05
+│   │   ├── index.md
+│   │   ├── pandas.ipynb        # Pandasの基礎
+│   │   ├── plotly.ipynb        # Plotlyの基礎
+│   │   └── python.ipynb        # Pythonの基礎
+│   └── 06
+│       ├── an_eda.ipynb         # アニメデータの基礎分析
+│       ├── an_preprocess.ipynb  # アニメデータの前処理（再実行不要）
+│       ├── gm_eda.ipynb         # ゲームデータの基礎分析
+│       ├── gm_preprocess.ipynb  # ゲームデータの前処理（再実行不要）
+│       └── index.md
+└── vol2
+    ├── 01
+    │   ├── bar.ipynb            # 棒グラフ
+    │   ├── gbar.ipynb           # 集合棒グラフ
+    │   ├── heatmap.ipynb        # ヒートマップ
+    │   ├── index.md
+    │   └── sbar.ipynb           # 積上げ棒グラフ
+    ├── 02
+    │   ├── box.ipynb            # 箱ひげ図
+    │   ├── density.ipynb        # 密度プロット
+    │   ├── hist.ipynb           # ヒストグラム
+    │   ├── index.md
+    │   ├── ridge.ipynb          # リッジラインプロット
+    │   └── violin.ipynb         # バイオリンプロット
+    ├── 03
+    │   ├── area.ipynb           # 積上げ密度プロット
+    │   ├── bar.ipynb            # 棒グラフ
+    │   ├── index.md
+    │   ├── mosaic.ipynb         # モザイクプロット
+    │   ├── parallel.ipynb       # パラレルセットグラフ
+    │   ├── pie.ipynba           # 円グラフ
+    │   └── tree.ipynb           # ツリーマップ
+    ├── 04
+    │   ├── 2d.ipynb             # 二次元ヒストグラム
+    │   ├── bubble.ipynb         # バブルチャート
+    │   ├── connected.ipynb      # 連結散布図
+    │   ├── contour.ipynb        # 等値線図
+    │   ├── index.md
+    │   ├── line.ipynb           # 折れ線グラフ
+    │   ├── matrix.ipynb         # 散布図行列
+    │   └── scatter.ipynb        # 散布図
+    ├── 05
+    │   ├── eda.ipynb            # メディア展開データの基礎分析
+    │   ├── index.md
+    │   └── mix_preprocess.ipynb # メディア展開データの前処理（再実行不要）
+    └── 06
+        ├── amounts.ipynb         # メディア展開データの量を見る
+        ├── assocs.ipynb          # メディア展開データの関係を見る
+        ├── dists.ipynb           # メディア展開データの分布を見る
+        ├── index.md
+        └── props.ipynb           # メディア展開データの内訳を見る
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>前処理後のデータは全て<code class="docutils literal notranslate"><span class="pre">vizbook-jupyter/data/*</span></code>以下に格納されています。
+本書の再現のため、前処理を再実行頂く必要はありません。
+（仮に再実行したとしても、同じファイルが出力されるだけですので問題はありません。）</p>
+</div>
+</section>
+<section id="id8">
+<h2>本書の発展<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+<p>やや上級者向けですが、本書の内容を発展させる方法を解説します。</p>
+<section id="id9">
+<h3>分析対象の変更<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<p>紙幅の都合上、本書では分析対象データを大幅に制限しています。
+例えば、マンガデータの前処理では、以下のようにマンガ雑誌を限定しました。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 分析対象とするマンガ雑誌名のリストを定義</span>
+<span class="n">MCNAMES</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;週刊少年ジャンプ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;週刊少年マガジン&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;週刊少年サンデー&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;週刊少年チャンピオン&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>本書では上記を四大少年誌と呼称しましたが、もともとは上記に<code class="docutils literal notranslate"><span class="pre">週刊少年キング</span></code>を含めた五誌<a class="footnote-reference brackets" href="#wo-king" id="id10" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a>が
+<strong>五大（週刊）少年誌</strong>
+と呼ばれていました<span id="id11">[<a class="reference internal" href="references.html#id10" title="澤村 修治. 日本マンガ全史 「鳥獣戯画」から「鬼滅の刃」まで. 平凡社, 2020.">2</a>]</span>。
+よって、以下のように修正してみても良いかもしれません。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 分析対象とするマンガ雑誌名のリストを定義</span>
+<span class="n">MCNAMES</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;週刊少年ジャンプ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;週刊少年マガジン&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;週刊少年サンデー&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;週刊少年チャンピオン&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;週刊少年キング&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>さらに言えば、分析対象を <strong>週刊</strong> の <strong>少年</strong> 誌に限る理由はどこにもありません。
+目的に応じて変更してみると良いでしょう。</p>
+<p>修正後にNotebookを実行すれば、
+<strong>基本的には</strong>
+<code class="docutils literal notranslate"><span class="pre">vizbook-jupyter/data/cm/input</span></code>以下に新たな分析用データが出力されるはずですが、
+状況に応じて外れ値への対応が必要になる点はご了承ください。
+例えば、四大少年誌の場合は、以下のような価格の異常値への例外処理が必要でした。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">format_price</span><span class="p">(</span><span class="n">price</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    price情報を整形する関数</span>
+<span class="sd">    特定の価格表現に対してはハードコーディングで既定の値を返す</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    price : Optional[Any]</span>
+<span class="sd">        価格情報</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    Optional[int]</span>
+<span class="sd">        整形後の価格、priceがNoneまたは特定の形式でない場合はNoneを返す</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># priceがNaNの場合</span>
+    <span class="k">if</span> <span class="n">price</span> <span class="ow">is</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="c1"># 特定の価格表現に対するハードコーディング</span>
+    <span class="c1"># 週刊少年ジャンプ 1971年 表示号数47の場合</span>
+    <span class="k">if</span> <span class="n">price</span> <span class="o">==</span> <span class="s2">&quot;JUMPガラガラウなかも&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="c1"># 週刊少年ジャンプ 2010年 表示号数42の場合</span>
+    <span class="k">if</span> <span class="n">price</span> <span class="o">==</span> <span class="s2">&quot;238p&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">238</span>
+
+    <span class="c1"># それ以外のprice情報を整形</span>
+    <span class="n">price_new</span> <span class="o">=</span> <span class="n">price</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;円&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;+税&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">price_new</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>なお、上記の<code class="docutils literal notranslate"><span class="pre">format_price</span></code>は、可読性と教育的側面を重視して実装されています。
+正規表現を用いることで、より簡潔なコードが実現できる可能性もあります<a class="footnote-reference brackets" href="#re" id="id12" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a>が、本書では初学者にも理解しやすいシンプルな文字列操作を優先しました。</p>
+<p>より重要なのは、データクレンジングの本質的な課題、すなわち予期せぬ異常値への対応です。
+例えば <code class="docutils literal notranslate"><span class="pre">238p</span></code> という表記が実際には <code class="docutils literal notranslate"><span class="pre">238円</span></code> を意味するのか、あるいはページ数を誤って価格列に入力したのかを判断するには、ドメイン知識が必要になります。
+このような判断は、いかに高度な正規表現を用いても自動化することが難しく、個別のケースごとに対応が必要になることもしばしばです。</p>
+<p><code class="docutils literal notranslate"><span class="pre">MCNAMES</span></code>を変更することで、価格以外にも異常値が発生する可能性は考えられます。
+元データを分析に適した形式に加工する作業（
+<strong>データクレンジング</strong>
+と呼ばれることもあります）はデータ分析で最も重要な作業の一つですので、
+積極的に挑戦してみましょう。</p>
+<p>ただし、アニメ作品とマンガ作品を対応付ける<code class="docutils literal notranslate"><span class="pre">vizbook-jupyter/data/mix/external/ac_cc.csv</span></code>だけは、手動で作成する必要があることにご注意ください。
+なぜなら、本書のGitHubリポジトリで公開している<code class="docutils literal notranslate"><span class="pre">ac_cc.csv</span></code>は、四大少年誌を前提としているためです。
+もし新たな<code class="docutils literal notranslate"><span class="pre">MCNAMES</span></code>に対してメディア展開データを作成したい場合は、<code class="docutils literal notranslate"><span class="pre">acid</span></code>（アニメ作品ID）に対応する<code class="docutils literal notranslate"><span class="pre">ccid</span></code>（マンガ作品ID）を整理し直す必要があります。</p>
+<p>また、マンガデータに限らず、アニメデータやゲームデータも、自由に変更してみましょう。</p>
+</section>
+<section id="ac-cc-csv">
+<h3><code class="docutils literal notranslate"><span class="pre">ac_cc.csv</span></code>の修正<a class="headerlink" href="#ac-cc-csv" title="Link to this heading">#</a></h3>
+<p>メディア展開データの核である<code class="docutils literal notranslate"><span class="pre">vizbook-jupyter/data/mix/external/ac_cc.csv</span></code>は、
+以下2列からなる単純なファイルです。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">acid</span><span class="p">,</span><span class="n">ccid</span>
+<span class="n">C10003</span><span class="p">,</span><span class="n">C92062</span>
+<span class="n">C10012</span><span class="p">,</span><span class="n">C91434</span>
+<span class="n">C10016</span><span class="p">,</span><span class="n">C91240</span>
+<span class="n">C10026</span><span class="p">,</span><span class="n">C92178</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>アニメ作品ID（<code class="docutils literal notranslate"><span class="pre">acid</span></code>）と、その原作となるマンガ作品ID（<code class="docutils literal notranslate"><span class="pre">ccid</span></code>）を一行ずつ格納しています。</p>
+<p><code class="docutils literal notranslate"><span class="pre">ac_cc.csv</span></code>は、筆者のドメイン知識をもとに独自に作成されたものです。
+可能なかぎり正確であるよう心がけましたが、抜け・漏れや誤った情報が含まれる可能性があります。
+修正すべき点が見つかった場合は、<code class="docutils literal notranslate"><span class="pre">ac_cc.csv</span></code>を直接編集してみましょう。</p>
+</section>
+</section>
+<section id="id13">
+<h2>おわりに<a class="headerlink" href="#id13" title="Link to this heading">#</a></h2>
+<p><a class="reference internal" href="../vol1/04/props.html#cm-pie"><span class="std std-ref">上巻4章</span></a>ではマンガ家が連載を勝ち取るパターンとして、①マンガ賞への投稿、②入賞、③読切掲載、④連載会議の通過を紹介しました。
+しかし、マンガ家の志望者のうち、実際にマンガ賞に投稿できる人は何人いるでしょうか？
+実は、①に至る前にふるいにかけられた、無数の「マンガ家を目指しているけどマンガ賞に投稿したことがない」志望者たちが存在します<a class="footnote-reference brackets" href="#hebichika" id="id14" role="doc-noteref"><span class="fn-bracket">[</span>5<span class="fn-bracket">]</span></a>。</p>
+<p>余談ですが、筆者はそんな志望者の一人でした。
+中学三年生までマンガ家を目指し、目標とする先生方の絵を模写し続けていました。
+しかし、どうしても読切作品を描き上げることができず、最終的に普通科の高校に進学しました。
+現在ではただのマンガ好きの会社員として、平凡な毎日を送っています。</p>
+<p><img alt="図A.x：筆者の立ち位置" src="../_images/me.png" /></p>
+<p>クリエイターとして何者にも成れなかった（成ろうともしなかった）筆者にとって、
+アクションを起こした人、ましてやそのアクションから成功を掴み取った人たちは雲の上の存在です。
+筆者は、本書で扱うような
+<strong>マンガ・アニメ・ゲームに携わる方々を心の底から尊敬</strong>
+しています。</p>
+<p>本書で公開したデータは、いくらでも悪意のある可視化が可能なものです。
+もし叶うのであれば、誰かを傷つける分析よりも、誰かを称える分析のために役立てていただきたいと願っています。</p>
+<hr class="footnotes docutils" />
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="four-years" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">1</a><span class="fn-bracket">]</span></span>
+<p>アルファベットや記号を組み合わせ、少なくとも人手による解析が不可能なものにしましょう。</p>
+</aside>
+<aside class="footnote brackets" id="minor-change" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id7">2</a><span class="fn-bracket">]</span></span>
+<p>本書のコンテンツの中心となるファイルのみを抜粋しています。</p>
+</aside>
+<aside class="footnote brackets" id="wo-king" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id10">3</a><span class="fn-bracket">]</span></span>
+<p><code class="docutils literal notranslate"><span class="pre">週刊少年キング</span></code>は本書執筆時点で休刊中であったため、本書の分析対象から除外しました。</p>
+</aside>
+<aside class="footnote brackets" id="re" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id12">4</a><span class="fn-bracket">]</span></span>
+<p>例えば、<code class="docutils literal notranslate"><span class="pre">re.sub(r'[^\d]',</span> <span class="pre">'',</span> <span class="pre">price)</span></code>のようなパターンを使用すれば、数字以外の文字を除去することが可能です。</p>
+</aside>
+<aside class="footnote brackets" id="hebichika" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id14">5</a><span class="fn-bracket">]</span></span>
+<p>へびちか先生<span id="id15">[<a class="reference internal" href="references.html#id18" title="とよ田 みのる. これ描いて死ね. 小学館, 2022.">1</a>]</span>の持論を筆者なりに解釈し、図解させて頂きました。視認性の観点から筆者を右端より若干左に位置付けましたが、他の志望者に対する優劣を表しているわけではありません。</p>
+</aside>
+</aside>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./appendix"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../vol2/06/practice_a.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">【解答例】</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="references.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">参考文献</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">前提</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">想定環境</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#github">GitHubリポジトリのクローン</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-lab">Jupyter Labの起動</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Jupyter Labのパスワードの変更</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">本書の再現</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">本書の発展</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">分析対象の変更</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ac-cc-csv"><code class="docutils literal notranslate"><span class="pre">ac_cc.csv</span></code>の修正</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">おわりに</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  © Copyright 2026 by <a rel="kakeami" href="https://github.com/kakeami"> Kakeami </a>. この作品は<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">クリエイティブ・コモンズ 表示 - 非営利 - 改変禁止 4.0 国際 ライセンス</a>の下に提供されています． <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="クリエイティブ・コモンズ・ライセンス" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>　ただし，作品中のコードセル部分は<a rel="license" href="https://opensource.org/licenses/MIT">MITライセンス</a>の下に提供されています．
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

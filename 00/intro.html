@@ -1,0 +1,848 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>はじめに &#8212; マンガ・アニメ・ゲームと学ぶデータビジュアライゼーション</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/dot-line.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="前処理" href="../02/preprocess.html" />
+    <link rel="prev" title="ようこそ" href="../index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/dot-bar.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">マンガ・アニメ・ゲームと学ぶデータビジュアライゼーション</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  まえがき
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   はじめに
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  2章 マンガデータによるハンズオン
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02/preprocess.html">
+   前処理
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02/eda.html">
+   基礎分析
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02/amounts.html">
+   量を見るための手法
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02/dists.html">
+   分布を見るための手法
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02/props.html">
+   比率を見るための手法
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02/assocs.html">
+   変数間の関係を見るための手法
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  4章 基礎分析
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04/cm_eda.html">
+   マンガデータ
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04/an_eda.html">
+   アニメデータ
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04/gm_eda.html">
+   ゲームデータ
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  5章 量を見るための手法
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05/bar.html">
+   棒グラフ
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05/gbar.html">
+   集合棒グラフ
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05/sbar.html">
+   積上げ棒グラフ
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05/heatmap.html">
+   ヒートマップ
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  6章 分布を見るための手法
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06/hist.html">
+   ヒストグラム
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06/box.html">
+   箱ひげ図
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06/density.html">
+   密度プロット
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06/violin.html">
+   バイオリンプロット
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06/ridge.html">
+   リッジラインプロット
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  7章 比率を見るための手法
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07/pie.html">
+   円グラフ
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07/sbar.html">
+   積上げ棒グラフ
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07/area.html">
+   積上げ密度プロット
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07/mosaic.html">
+   モザイクプロット
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07/tree.html">
+   ツリーマップ
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07/parallel.html">
+   パラレルセットグラフ
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  8章 変数間の関係を見るための手法
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../08/scatter.html">
+   散布図
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../08/bubble.html">
+   バブルチャート
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../08/matrix.html">
+   散布図行列
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../08/2d.html">
+   二次元ヒストグラム
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../08/contour.html">
+   等高線プロット
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../08/line.html">
+   折れ線グラフ
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../08/connected.html">
+   接続散布図
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  9章 メディアミックス分析
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../09/eda.html">
+   基礎分析
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../09/amounts.html">
+   量を見るための手法
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../09/dists.html">
+   分布を見るための手法
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../09/props.html">
+   比率を見るための手法
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../09/assocs.html">
+   変数間の関係を見るための手法
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Appendix
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../appendix/setup.html">
+   環境構築
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../appendix/an_preprocess.html">
+   アニメデータの前処理
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../appendix/gm_preprocess.html">
+   ゲームデータの前処理
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../appendix/mix_preprocess.html">
+   マンガデータとアニメデータの前処理
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Special
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../special/making.html">
+   執筆時間の分析
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/kakeami/vizbook"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/kakeami/vizbook/issues/new?title=Issue%20on%20page%20%2F00/intro.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/00/intro.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   まえがき
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   対象読者
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id4">
+   本書のスコープ
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id5">
+   本書の構成
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id6">
+   謝辞
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>はじめに</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   まえがき
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   対象読者
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id4">
+   本書のスコープ
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id5">
+   本書の構成
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id6">
+   謝辞
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>はじめに<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h1>
+<section id="id2">
+<h2>まえがき<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
+<p>本書は，マンガ・アニメ・ゲームのデータを使って，楽しくデータビジュアライゼーションの基礎を学ぶ入門書です．</p>
+<p>データビジュアライゼーションとは，データを可視化する技術です．
+身の回りを見渡せば，様々なデータビジュアライゼーションの例を見つけることができます．
+例えば，新型コロナウイルスの感染者数の推移を表す折れ線グラフや，天気予報の天気図はその一例です．
+普段生活していて出会う「グラフ」と呼ばれるもののほとんどは，データビジュアライゼーションと関わりがあると言っても過言ではありません．
+そもそも棒グラフや折れ線グラフを始めとする基本的なグラフに至っては，小学校の指導要領に含まれるほど世の中に浸透しています．
+データビジュアライゼーションは，現代社会において習熟しておくべき重要な技術です．</p>
+<p>一方で，データビジュアライゼーションの学習は難しいです．
+この難しさは，理論面の難しさと，実践面の難しさに大別されます．</p>
+<p>データビジュアライゼーションの理論面の難しさは，多様な背景知識が必要になる，という点です．
+学術的に捉えると，データビジュアライゼーションは，データが持つ多次元の情報を人間が理解しやすい二次元（ときには三次元）の情報に変換する問題と捉えることができます．
+ときに大量のデータを正しく変換する必要があるため，統計学や情報科学と深い関わりがあります．
+また，最終的な受け取り手である人間の視覚・心理特性を考慮した表現をする必要があるため，認知科学や心理学とも深い関わりがあります．
+データビジュアライゼーションは，多数の領域にまたがる学際的な技術です．
+つまり，データビジュアライゼーションの理解を深めるためには，統計学・情報科学・認知科学・心理学の背景知識が必要になるということです．
+もちろん各領域の全てを理解する必要はありません（少なくとも私にはできません）が，学習者にはその取捨選択ができません．
+いざ学習をはじめてみると，その膨大な関連領域に圧倒される方もいるかもしれません．</p>
+<p>データビジュアライゼーションの実践面の難しさは，一通りの作業に非常に時間がかかる，という点です．
+私は，この技術を習得するために重要なのは実際にやってみることだと思っています．
+目的を定め，自分の手でデータを集め，加工し，可視化することで初めてわかることはたくさんあるからです．
+しかし，一般的にこのような作業はとても地味で，ときに苦痛とも言えるものです．
+状況によって異なりますが，すべての工程を含めると少なくとも数時間，ときには数十時間データと向き合い続ける必要があります．
+例えば，想定通りの分析結果がでなかったとき，その原因特定のためにデータの中身を一つ一つ眺めることもあるでしょう．
+作業中，自分はなぜこんなことをしているのだろうと疑問に思う瞬間もあるかもしれません．</p>
+<p>本書はこの二つの難しさを解決するために執筆しました．
+まず理論面の難しさを軽減するために，本書では単なる手法の紹介に止まらず，その学術的な背景から丁寧に解説するよう心がけました．
+特にデータビジュアライゼーションを構成する視覚表現については，なぜその表現でなくてはならなかったか，認知科学の観点から解説します．
+例えば，棒グラフはなぜ棒でなくてはならなかったのか，折れ線グラフはなぜ折れ線でなくてはならなかったのか等は，人間の視覚処理の仕組みから解釈することができます．
+これにより手法自体の理解が深まるだけでなく，実際に可視化を行う際，誤解や錯覚を回避するためのヒントを得ることができます．</p>
+<p>次に実践面の難しさを軽減するするため，本書では多くの人にとって馴染みの深い，マンガ，アニメ，ゲームのデータを使って各手法を紹介します．
+これにより（少なくとも私にとっては）モチベーションを保ったまま，学習を継続することが可能になります．
+各章の末尾には演習問題を用意しています．
+本書のGithubリポジトリには環境構築用のDocker設定ファイルと前処理済みのデータを格納してありますので，是非ご自身の手でデータビジュアライゼーションの世界に飛び込んでみましょう．</p>
+<p>最後にどうしても伝えたいことがあります．
+それは，データビジュアライゼーションは楽しいということです．
+冒頭で「なぜこんなことをしているのだろう」という問いを投げましたが，私の答えは結局「楽しいから」に尽きます．
+データビジュアライゼーションにより，これまで知らなかった分析対象の特徴が明らかになったとき，言葉では言い表せないような達成感と興奮を覚えます．
+例えば私は小さい頃からマンガが好きでたくさん読んできたつもりですが，マンガデータを分析するといつでも新しい発見があります．
+その結果ますますマンガが好きになり，分析結果の解釈が深まるという良いループが発生しています．</p>
+<p>あなたにとってデータを眺めるだけで楽しいほど好きなものはなんでしょうか？
+もしそれがマンガかアニメかゲームであれば，本書はきっと楽しいはずです．
+もしそうでなければ，本書をきっかけにデータ探しから始めてみてはいかがでしょうか？
+自分の手でデータを見つけ，加工し，分析するというプロセスはとても大変ですが，その結果えられる感動は計り知れません．
+本書がその感動の一部だけでも伝われば，これに勝る喜びはありません．</p>
+</section>
+<section id="id3">
+<h2>対象読者<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h2>
+<p>本書の対象読者は，楽しくデータビジュアライゼーションを学びたい全ての方です．
+マンガ・アニメ・ゲームのデータを用いますので，これらのどれかがお好きであれば，より楽しく本書を読み進めることができると思います．</p>
+<p>本書は中学数学程度の事前知識を前提としています．
+具体的には，下記の用語は特に解説せずに用います．</p>
+<ul class="simple">
+<li><p>X軸，Y軸</p></li>
+<li><p>実線，破線，点線</p></li>
+<li><p>目盛り</p></li>
+<li><p>凡例</p></li>
+</ul>
+<p>作図にはPythonを用いますが，必要最低限の知識は本書内で解説します．
+使用経験があれば読みやすいとは思いますが，必須ではありません．</p>
+<p>本書を読み通す上で必須ではありませんが，お手元のPCで全ての手法を再現可能な環境をGitHubで公開しています．
+環境構築にDockerおよびDocker Composeを採用しているため，事前にインストールのほどお願いいたします．
+なお，著者は以下の環境で動作確認を行いました．</p>
+<ul class="simple">
+<li><p>OS: macOS Catalina, 10.15.7</p></li>
+<li><p>Docker: 20.10.7, build f0df350</p></li>
+<li><p>Docker Compose: 1.29.2, build 5becea4c</p></li>
+</ul>
+<p>環境構築方法の詳細はAppendixをご参照ください．</p>
+</section>
+<section id="id4">
+<h2>本書のスコープ<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h2>
+<p>本書のスコープは，データを表現するためのビジュアライゼーション手法です．
+1.1章で述べるような，概念を表現するためのビジュアライゼーションは扱いません．</p>
+<p>データビジュアライゼーションの見やすさや正しさについては解説しますが，美しさについては解説しません．
+例えば，お客様に納品するための見栄えの良いビジネス・ダッシュボードや，コンテストに出品するための人目を惹くグラフィック作品は本書のスコープ外です．
+別途専門書をご参照ください．</p>
+<p>本書では平面上のデータビジュアライゼーションを対象とします．
+インタラクティブに回転可能な三次元空間での表現や，VRやARを用いた仮想空間上の表現は本書のスコープ外です．
+また，一部の例外を除いて，X軸とY軸からなる直交座標系における可視化手法を対象とします．
+つまり，極座標系などの特殊な座標系や，地理空間における可視化については扱いません．
+また，ワードクラウド等のテキストマイニングに基づく可視化手法も扱いません．
+別途専門書をご参照ください．</p>
+<p>本書ではPythonを用いてデータビジュアライゼーションを行いますが，
+Python言語自体の一般的な解説は行いません．
+こちらも，別途専門書をご参照ください．</p>
+<p>最後に，本書では分析対象としてマンガ，アニメ，ゲームのデータを利用しますが，それらの作品性や作家性を批判する意図はありません．
+私は全てのクリエイターを尊敬しています．</p>
+</section>
+<section id="id5">
+<h2>本書の構成<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h2>
+<p>本書の構成を以下に示します．</p>
+<p><img alt="本書の構成" src="../_images/sections.png" /></p>
+<p>本書は4部構成です．</p>
+<p>第一部では，データビジュアライゼーションの導入を行います．
+第1章では，データビジュアライゼーションの定義，目的，歴史，構成要素，注意点を概説します．
+第2章では，作業のイメージを伝えるため，早速マンガデータを使ったハンズオンを行います．
+包括的な解説は第二部で行いますので，習うより慣れろの精神で，まずは分析工程を一通りさらいましょう．</p>
+<p>第二部では，データビジュアライゼーションの基本を学ぶ上で必要な準備を行います．
+第3章では，本書で使用するツールであるPython，Pandas，Plotlyについて概説します．
+Python/Plotlyの使用経験のある方は，本章を読み飛ばしても問題ありません．
+第4章では，本書の分析対象であるマンガ・アニメ・ゲームデータの基礎分析を行います．
+データビジュアライゼーションを行う場合，分析対象の基礎分析は必須です．</p>
+<p>第三部では，それぞれのデータビジュアライゼーション手法を解説します．
+第5章では，質的変数の量を見るためのデータビジュアライゼーション手法を紹介します．
+第6章では，量的変数の分布を見るためのデータビジュアライゼーション手法を紹介します．
+第7章では，質的変数の比率を見るためのデータビジュアライゼーション手法を紹介します．
+第8章では，変数間の関係を見るためのデータビジュアライゼーション手法を紹介します．</p>
+<p>第四部では，データビジュアライゼーションの応用的な課題を扱います．
+第9章では，第2章で行ったマンガデータの分析を進化させ，マンガ・アニメデータを組合せたメディアミックス分析を行います．
+これまで本書で扱った知識を総動員しますので，復習にご活用ください．
+また，現実世界でのデータ分析では，複数の種類のデータを組合せることがよくあります．
+個別に分析する場合とは異なった難しさがありますので，本章でその雰囲気を楽しみましょう．</p>
+<p>基本的に，1章から順番に読み通すことを想定していますが，用途に応じた読み進め方も可能です．
+例えば，データビジュアライゼーション手法を手早く学びたい場合は，第1章のあと，第5章から第8章に飛んでも構いません．</p>
+<p>第5章以降は章末問題を設けています．
+実際に手を動かし，頭を悩ますことで，マンガ・アニメ・ゲームデータを使ったデータビジュアライゼーションを楽しみましょう．</p>
+</section>
+<section id="id6">
+<h2>謝辞<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h2>
+<p>本書の執筆にあたり，たくさんの方々にご協力いただきました．</p>
+<p>まず，本田一暁さんには，本書のプロトタイプである「マンガと学ぶデータビジュアライゼーション」の段階から相談に乗って頂き，本書執筆開始後も有益なコメントを頂きました．</p>
+<p>また，本田藍さんには，認知心理学の観点からコメントを頂きました．
+なお，本書の情報や表現に誤りがあった場合は，全て著者の責任です．
+技術評論社の土井優子さんには，本書の企画立案からスケジュール管理に至るまでご対応頂きました．</p>
+<p>最後に，私をいつも支えてくれる家族に感謝します．
+1年半におよぶ執筆作業を継続できたのは，ひとえに家族のおかげです．</p>
+<p>皆さん，本当にありがとうございました．</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./00"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="../index.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">ようこそ</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../02/preprocess.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">前処理</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By kakeami<br/>
+  
+    <div class="extra_footer">
+      © Copyright 2021 by <a rel="kakeami" href="https://github.com/kakeami"> Kakeami </a>. この作品は<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">クリエイティブ・コモンズ 表示 - 非営利 - 改変禁止 4.0 国際 ライセンス</a>の下に提供されています． <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="クリエイティブ・コモンズ・ライセンス" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>　ただし，作品中のコードセル部分は<a rel="license" href="https://opensource.org/licenses/MIT">MITライセンス</a>の下に提供されています．
+
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
