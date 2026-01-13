@@ -476,7 +476,6 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ac-cc-csv"><code class="docutils literal notranslate"><span class="pre">ac_cc.csv</span></code>の修正</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">おわりに</a></li>
 </ul>
             </nav>
         </div>
@@ -707,7 +706,7 @@ document.write(`
 </div>
 <p>本書では上記を四大少年誌と呼称しましたが、もともとは上記に<code class="docutils literal notranslate"><span class="pre">週刊少年キング</span></code>を含めた五誌<a class="footnote-reference brackets" href="#wo-king" id="id10" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a>が
 <strong>五大（週刊）少年誌</strong>
-と呼ばれていました<span id="id11">[<a class="reference internal" href="references.html#id10" title="澤村 修治. 日本マンガ全史 「鳥獣戯画」から「鬼滅の刃」まで. 平凡社, 2020.">2</a>]</span>。
+と呼ばれていました<span id="id11">[<a class="reference internal" href="references.html#id10" title="澤村 修治. 日本マンガ全史 「鳥獣戯画」から「鬼滅の刃」まで. 平凡社, 2020.">1</a>]</span>。
 よって、以下のように修正してみても良いかもしれません。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 分析対象とするマンガ雑誌名のリストを定義</span>
 <span class="n">MCNAMES</span> <span class="o">=</span> <span class="p">[</span>
@@ -791,32 +790,38 @@ document.write(`
 <p><code class="docutils literal notranslate"><span class="pre">ac_cc.csv</span></code>は、筆者のドメイン知識をもとに独自に作成されたものです。
 可能なかぎり正確であるよう心がけましたが、抜け・漏れや誤った情報が含まれる可能性があります。
 修正すべき点が見つかった場合は、<code class="docutils literal notranslate"><span class="pre">ac_cc.csv</span></code>を直接編集してみましょう。</p>
-</section>
-</section>
-<section id="id13">
-<h2>おわりに<a class="headerlink" href="#id13" title="Link to this heading">#</a></h2>
-<p><a class="reference internal" href="../vol1/04/props.html#cm-pie"><span class="std std-ref">上巻4章</span></a>ではマンガ家が連載に至るパターンの一つとして</p>
-<ol class="arabic simple">
-<li><p>マンガ賞への投稿</p></li>
-<li><p>入賞</p></li>
-<li><p>読切掲載</p></li>
-<li><p>連載会議の通過</p></li>
-</ol>
-<p>を紹介しました。
+<!-- 本書と無関係な記載をコメントアウト
+## おわりに
+
+[上巻4章](cm-pie)ではマンガ家が連載に至るパターンの一つとして
+
+1. マンガ賞への投稿
+2. 入賞
+3. 読切掲載
+4. 連載会議の通過
+
+を紹介しました。
 しかし、マンガ家の志望者のうち、実際にマンガ賞に投稿できる人は何人いるでしょうか？
-実は、①に至る前にふるいにかけられた、無数の「マンガ家を目指しているけどマンガ賞に投稿したことがない」志望者たちが存在します<a class="footnote-reference brackets" href="#hebichika" id="id14" role="doc-noteref"><span class="fn-bracket">[</span>5<span class="fn-bracket">]</span></a>。</p>
-<p>余談ですが、筆者はそんな志望者の一人でした。
+実は、①に至る前にふるいにかけられた、無数の「マンガ家を目指しているけどマンガ賞に投稿したことがない」志望者たちが存在します[^hebichika]。
+
+[^hebichika]: へびちか先生{cite}`toyoda2022`の持論を筆者なりに解釈し、図解させて頂きました。視認性の観点から筆者を右端より若干左に位置付けましたが、他の志望者に対する優劣を表しているわけではありません。
+
+余談ですが、筆者はそんな志望者の一人でした。
 中学三年生までマンガ家を目指し、目標とする先生方の絵を模写し続けていました。
 しかし、どうしても読切作品を描き上げることができず、最終的に普通科の高校に進学しました。
-現在ではただのマンガ好きの会社員として、平凡な毎日を送っています。</p>
-<p><img alt="図A.x：筆者の立ち位置" src="../_images/me.png" /></p>
-<p>クリエイターとして何者にも成れなかった（成ろうともしなかった）筆者にとって、
+現在ではただのマンガ好きの会社員として、平凡な毎日を送っています。
+
+![図A.x：筆者の立ち位置](../images/appendix/me.png)
+
+クリエイターとして何者にも成れなかった（成ろうともしなかった）筆者にとって、
 アクションを起こした人、ましてやそのアクションから成功を掴み取った人たちは雲の上の存在です。
 筆者は、本書で扱うような
-<strong>マンガ・アニメ・ゲームに携わる方々を心の底から尊敬</strong>
-しています。</p>
-<p>本書で公開したデータは、いくらでも悪意のある可視化が可能なものです。
-もし叶うのであれば、誰かを傷つける分析よりも、誰かを称える分析のために役立てていただきたいと願っています。</p>
+**マンガ・アニメ・ゲームに携わる方々を心の底から尊敬**
+しています。
+
+本書で公開したデータは、いくらでも悪意のある可視化が可能なものです。
+もし叶うのであれば、誰かを傷つける分析よりも、誰かを称える分析のために役立てていただきたいと願っています。
+-->
 <hr class="footnotes docutils" />
 <aside class="footnote-list brackets">
 <aside class="footnote brackets" id="four-years" role="doc-footnote">
@@ -835,11 +840,8 @@ document.write(`
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id12">4</a><span class="fn-bracket">]</span></span>
 <p>例えば、<code class="docutils literal notranslate"><span class="pre">re.sub(r'[^\d]',</span> <span class="pre">'',</span> <span class="pre">price)</span></code>のようなパターンを使用すれば、数字以外の文字を除去することが可能です。</p>
 </aside>
-<aside class="footnote brackets" id="hebichika" role="doc-footnote">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id14">5</a><span class="fn-bracket">]</span></span>
-<p>へびちか先生<span id="id15">[<a class="reference internal" href="references.html#id18" title="とよ田 みのる. これ描いて死ね. 小学館, 2022.">1</a>]</span>の持論を筆者なりに解釈し、図解させて頂きました。視認性の観点から筆者を右端より若干左に位置付けましたが、他の志望者に対する優劣を表しているわけではありません。</p>
 </aside>
-</aside>
+</section>
 </section>
 </section>
 
@@ -920,7 +922,6 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ac-cc-csv"><code class="docutils literal notranslate"><span class="pre">ac_cc.csv</span></code>の修正</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">おわりに</a></li>
 </ul>
   </nav></div>
 
