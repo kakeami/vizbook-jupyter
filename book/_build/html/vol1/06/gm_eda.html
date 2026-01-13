@@ -1,0 +1,4736 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>ゲームデータの基礎分析 &#8212; データ可視化技術入門</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'vol1/06/gm_eda';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="icon" href="../../_static/pen.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="【練習問題】" href="practice_q.html" />
+    <link rel="prev" title="ゲームデータの前処理" href="gm_preprocess.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">データ可視化技術入門</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">上巻</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../03/index.html">3章 マンガデータ分析①</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../03/cm_preprocess.html">マンガデータの前処理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../03/eda.html">マンガデータの基礎分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../03/practice_q.html">【練習問題】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../03/practice_a.html">【解答例】</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../04/index.html">4章 マンガデータ分析②</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../04/amounts.html">マンガデータの量を見る</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04/dists.html">マンガデータの分布を見る</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04/props.html">マンガデータの内訳を見る</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04/assocs.html">マンガデータの関係を見る</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04/practice_q.html">【練習問題】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04/practice_a.html">【解答例】</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../05/index.html">5章 Python/Pandas/Plotly</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../05/python.html">Pythonの基本</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../05/pandas.html">Pandasの基本</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../05/plotly.html">Plotlyの基本</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../05/practice_q.html">【練習問題】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../05/practice_a.html">【解答例】</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">6章 取得/前処理/基礎分析</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="an_preprocess.html">アニメデータの前処理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="an_eda.html">アニメデータの基礎分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gm_preprocess.html">ゲームデータの前処理</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">ゲームデータの基礎分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="practice_q.html">【練習問題】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="practice_a.html">【解答例】</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">下巻</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../vol2/01/index.html">1章 量を見る手法</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/01/bar.html">棒グラフ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/01/gbar.html">集合棒グラフ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/01/sbar.html">積上げ棒グラフ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/01/heatmap.html">ヒートマップ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/01/practice_q.html">【練習問題】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/01/practice_a.html">【解答例】</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../vol2/02/index.html">2章 分布を見る手法</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/02/hist.html">ヒストグラム</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/02/density.html">密度プロット</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/02/box.html">箱ひげ図</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/02/violin.html">バイオリンプロット</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/02/ridge.html">リッジラインプロット</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/02/practice_q.html">【練習問題】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/02/practice_a.html">【解答例】</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../vol2/03/index.html">3章 内訳を見る手法</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/03/pie.html">円グラフ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/03/bar.html">棒グラフ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/03/mosaic.html">モザイクプロット</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/03/area.html">積上げ密度プロット</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/03/tree.html">ツリーマップ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/03/parallel.html">パラレルセットグラフ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/03/practice_q.html">【練習問題】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/03/practice_a.html">【解答例】</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../vol2/04/index.html">4章 関係を見る手法</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/04/scatter.html">散布図</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/04/bubble.html">バブルチャート</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/04/matrix.html">散布図行列</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/04/2d.html">二次元ヒストグラム</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/04/contour.html">等値線図</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/04/line.html">折れ線グラフ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/04/connected.html">連結散布図</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/04/practice_q.html">【練習問題】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/04/practice_a.html">【解答例】</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../vol2/05/index.html">5章 メディア展開データ分析①</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/05/mix_preprocess.html">メディア展開データの前処理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/05/eda.html">メディア展開データの基礎分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/05/practice_q.html">【練習問題】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/05/practice_a.html">【解答例】</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../vol2/06/index.html">6章 メディア展開データ分析②</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/06/amounts.html">メディア展開データの量を見る</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/06/dists.html">メディア展開データの分布を見る</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/06/props.html">メディア展開データの内訳を見る</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/06/assocs.html">メディア展開データの関係を見る</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/06/practice_q.html">【練習問題】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/06/practice_a.html">【解答例】</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../appendix/setup.html">本書の再現と発展</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appendix/references.html">参考文献</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/kakeami/vizbook" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/kakeami/vizbook/issues/new?title=Issue%20on%20page%20%2Fvol1/06/gm_eda.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/vol1/06/gm_eda.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>ゲームデータの基礎分析</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">準備</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#import">Import</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">変数</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gm-pkg-pf-csv"><code class="docutils literal notranslate"><span class="pre">gm_pkg_pf.csv</span></code>の基礎分析</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">全体像の把握</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#date"><code class="docutils literal notranslate"><span class="pre">date</span></code>列の深掘り</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pkgidpkgname"><code class="docutils literal notranslate"><span class="pre">pkgid</span></code>、<code class="docutils literal notranslate"><span class="pre">pkgname</span></code>列の深掘り</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pfidpfname"><code class="docutils literal notranslate"><span class="pre">pfid</span></code>、<code class="docutils literal notranslate"><span class="pre">pfname</span></code>列の深掘り</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#publisher"><code class="docutils literal notranslate"><span class="pre">publisher</span></code>列の深掘り</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#price"><code class="docutils literal notranslate"><span class="pre">price</span></code>列の深掘り</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>ゲームデータの基礎分析<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<section id="id2">
+<h2>準備<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<section id="import">
+<h3>Import<a class="headerlink" href="#import" title="Link to this heading">#</a></h3>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># warningsモジュールのインポート</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+
+<span class="c1"># データ解析や機械学習のライブラリ使用時の警告を非表示にする目的で警告を無視</span>
+<span class="c1"># 本書の文脈では、可視化の学習に議論を集中させるために選択した</span>
+<span class="c1"># ただし、学習以外の場面で、警告を無視する設定は推奨しない</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># pathlibモジュールのインポート</span>
+<span class="c1"># ファイルシステムのパスを扱う</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="c1"># numpy：数値計算ライブラリのインポート</span>
+<span class="c1"># npという名前で参照可能</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># pandas：データ解析ライブラリのインポート</span>
+<span class="c1"># pdという名前で参照可能</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="c1"># tqdm_notebookのインポート</span>
+<span class="c1"># Jupyter Notebook環境でのプログレスバー表示に使用</span>
+<span class="c1"># tqdmという名前で参照可能</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tqdm</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm_notebook</span> <span class="k">as</span> <span class="n">tqdm</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+<section id="id3">
+<h3>変数<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 読み込み対象ディレクトリの定義</span>
+
+<span class="c1"># ゲームデータが保存されているディレクトリのパス</span>
+<span class="n">DIR_IN</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;../../../data/gm/input&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 読み込み対象ファイル名の定義</span>
+
+<span class="c1"># ゲームパッケージとプラットフォームの対応関係に関するファイル</span>
+<span class="n">FN_PKG_PF</span> <span class="o">=</span> <span class="s2">&quot;gm_pkg_pf.csv&quot;</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+</section>
+<section id="gm-pkg-pf-csv">
+<h2><code class="docutils literal notranslate"><span class="pre">gm_pkg_pf.csv</span></code>の基礎分析<a class="headerlink" href="#gm-pkg-pf-csv" title="Link to this heading">#</a></h2>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># pandasのread_csv関数でCSVファイルの読み込み</span>
+<span class="n">df_pkg_pf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">DIR_IN</span> <span class="o">/</span> <span class="n">FN_PKG_PF</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<section id="id4">
+<h3>全体像の把握<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># df_pkg_pfデータフレームの先頭5行を転置して表示</span>
+<span class="n">df_pkg_pf</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>pkgid</th>
+      <td>M718871</td>
+      <td>M718876</td>
+      <td>M718877</td>
+      <td>M718878</td>
+      <td>M718879</td>
+    </tr>
+    <tr>
+      <th>pfid</th>
+      <td>PF00026</td>
+      <td>PF00028</td>
+      <td>PF00028</td>
+      <td>PF00028</td>
+      <td>PF00000</td>
+    </tr>
+    <tr>
+      <th>pkgname</th>
+      <td>くにおくん 熱血コレクション 1</td>
+      <td>野々村病院の人々</td>
+      <td>アイドル雀士スーチーパイ Remix</td>
+      <td>天地無用! 魎皇鬼 ごくらくCD-ROM for SEGA SATURN</td>
+      <td>Superリアル麻雀 P4 + 相性診断</td>
+    </tr>
+    <tr>
+      <th>publisher</th>
+      <td>アトラス</td>
+      <td>エ・ル・フ</td>
+      <td>ジャレコ</td>
+      <td>アローマ</td>
+      <td>セタ</td>
+    </tr>
+    <tr>
+      <th>date</th>
+      <td>2005-08-25</td>
+      <td>1996-04-26</td>
+      <td>1995-09-29</td>
+      <td>1995-09-29</td>
+      <td>1995-03-10</td>
+    </tr>
+    <tr>
+      <th>price</th>
+      <td>5040.0</td>
+      <td>6800.0</td>
+      <td>6900.0</td>
+      <td>7800.0</td>
+      <td>9500.0</td>
+    </tr>
+    <tr>
+      <th>pfname</th>
+      <td>ゲームボーイアドバンス</td>
+      <td>セガサターン</td>
+      <td>セガサターン</td>
+      <td>セガサターン</td>
+      <td>3DO</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># df_pkg_pfデータフレームの形状（行数・列数）を取得</span>
+<span class="c1"># shape属性を使用すると、(行数, 列数)の形で結果が返される</span>
+<span class="n">df_pkg_pf</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(35675, 7)
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># df_pkg_pfデータフレーム内の欠損値（NaN）の情報を集計</span>
+<span class="c1"># isna()メソッドを使用して欠損値の場所をTrueとして特定</span>
+<span class="c1"># その後、agg()メソッドを使用して、各列における欠損値の合計と平均を計算</span>
+<span class="n">df_pkg_pf</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="nb">sum</span><span class="p">,</span> <span class="s2">&quot;mean&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>pkgid</th>
+      <th>pfid</th>
+      <th>pkgname</th>
+      <th>publisher</th>
+      <th>date</th>
+      <th>price</th>
+      <th>pfname</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>sum</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>526.000000</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.014744</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># df_pkg_pfデータフレームの記述統計情報を取得</span>
+<span class="c1"># describe()メソッドを使用して、各列の基本的な統計量を表示</span>
+<span class="n">df_pkg_pf</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>35149.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>5117.557968</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>3619.123743</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>54.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>2800.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>5040.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>6800.000000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>58000.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># df_pkg_pfデータフレームの各列に対してユニークな値の数をカウント</span>
+<span class="c1"># nunique()メソッドを使用して、各列のユニークな値の数を計算</span>
+<span class="c1"># その後、結果を新しいデータフレームとして整形し、列名を`nunique`とする</span>
+<span class="n">df_pkg_pf</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;nunique&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>index</th>
+      <th>nunique</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>pkgid</td>
+      <td>35638</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>pfid</td>
+      <td>47</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>pkgname</td>
+      <td>30483</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>publisher</td>
+      <td>1952</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>date</td>
+      <td>4115</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>price</td>
+      <td>1208</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>pfname</td>
+      <td>47</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># `pkgid`と`pfid`の組み合わせで重複する行の数をカウント</span>
+<span class="n">df_pkg_pf</span><span class="o">.</span><span class="n">duplicated</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;pkgid&quot;</span><span class="p">,</span> <span class="s2">&quot;pfid&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+<section id="date">
+<h3><code class="docutils literal notranslate"><span class="pre">date</span></code>列の深掘り<a class="headerlink" href="#date" title="Link to this heading">#</a></h3>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># df_pkg_pfデータフレームの`date`列から最も古い日付と最も新しい日付を取得</span>
+<span class="c1"># min()メソッドを使用して、最も古い日付を抽出</span>
+<span class="c1"># max()メソッドを使用して、最も新しい日付を抽出</span>
+<span class="n">df_pkg_pf</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">df_pkg_pf</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;1982-04-25&#39;, &#39;2019-04-16&#39;)
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># `date`列を日付型に変換</span>
+<span class="c1"># pd.to_datetime()メソッドを使用して、文字列型の日付を日付型(datetime)に変換</span>
+<span class="n">df_pkg_pf</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df_pkg_pf</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">])</span>
+
+<span class="c1"># 年に関する情報を新しい`year`列として追加</span>
+<span class="c1"># dt.yearを使用して、日付から年のみを取得</span>
+<span class="n">df_pkg_pf</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_pkg_pf</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span>
+
+<span class="c1"># 月に関する情報を新しい`month`列として追加</span>
+<span class="c1"># dt.monthを使用して、日付から月のみを取得</span>
+<span class="n">df_pkg_pf</span><span class="p">[</span><span class="s2">&quot;month&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_pkg_pf</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span>
+
+<span class="c1"># 曜日に関する情報を新しい`weekday`列として追加</span>
+<span class="c1"># dt.weekdayを使用して、日付から曜日の情報を数値(0:月曜日, 6:日曜日)として取得</span>
+<span class="n">df_pkg_pf</span><span class="p">[</span><span class="s2">&quot;weekday&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_pkg_pf</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">weekday</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># `year`（年）ごとに`pkgid`のユニークな値の数を集計</span>
+<span class="c1"># 具体的には、groupbyメソッドで`year`を基準にグループ化し、</span>
+<span class="c1"># nuniqueメソッドを使用して`pkgid`のユニークな値の数を計算</span>
+<span class="c1"># その後、reset_indexメソッドでインデックスをリセットし、データフレームとして結果を返す</span>
+<span class="n">df_pkg_pf</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;year&quot;</span><span class="p">)[</span><span class="s2">&quot;pkgid&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year</th>
+      <th>pkgid</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1982</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1983</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1984</td>
+      <td>30</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1985</td>
+      <td>59</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1986</td>
+      <td>57</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>1987</td>
+      <td>106</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>1988</td>
+      <td>79</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>1989</td>
+      <td>152</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>1990</td>
+      <td>300</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>1991</td>
+      <td>336</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>1992</td>
+      <td>398</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>1993</td>
+      <td>427</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>1994</td>
+      <td>613</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>1995</td>
+      <td>735</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>1996</td>
+      <td>841</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>1997</td>
+      <td>856</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>1998</td>
+      <td>985</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>1999</td>
+      <td>1173</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>2000</td>
+      <td>1259</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>2001</td>
+      <td>1070</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>2002</td>
+      <td>1156</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>2003</td>
+      <td>1065</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>2004</td>
+      <td>1037</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>2005</td>
+      <td>1103</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>2006</td>
+      <td>1244</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>2007</td>
+      <td>1641</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>2008</td>
+      <td>1681</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>2009</td>
+      <td>1968</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>2010</td>
+      <td>1930</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>2011</td>
+      <td>1575</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>2012</td>
+      <td>1700</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>2013</td>
+      <td>2033</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>2014</td>
+      <td>2106</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>2015</td>
+      <td>1964</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>2016</td>
+      <td>1852</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>2017</td>
+      <td>2074</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>2018</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>2019</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># `month`（月）ごとに`pkgid`のユニークな値の数を集計</span>
+<span class="c1"># 具体的には、groupbyメソッドで`month`を基準にグループ化し、</span>
+<span class="c1"># nuniqueメソッドを使用して`pkgid`のユニークな値の数を計算</span>
+<span class="c1"># その後、reset_indexメソッドでインデックスをリセットし、データフレームとして結果を返す</span>
+<span class="n">df_pkg_pf</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;month&quot;</span><span class="p">)[</span><span class="s2">&quot;pkgid&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>month</th>
+      <th>pkgid</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>1978</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>2629</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>3690</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>2728</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>1817</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>6</td>
+      <td>2503</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>7</td>
+      <td>3216</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>8</td>
+      <td>2755</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>9</td>
+      <td>3075</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>10</td>
+      <td>2911</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>11</td>
+      <td>3594</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>12</td>
+      <td>4742</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># `weekday`（曜日）ごとに`pkgid`のユニークな値の数を集計</span>
+<span class="c1"># 具体的には、groupbyメソッドで`weekday`を基準にグループ化し、</span>
+<span class="c1"># nuniqueメソッドを使用して`pkgid`のユニークな値の数を計算</span>
+<span class="c1"># その後、reset_indexメソッドでインデックスをリセットし、データフレームとして結果を返す</span>
+<span class="n">df_pkg_pf</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;weekday&quot;</span><span class="p">)[</span><span class="s2">&quot;pkgid&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>weekday</th>
+      <th>pkgid</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>281</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>1692</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>4515</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>22844</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>5331</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>5</td>
+      <td>810</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>6</td>
+      <td>165</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 年ごとに各曜日に発売されたゲームパッケージのユニークな数を集計</span>
+<span class="c1"># pivot_tableメソッドで`year`をインデックス、`weekday`をカラムとしてピボット</span>
+<span class="c1"># `pkgid`のユニークな値の数を値として集計し、欠損値は0で補完</span>
+<span class="n">df_pkg_pf</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span>
+    <span class="n">index</span><span class="o">=</span><span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s2">&quot;weekday&quot;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s2">&quot;pkgid&quot;</span><span class="p">,</span> <span class="n">aggfunc</span><span class="o">=</span><span class="s2">&quot;nunique&quot;</span>
+<span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>weekday</th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+    </tr>
+    <tr>
+      <th>year</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1982</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>0.0</td>
+      <td>8.0</td>
+    </tr>
+    <tr>
+      <th>1983</th>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>4.0</td>
+      <td>4.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1984</th>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>5.0</td>
+      <td>12.0</td>
+      <td>8.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1985</th>
+      <td>3.0</td>
+      <td>8.0</td>
+      <td>7.0</td>
+      <td>12.0</td>
+      <td>17.0</td>
+      <td>6.0</td>
+      <td>6.0</td>
+    </tr>
+    <tr>
+      <th>1986</th>
+      <td>1.0</td>
+      <td>5.0</td>
+      <td>13.0</td>
+      <td>9.0</td>
+      <td>21.0</td>
+      <td>6.0</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>1987</th>
+      <td>9.0</td>
+      <td>11.0</td>
+      <td>10.0</td>
+      <td>10.0</td>
+      <td>43.0</td>
+      <td>17.0</td>
+      <td>6.0</td>
+    </tr>
+    <tr>
+      <th>1988</th>
+      <td>2.0</td>
+      <td>6.0</td>
+      <td>5.0</td>
+      <td>10.0</td>
+      <td>46.0</td>
+      <td>6.0</td>
+      <td>4.0</td>
+    </tr>
+    <tr>
+      <th>1989</th>
+      <td>6.0</td>
+      <td>20.0</td>
+      <td>10.0</td>
+      <td>17.0</td>
+      <td>79.0</td>
+      <td>19.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>1990</th>
+      <td>1.0</td>
+      <td>17.0</td>
+      <td>16.0</td>
+      <td>15.0</td>
+      <td>197.0</td>
+      <td>47.0</td>
+      <td>7.0</td>
+    </tr>
+    <tr>
+      <th>1991</th>
+      <td>17.0</td>
+      <td>16.0</td>
+      <td>6.0</td>
+      <td>13.0</td>
+      <td>248.0</td>
+      <td>30.0</td>
+      <td>6.0</td>
+    </tr>
+    <tr>
+      <th>1992</th>
+      <td>4.0</td>
+      <td>24.0</td>
+      <td>10.0</td>
+      <td>18.0</td>
+      <td>311.0</td>
+      <td>23.0</td>
+      <td>8.0</td>
+    </tr>
+    <tr>
+      <th>1993</th>
+      <td>3.0</td>
+      <td>11.0</td>
+      <td>23.0</td>
+      <td>21.0</td>
+      <td>343.0</td>
+      <td>19.0</td>
+      <td>7.0</td>
+    </tr>
+    <tr>
+      <th>1994</th>
+      <td>9.0</td>
+      <td>13.0</td>
+      <td>11.0</td>
+      <td>55.0</td>
+      <td>460.0</td>
+      <td>55.0</td>
+      <td>10.0</td>
+    </tr>
+    <tr>
+      <th>1995</th>
+      <td>6.0</td>
+      <td>13.0</td>
+      <td>19.0</td>
+      <td>22.0</td>
+      <td>643.0</td>
+      <td>28.0</td>
+      <td>4.0</td>
+    </tr>
+    <tr>
+      <th>1996</th>
+      <td>4.0</td>
+      <td>10.0</td>
+      <td>3.0</td>
+      <td>13.0</td>
+      <td>776.0</td>
+      <td>27.0</td>
+      <td>8.0</td>
+    </tr>
+    <tr>
+      <th>1997</th>
+      <td>4.0</td>
+      <td>12.0</td>
+      <td>5.0</td>
+      <td>353.0</td>
+      <td>472.0</td>
+      <td>6.0</td>
+      <td>4.0</td>
+    </tr>
+    <tr>
+      <th>1998</th>
+      <td>4.0</td>
+      <td>3.0</td>
+      <td>89.0</td>
+      <td>746.0</td>
+      <td>118.0</td>
+      <td>18.0</td>
+      <td>7.0</td>
+    </tr>
+    <tr>
+      <th>1999</th>
+      <td>23.0</td>
+      <td>37.0</td>
+      <td>93.0</td>
+      <td>847.0</td>
+      <td>152.0</td>
+      <td>15.0</td>
+      <td>6.0</td>
+    </tr>
+    <tr>
+      <th>2000</th>
+      <td>10.0</td>
+      <td>28.0</td>
+      <td>46.0</td>
+      <td>985.0</td>
+      <td>142.0</td>
+      <td>42.0</td>
+      <td>6.0</td>
+    </tr>
+    <tr>
+      <th>2001</th>
+      <td>4.0</td>
+      <td>3.0</td>
+      <td>28.0</td>
+      <td>856.0</td>
+      <td>165.0</td>
+      <td>11.0</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>2002</th>
+      <td>3.0</td>
+      <td>15.0</td>
+      <td>34.0</td>
+      <td>903.0</td>
+      <td>182.0</td>
+      <td>18.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>2003</th>
+      <td>3.0</td>
+      <td>5.0</td>
+      <td>16.0</td>
+      <td>873.0</td>
+      <td>158.0</td>
+      <td>9.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>2004</th>
+      <td>3.0</td>
+      <td>24.0</td>
+      <td>88.0</td>
+      <td>811.0</td>
+      <td>84.0</td>
+      <td>20.0</td>
+      <td>7.0</td>
+    </tr>
+    <tr>
+      <th>2005</th>
+      <td>3.0</td>
+      <td>7.0</td>
+      <td>55.0</td>
+      <td>961.0</td>
+      <td>54.0</td>
+      <td>23.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2006</th>
+      <td>5.0</td>
+      <td>11.0</td>
+      <td>49.0</td>
+      <td>1084.0</td>
+      <td>28.0</td>
+      <td>65.0</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>2007</th>
+      <td>4.0</td>
+      <td>203.0</td>
+      <td>99.0</td>
+      <td>1294.0</td>
+      <td>30.0</td>
+      <td>2.0</td>
+      <td>9.0</td>
+    </tr>
+    <tr>
+      <th>2008</th>
+      <td>8.0</td>
+      <td>180.0</td>
+      <td>219.0</td>
+      <td>1233.0</td>
+      <td>31.0</td>
+      <td>8.0</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>2009</th>
+      <td>23.0</td>
+      <td>252.0</td>
+      <td>347.0</td>
+      <td>1277.0</td>
+      <td>27.0</td>
+      <td>14.0</td>
+      <td>28.0</td>
+    </tr>
+    <tr>
+      <th>2010</th>
+      <td>9.0</td>
+      <td>139.0</td>
+      <td>540.0</td>
+      <td>1193.0</td>
+      <td>33.0</td>
+      <td>15.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>2011</th>
+      <td>4.0</td>
+      <td>97.0</td>
+      <td>355.0</td>
+      <td>1042.0</td>
+      <td>10.0</td>
+      <td>67.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2012</th>
+      <td>16.0</td>
+      <td>81.0</td>
+      <td>273.0</td>
+      <td>1284.0</td>
+      <td>12.0</td>
+      <td>32.0</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>2013</th>
+      <td>3.0</td>
+      <td>67.0</td>
+      <td>442.0</td>
+      <td>1466.0</td>
+      <td>17.0</td>
+      <td>37.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>2014</th>
+      <td>5.0</td>
+      <td>41.0</td>
+      <td>504.0</td>
+      <td>1468.0</td>
+      <td>20.0</td>
+      <td>66.0</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>2015</th>
+      <td>8.0</td>
+      <td>65.0</td>
+      <td>448.0</td>
+      <td>1343.0</td>
+      <td>80.0</td>
+      <td>15.0</td>
+      <td>5.0</td>
+    </tr>
+    <tr>
+      <th>2016</th>
+      <td>49.0</td>
+      <td>132.0</td>
+      <td>402.0</td>
+      <td>1147.0</td>
+      <td>106.0</td>
+      <td>16.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2017</th>
+      <td>24.0</td>
+      <td>130.0</td>
+      <td>245.0</td>
+      <td>1453.0</td>
+      <td>206.0</td>
+      <td>15.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>2018</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>5.0</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2019</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+</section>
+<section id="pkgidpkgname">
+<h3><code class="docutils literal notranslate"><span class="pre">pkgid</span></code>、<code class="docutils literal notranslate"><span class="pre">pkgname</span></code>列の深掘り<a class="headerlink" href="#pkgidpkgname" title="Link to this heading">#</a></h3>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># `pkgid`ごとにユニークな`pkgname`の数を集計し、その統計情報を取得</span>
+<span class="n">df_pkg_pf</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;pkgid&quot;</span><span class="p">)[</span><span class="s2">&quot;pkgname&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>index</th>
+      <th>pkgname</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>count</td>
+      <td>35638.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>mean</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>std</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>min</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>25%</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>50%</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>75%</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>max</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># `pkgname`ごとにユニークな`pkgid`の数を集計し、その統計情報を取得</span>
+<span class="n">df_pkg_pf</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;pkgname&quot;</span><span class="p">)[</span><span class="s2">&quot;pkgid&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>index</th>
+      <th>pkgid</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>count</td>
+      <td>30483.000000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>mean</td>
+      <td>1.169111</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>std</td>
+      <td>0.527420</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>min</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>25%</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>50%</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>75%</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>max</td>
+      <td>10.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ゲームパッケージ名（`pkgname`）ごとにユニークなパッケージID（`pkgid`）の数を集計</span>
+<span class="c1"># groupbyメソッドで`pkgname`を基準にグループ化し、`pkgid`のユニークな値の数を計算</span>
+<span class="c1"># その後、ソートしてユニークな`pkgid`の数が多い上位10件の`pkgname`とその数を表示</span>
+<span class="n">df_pkg_pf</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;pkgname&quot;</span><span class="p">)[</span><span class="s2">&quot;pkgid&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span>
+    <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>pkgname</th>
+      <th>pkgid</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>FIFA 15</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>ぷよぷよテトリス スペシャルプライス</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>MotoGP™15</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>サイコブレイク</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>ぷよぷよフィーバー</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>CHAOS;CHILD</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>ドラゴンボール ゼノバース</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>メタルスラッグ</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>LEGO®ジュラシック･ワールド</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>メタルスラッグ 3</td>
+      <td>8</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># `df_pkg_pf`から`pkgname`が`FIFA 15`である行を抽出</span>
+<span class="c1"># 見やすさのため、特定の列のみ表示</span>
+<span class="n">df_pkg_pf</span><span class="p">[</span><span class="n">df_pkg_pf</span><span class="p">[</span><span class="s2">&quot;pkgname&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;FIFA 15&quot;</span><span class="p">][[</span><span class="s2">&quot;pkgname&quot;</span><span class="p">,</span> <span class="s2">&quot;pfname&quot;</span><span class="p">,</span> <span class="s2">&quot;date&quot;</span><span class="p">,</span> <span class="s2">&quot;price&quot;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>pkgname</th>
+      <th>pfname</th>
+      <th>date</th>
+      <th>price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>11161</th>
+      <td>FIFA 15</td>
+      <td>プレイステーション4</td>
+      <td>2014-10-09</td>
+      <td>7300.0</td>
+    </tr>
+    <tr>
+      <th>11162</th>
+      <td>FIFA 15</td>
+      <td>プレイステーション3</td>
+      <td>2014-10-09</td>
+      <td>7300.0</td>
+    </tr>
+    <tr>
+      <th>11163</th>
+      <td>FIFA 15</td>
+      <td>XboxOne</td>
+      <td>2014-10-09</td>
+      <td>7300.0</td>
+    </tr>
+    <tr>
+      <th>11164</th>
+      <td>FIFA 15</td>
+      <td>Xbox360</td>
+      <td>2014-10-09</td>
+      <td>7300.0</td>
+    </tr>
+    <tr>
+      <th>11165</th>
+      <td>FIFA 15</td>
+      <td>プレイステーション4</td>
+      <td>2014-10-09</td>
+      <td>5940.0</td>
+    </tr>
+    <tr>
+      <th>11166</th>
+      <td>FIFA 15</td>
+      <td>プレイステーション3</td>
+      <td>2014-10-09</td>
+      <td>5940.0</td>
+    </tr>
+    <tr>
+      <th>11167</th>
+      <td>FIFA 15</td>
+      <td>プレイステーションVita</td>
+      <td>2014-10-09</td>
+      <td>5940.0</td>
+    </tr>
+    <tr>
+      <th>11168</th>
+      <td>FIFA 15</td>
+      <td>XboxOne</td>
+      <td>2014-10-09</td>
+      <td>7300.0</td>
+    </tr>
+    <tr>
+      <th>11169</th>
+      <td>FIFA 15</td>
+      <td>Xbox360</td>
+      <td>2014-10-09</td>
+      <td>3024.0</td>
+    </tr>
+    <tr>
+      <th>11170</th>
+      <td>FIFA 15</td>
+      <td>プレイステーションVita</td>
+      <td>2014-10-09</td>
+      <td>5500.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ゲームパッケージ名（`pkgname`）ごとに、関連するプラットフォームID（`pfid`）のユニークな数を集計</span>
+<span class="c1"># groupbyメソッドで`pkgname`を基準にグループ化し、`pfid`のユニークな値の数を計算</span>
+<span class="c1"># それを基礎集計して、各`pkgname`に紐づく`pfid`の数の統計量を表示</span>
+<span class="n">df_pkg_pf</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;pkgname&quot;</span><span class="p">)[</span><span class="s2">&quot;pfid&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>index</th>
+      <th>pfid</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>count</td>
+      <td>30483.000000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>mean</td>
+      <td>1.108388</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>std</td>
+      <td>0.398799</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>min</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>25%</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>50%</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>75%</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>max</td>
+      <td>8.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ゲームパッケージ名（`pkgname`）ごとに、関連するプラットフォームID（`pfid`）のユニークな数を集計</span>
+<span class="c1"># groupbyメソッドで`pkgname`を基準にグループ化し、`pfid`のユニークな値の数を計算</span>
+<span class="c1"># その数を降順にソートし、上位10件の`pkgname`とそれに紐づく`pfid`の数を表示</span>
+<span class="n">df_pkg_pf</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;pkgname&quot;</span><span class="p">)[</span><span class="s2">&quot;pfid&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span>
+    <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>pkgname</th>
+      <th>pfid</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>メタルスラッグ 3</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>ぷよぷよフィーバー</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>メタルスラッグ</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>上海</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>ぷよぷよテトリス スペシャルプライス</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>パックマン</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>レミングス</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>悪魔城ドラキュラ</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>炎の闘球児 ドッジ弾平</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>カーズ</td>
+      <td>6</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># `df_pkg_pf`から`pkgname`が`ぷよぷよフィーバー`である行を抽出</span>
+<span class="c1"># 見やすさのため、特定の列のみ表示</span>
+<span class="n">df_pkg_pf</span><span class="p">[</span><span class="n">df_pkg_pf</span><span class="p">[</span><span class="s2">&quot;pkgname&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;ぷよぷよフィーバー&quot;</span><span class="p">][[</span><span class="s2">&quot;pkgname&quot;</span><span class="p">,</span> <span class="s2">&quot;pfname&quot;</span><span class="p">,</span> <span class="s2">&quot;date&quot;</span><span class="p">,</span> <span class="s2">&quot;price&quot;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>pkgname</th>
+      <th>pfname</th>
+      <th>date</th>
+      <th>price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1035</th>
+      <td>ぷよぷよフィーバー</td>
+      <td>プレイステーション・ポータブル</td>
+      <td>2004-12-24</td>
+      <td>5040.0</td>
+    </tr>
+    <tr>
+      <th>1093</th>
+      <td>ぷよぷよフィーバー</td>
+      <td>ゲームボーイアドバンス</td>
+      <td>2004-07-24</td>
+      <td>5040.0</td>
+    </tr>
+    <tr>
+      <th>1141</th>
+      <td>ぷよぷよフィーバー</td>
+      <td>ニンテンドーゲームキューブ</td>
+      <td>2004-03-24</td>
+      <td>5229.0</td>
+    </tr>
+    <tr>
+      <th>1172</th>
+      <td>ぷよぷよフィーバー</td>
+      <td>プレイステーション2</td>
+      <td>2004-02-04</td>
+      <td>5229.0</td>
+    </tr>
+    <tr>
+      <th>2657</th>
+      <td>ぷよぷよフィーバー</td>
+      <td>Xbox</td>
+      <td>2004-04-24</td>
+      <td>4980.0</td>
+    </tr>
+    <tr>
+      <th>2861</th>
+      <td>ぷよぷよフィーバー</td>
+      <td>ドリームキャスト</td>
+      <td>2004-02-24</td>
+      <td>4980.0</td>
+    </tr>
+    <tr>
+      <th>25507</th>
+      <td>ぷよぷよフィーバー</td>
+      <td>ニンテンドーDS</td>
+      <td>2004-12-24</td>
+      <td>5040.0</td>
+    </tr>
+    <tr>
+      <th>25508</th>
+      <td>ぷよぷよフィーバー</td>
+      <td>Xbox360</td>
+      <td>2007-12-04</td>
+      <td>1200.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+</section>
+<section id="pfidpfname">
+<h3><code class="docutils literal notranslate"><span class="pre">pfid</span></code>、<code class="docutils literal notranslate"><span class="pre">pfname</span></code>列の深掘り<a class="headerlink" href="#pfidpfname" title="Link to this heading">#</a></h3>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># `pfid`ごとにユニークな`pfname`の数を集計し、その統計情報を取得</span>
+<span class="n">df_pkg_pf</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;pfid&quot;</span><span class="p">)[</span><span class="s2">&quot;pfname&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>index</th>
+      <th>pfname</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>count</td>
+      <td>47.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>mean</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>std</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>min</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>25%</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>50%</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>75%</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>max</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># `pfname`ごとにユニークな`pfid`の数を集計し、その統計情報を取得</span>
+<span class="n">df_pkg_pf</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;pfname&quot;</span><span class="p">)[</span><span class="s2">&quot;pfid&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>index</th>
+      <th>pfid</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>count</td>
+      <td>47.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>mean</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>std</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>min</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>25%</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>50%</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>75%</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>max</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># プラットフォームID（`pfid`）ごとに、関連するゲームパッケージID（`pkgid`）のユニークな数を集計</span>
+<span class="c1"># groupbyメソッドで`pfid`を基準にグループ化し、`pkgid`のユニークな値の数を計算</span>
+<span class="c1"># その後、計算結果の基本統計量を表示</span>
+<span class="n">df_pkg_pf</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;pfid&quot;</span><span class="p">])[</span><span class="s2">&quot;pkgid&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>index</th>
+      <th>pkgid</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>count</td>
+      <td>47.000000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>mean</td>
+      <td>759.042553</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>std</td>
+      <td>1068.235786</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>min</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>25%</td>
+      <td>16.000000</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>50%</td>
+      <td>228.000000</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>75%</td>
+      <td>943.500000</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>max</td>
+      <td>4216.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 各プラットフォーム（に紐づくゲームパッケージIDのユニークな数を集計</span>
+<span class="c1"># groupbyメソッドで`pfid`と`pfname`を基準にグループ化し、`pkgid`のユニークな値の数を計算</span>
+<span class="c1"># 計算結果を降順にソートして、上位10件のプラットフォームとその紐づくゲームパッケージ数を表示</span>
+<span class="n">df_pkg_pf</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;pfid&quot;</span><span class="p">,</span> <span class="s2">&quot;pfname&quot;</span><span class="p">])[</span><span class="s2">&quot;pkgid&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span>
+    <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>pfid</th>
+      <th>pfname</th>
+      <th>pkgid</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>PF00040</td>
+      <td>プレイステーション2</td>
+      <td>4216</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>PF00039</td>
+      <td>プレイステーション</td>
+      <td>3750</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>PF00044</td>
+      <td>プレイステーション・ポータブル</td>
+      <td>3417</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>PF00041</td>
+      <td>プレイステーション3</td>
+      <td>2501</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>PF00043</td>
+      <td>プレイステーションVita</td>
+      <td>2348</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>PF00031</td>
+      <td>ニンテンドー3DS</td>
+      <td>2263</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>PF00032</td>
+      <td>ニンテンドーDS</td>
+      <td>2213</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>PF00042</td>
+      <td>プレイステーション4</td>
+      <td>1874</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>PF00020</td>
+      <td>Xbox360</td>
+      <td>1385</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>PF00015</td>
+      <td>Wii</td>
+      <td>1356</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ユニークな`pkgid`数が多い上位5のpfidを取得</span>
+<span class="c1"># `pfid`を基準にグループ化し、各グループのユニークな`pkgid`の数を計算</span>
+<span class="c1"># その後、降順にソートして上位10の`pfid`をリスト形式で取得</span>
+<span class="n">pfids</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">df_pkg_pf</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;pfid&quot;</span><span class="p">)[</span><span class="s2">&quot;pkgid&quot;</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">head</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="p">)</span>
+
+<span class="c1"># 上位5のpfidに紐づきデータを抽出</span>
+<span class="c1"># 発売年（`year`）ごと、プラットフォーム名（`pfname`）ごとに</span>
+<span class="c1"># ゲームパッケージID（`pkgid`）のユニークな数を集計、NaNは0に置換し、int型にキャスト</span>
+<span class="n">df_pkg_pf</span><span class="p">[</span><span class="n">df_pkg_pf</span><span class="p">[</span><span class="s2">&quot;pfid&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">pfids</span><span class="p">)]</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span>
+    <span class="n">index</span><span class="o">=</span><span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s2">&quot;pfname&quot;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s2">&quot;pkgid&quot;</span><span class="p">,</span> <span class="n">aggfunc</span><span class="o">=</span><span class="s2">&quot;nunique&quot;</span>
+<span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>pfname</th>
+      <th>プレイステーション</th>
+      <th>プレイステーション2</th>
+      <th>プレイステーション3</th>
+      <th>プレイステーションVita</th>
+      <th>プレイステーション・ポータブル</th>
+    </tr>
+    <tr>
+      <th>year</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1994</th>
+      <td>14</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1995</th>
+      <td>119</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1996</th>
+      <td>368</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1997</th>
+      <td>434</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1998</th>
+      <td>584</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1999</th>
+      <td>714</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2000</th>
+      <td>668</td>
+      <td>117</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2001</th>
+      <td>428</td>
+      <td>241</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2002</th>
+      <td>310</td>
+      <td>423</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2003</th>
+      <td>96</td>
+      <td>547</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2004</th>
+      <td>13</td>
+      <td>634</td>
+      <td>0</td>
+      <td>0</td>
+      <td>16</td>
+    </tr>
+    <tr>
+      <th>2005</th>
+      <td>0</td>
+      <td>667</td>
+      <td>0</td>
+      <td>0</td>
+      <td>103</td>
+    </tr>
+    <tr>
+      <th>2006</th>
+      <td>1</td>
+      <td>557</td>
+      <td>21</td>
+      <td>0</td>
+      <td>225</td>
+    </tr>
+    <tr>
+      <th>2007</th>
+      <td>0</td>
+      <td>425</td>
+      <td>79</td>
+      <td>0</td>
+      <td>160</td>
+    </tr>
+    <tr>
+      <th>2008</th>
+      <td>0</td>
+      <td>312</td>
+      <td>146</td>
+      <td>0</td>
+      <td>155</td>
+    </tr>
+    <tr>
+      <th>2009</th>
+      <td>0</td>
+      <td>182</td>
+      <td>152</td>
+      <td>0</td>
+      <td>488</td>
+    </tr>
+    <tr>
+      <th>2010</th>
+      <td>1</td>
+      <td>92</td>
+      <td>214</td>
+      <td>0</td>
+      <td>637</td>
+    </tr>
+    <tr>
+      <th>2011</th>
+      <td>0</td>
+      <td>18</td>
+      <td>291</td>
+      <td>43</td>
+      <td>505</td>
+    </tr>
+    <tr>
+      <th>2012</th>
+      <td>0</td>
+      <td>0</td>
+      <td>334</td>
+      <td>167</td>
+      <td>535</td>
+    </tr>
+    <tr>
+      <th>2013</th>
+      <td>0</td>
+      <td>1</td>
+      <td>473</td>
+      <td>305</td>
+      <td>378</td>
+    </tr>
+    <tr>
+      <th>2014</th>
+      <td>0</td>
+      <td>0</td>
+      <td>398</td>
+      <td>412</td>
+      <td>176</td>
+    </tr>
+    <tr>
+      <th>2015</th>
+      <td>0</td>
+      <td>0</td>
+      <td>244</td>
+      <td>529</td>
+      <td>33</td>
+    </tr>
+    <tr>
+      <th>2016</th>
+      <td>0</td>
+      <td>0</td>
+      <td>116</td>
+      <td>494</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>2017</th>
+      <td>0</td>
+      <td>0</td>
+      <td>33</td>
+      <td>398</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2019</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># pkgidが多い上位五つのpfidについて、発売曜日ごとのゲームパッケージ数を集計</span>
+<span class="c1"># 曜日（`weekday`）ごと、プラットフォーム名（`pfname`）ごとに</span>
+<span class="c1"># ゲームパッケージID（`pkgid`）のユニークな数を集計、NaNは0に置換</span>
+<span class="n">df_pkg_pf</span><span class="p">[</span><span class="n">df_pkg_pf</span><span class="p">[</span><span class="s2">&quot;pfid&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">pfids</span><span class="p">)]</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span>
+    <span class="n">index</span><span class="o">=</span><span class="s2">&quot;weekday&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s2">&quot;pfname&quot;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s2">&quot;pkgid&quot;</span><span class="p">,</span> <span class="n">aggfunc</span><span class="o">=</span><span class="s2">&quot;nunique&quot;</span>
+<span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>pfname</th>
+      <th>プレイステーション</th>
+      <th>プレイステーション2</th>
+      <th>プレイステーション3</th>
+      <th>プレイステーションVita</th>
+      <th>プレイステーション・ポータブル</th>
+    </tr>
+    <tr>
+      <th>weekday</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>8.0</td>
+      <td>7.0</td>
+      <td>3.0</td>
+      <td>18.0</td>
+      <td>29.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>57.0</td>
+      <td>24.0</td>
+      <td>104.0</td>
+      <td>39.0</td>
+      <td>44.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>154.0</td>
+      <td>144.0</td>
+      <td>220.0</td>
+      <td>148.0</td>
+      <td>178.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2826.0</td>
+      <td>3990.0</td>
+      <td>2124.0</td>
+      <td>2065.0</td>
+      <td>3098.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>664.0</td>
+      <td>14.0</td>
+      <td>26.0</td>
+      <td>29.0</td>
+      <td>24.0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>33.0</td>
+      <td>32.0</td>
+      <td>17.0</td>
+      <td>49.0</td>
+      <td>11.0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>8.0</td>
+      <td>5.0</td>
+      <td>7.0</td>
+      <td>0.0</td>
+      <td>33.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+</section>
+<section id="publisher">
+<h3><code class="docutils literal notranslate"><span class="pre">publisher</span></code>列の深掘り<a class="headerlink" href="#publisher" title="Link to this heading">#</a></h3>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># `acname`ごとにユニークな`acid`の数を集計し、その統計情報を取得</span>
+<span class="n">df_pkg_pf</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;publisher&quot;</span><span class="p">)[</span><span class="s2">&quot;pkgid&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>index</th>
+      <th>pkgid</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>count</td>
+      <td>1952.000000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>mean</td>
+      <td>18.257172</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>std</td>
+      <td>78.522024</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>min</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>25%</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>50%</td>
+      <td>2.000000</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>75%</td>
+      <td>6.000000</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>max</td>
+      <td>1425.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ゲーム販売会社名（`publisher`）ごとにユニークなパッケージID（`pkgid`）の数を集計</span>
+<span class="c1"># groupbyメソッドで`publisher`を基準にグループ化し、`pkgid`のユニークな値の数を計算</span>
+<span class="c1"># その後、ソートしてユニークな`pkgid`の数が多い上位10件の`publisher`とその数を表示</span>
+<span class="n">df_pkg_pf</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;publisher&quot;</span><span class="p">)[</span><span class="s2">&quot;pkgid&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span>
+    <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>publisher</th>
+      <th>pkgid</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>任天堂株式会社</td>
+      <td>1425</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>株式会社バンダイナムコゲームス</td>
+      <td>1216</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>株式会社カプコン</td>
+      <td>984</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>株式会社ソニー・コンピュータエンタテインメント</td>
+      <td>915</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>エレクトロニック・アーツ株式会社</td>
+      <td>860</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>株式会社スクウェア・エニックス</td>
+      <td>825</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>株式会社コーエーテクモゲームス</td>
+      <td>698</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>株式会社セガ</td>
+      <td>683</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>アイディアファクトリー株式会社</td>
+      <td>669</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>株式会社ディースリー・パブリッシャー</td>
+      <td>597</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ユニークな`pkgid`数が多い上位5のpublisherを取得</span>
+<span class="c1"># `publisher`を基準にグループ化し、各グループのユニークな`pkgid`の数を計算</span>
+<span class="c1"># その後、降順にソートして上位10の`pubs`をリスト形式で取得</span>
+<span class="n">pubs</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">df_pkg_pf</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;publisher&quot;</span><span class="p">)[</span><span class="s2">&quot;pkgid&quot;</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">head</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="p">)</span>
+
+<span class="c1"># 上位5のpubsに紐づきデータを抽出</span>
+<span class="c1"># 発売年（`year`）ごと、プラットフォーム名（`publisher`）ごとに</span>
+<span class="c1"># ゲームパッケージID（`pkgid`）のユニークな数を集計、NaNは0に置換し、int型にキャスト</span>
+<span class="n">df_pkg_pf</span><span class="p">[</span><span class="n">df_pkg_pf</span><span class="p">[</span><span class="s2">&quot;publisher&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">pubs</span><span class="p">)]</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span>
+    <span class="n">index</span><span class="o">=</span><span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s2">&quot;publisher&quot;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s2">&quot;pkgid&quot;</span><span class="p">,</span> <span class="n">aggfunc</span><span class="o">=</span><span class="s2">&quot;nunique&quot;</span>
+<span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>publisher</th>
+      <th>エレクトロニック・アーツ株式会社</th>
+      <th>任天堂株式会社</th>
+      <th>株式会社カプコン</th>
+      <th>株式会社ソニー・コンピュータエンタテインメント</th>
+      <th>株式会社バンダイナムコゲームス</th>
+    </tr>
+    <tr>
+      <th>year</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1983</th>
+      <td>0</td>
+      <td>7</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1984</th>
+      <td>0</td>
+      <td>5</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1985</th>
+      <td>0</td>
+      <td>4</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1986</th>
+      <td>0</td>
+      <td>5</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1987</th>
+      <td>0</td>
+      <td>3</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1988</th>
+      <td>0</td>
+      <td>2</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1989</th>
+      <td>0</td>
+      <td>6</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1990</th>
+      <td>0</td>
+      <td>10</td>
+      <td>3</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1991</th>
+      <td>0</td>
+      <td>6</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1992</th>
+      <td>0</td>
+      <td>11</td>
+      <td>4</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1993</th>
+      <td>0</td>
+      <td>11</td>
+      <td>4</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1994</th>
+      <td>0</td>
+      <td>11</td>
+      <td>8</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1995</th>
+      <td>0</td>
+      <td>11</td>
+      <td>14</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1996</th>
+      <td>0</td>
+      <td>13</td>
+      <td>17</td>
+      <td>6</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1997</th>
+      <td>0</td>
+      <td>11</td>
+      <td>17</td>
+      <td>7</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>1998</th>
+      <td>5</td>
+      <td>28</td>
+      <td>24</td>
+      <td>7</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1999</th>
+      <td>0</td>
+      <td>57</td>
+      <td>19</td>
+      <td>21</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2000</th>
+      <td>0</td>
+      <td>31</td>
+      <td>24</td>
+      <td>9</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2001</th>
+      <td>1</td>
+      <td>23</td>
+      <td>36</td>
+      <td>34</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2002</th>
+      <td>0</td>
+      <td>20</td>
+      <td>22</td>
+      <td>20</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>2003</th>
+      <td>32</td>
+      <td>18</td>
+      <td>49</td>
+      <td>18</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2004</th>
+      <td>59</td>
+      <td>56</td>
+      <td>26</td>
+      <td>31</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2005</th>
+      <td>49</td>
+      <td>37</td>
+      <td>33</td>
+      <td>37</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2006</th>
+      <td>48</td>
+      <td>73</td>
+      <td>34</td>
+      <td>62</td>
+      <td>57</td>
+    </tr>
+    <tr>
+      <th>2007</th>
+      <td>60</td>
+      <td>66</td>
+      <td>58</td>
+      <td>93</td>
+      <td>86</td>
+    </tr>
+    <tr>
+      <th>2008</th>
+      <td>93</td>
+      <td>61</td>
+      <td>45</td>
+      <td>63</td>
+      <td>96</td>
+    </tr>
+    <tr>
+      <th>2009</th>
+      <td>89</td>
+      <td>125</td>
+      <td>51</td>
+      <td>80</td>
+      <td>152</td>
+    </tr>
+    <tr>
+      <th>2010</th>
+      <td>76</td>
+      <td>54</td>
+      <td>49</td>
+      <td>81</td>
+      <td>96</td>
+    </tr>
+    <tr>
+      <th>2011</th>
+      <td>44</td>
+      <td>52</td>
+      <td>68</td>
+      <td>50</td>
+      <td>132</td>
+    </tr>
+    <tr>
+      <th>2012</th>
+      <td>43</td>
+      <td>79</td>
+      <td>61</td>
+      <td>79</td>
+      <td>144</td>
+    </tr>
+    <tr>
+      <th>2013</th>
+      <td>42</td>
+      <td>128</td>
+      <td>74</td>
+      <td>61</td>
+      <td>207</td>
+    </tr>
+    <tr>
+      <th>2014</th>
+      <td>66</td>
+      <td>91</td>
+      <td>86</td>
+      <td>91</td>
+      <td>187</td>
+    </tr>
+    <tr>
+      <th>2015</th>
+      <td>39</td>
+      <td>113</td>
+      <td>85</td>
+      <td>59</td>
+      <td>53</td>
+    </tr>
+    <tr>
+      <th>2016</th>
+      <td>59</td>
+      <td>136</td>
+      <td>72</td>
+      <td>5</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2017</th>
+      <td>55</td>
+      <td>60</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2018</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 上位5のpublisherについて、発売曜日ごとのゲームパッケージ数を集計</span>
+<span class="c1"># 曜日（`weekday`）ごと、ゲーム販売会社名（`publisher`）ごとに</span>
+<span class="c1"># ゲームパッケージID（`pkgid`）のユニークな数を集計、NaNは0に置換</span>
+<span class="n">df_pkg_pf</span><span class="p">[</span><span class="n">df_pkg_pf</span><span class="p">[</span><span class="s2">&quot;publisher&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">pubs</span><span class="p">)]</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span>
+    <span class="n">index</span><span class="o">=</span><span class="s2">&quot;weekday&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s2">&quot;publisher&quot;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s2">&quot;pkgid&quot;</span><span class="p">,</span> <span class="n">aggfunc</span><span class="o">=</span><span class="s2">&quot;nunique&quot;</span>
+<span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>publisher</th>
+      <th>エレクトロニック・アーツ株式会社</th>
+      <th>任天堂株式会社</th>
+      <th>株式会社カプコン</th>
+      <th>株式会社ソニー・コンピュータエンタテインメント</th>
+      <th>株式会社バンダイナムコゲームス</th>
+    </tr>
+    <tr>
+      <th>weekday</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>6.0</td>
+      <td>54.0</td>
+      <td>9.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>48.0</td>
+      <td>151.0</td>
+      <td>73.0</td>
+      <td>16.0</td>
+      <td>95.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>55.0</td>
+      <td>434.0</td>
+      <td>209.0</td>
+      <td>104.0</td>
+      <td>141.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>680.0</td>
+      <td>460.0</td>
+      <td>569.0</td>
+      <td>730.0</td>
+      <td>958.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>51.0</td>
+      <td>163.0</td>
+      <td>96.0</td>
+      <td>28.0</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>19.0</td>
+      <td>145.0</td>
+      <td>27.0</td>
+      <td>26.0</td>
+      <td>14.0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>1.0</td>
+      <td>18.0</td>
+      <td>1.0</td>
+      <td>11.0</td>
+      <td>4.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+</section>
+<section id="price">
+<h3><code class="docutils literal notranslate"><span class="pre">price</span></code>列の深掘り<a class="headerlink" href="#price" title="Link to this heading">#</a></h3>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 各発売年（`year`）ごとにゲームパッケージの価格（`price`）の基本統計量を計算</span>
+<span class="n">df_pkg_pf</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;year&quot;</span><span class="p">)[</span><span class="s2">&quot;price&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>count</th>
+      <th>mean</th>
+      <th>std</th>
+      <th>min</th>
+      <th>25%</th>
+      <th>50%</th>
+      <th>75%</th>
+      <th>max</th>
+    </tr>
+    <tr>
+      <th>year</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1982</th>
+      <td>12.0</td>
+      <td>8833.333333</td>
+      <td>5804.909103</td>
+      <td>3500.0</td>
+      <td>3500.00</td>
+      <td>6500.0</td>
+      <td>16500.0</td>
+      <td>16500.0</td>
+    </tr>
+    <tr>
+      <th>1983</th>
+      <td>11.0</td>
+      <td>3909.090909</td>
+      <td>784.161393</td>
+      <td>2500.0</td>
+      <td>3400.00</td>
+      <td>4500.0</td>
+      <td>4500.0</td>
+      <td>4500.0</td>
+    </tr>
+    <tr>
+      <th>1984</th>
+      <td>31.0</td>
+      <td>5116.129032</td>
+      <td>1195.295437</td>
+      <td>3500.0</td>
+      <td>4400.00</td>
+      <td>4500.0</td>
+      <td>6250.0</td>
+      <td>7200.0</td>
+    </tr>
+    <tr>
+      <th>1985</th>
+      <td>61.0</td>
+      <td>6009.836066</td>
+      <td>2241.777934</td>
+      <td>4300.0</td>
+      <td>4500.00</td>
+      <td>4900.0</td>
+      <td>6800.0</td>
+      <td>14800.0</td>
+    </tr>
+    <tr>
+      <th>1986</th>
+      <td>57.0</td>
+      <td>4931.578947</td>
+      <td>1516.075513</td>
+      <td>2500.0</td>
+      <td>4500.00</td>
+      <td>4900.0</td>
+      <td>5300.0</td>
+      <td>10000.0</td>
+    </tr>
+    <tr>
+      <th>1987</th>
+      <td>108.0</td>
+      <td>5540.555556</td>
+      <td>1828.933520</td>
+      <td>2000.0</td>
+      <td>4500.00</td>
+      <td>5500.0</td>
+      <td>6800.0</td>
+      <td>9800.0</td>
+    </tr>
+    <tr>
+      <th>1988</th>
+      <td>80.0</td>
+      <td>5547.000000</td>
+      <td>1101.231072</td>
+      <td>3200.0</td>
+      <td>4900.00</td>
+      <td>5500.0</td>
+      <td>5800.0</td>
+      <td>9800.0</td>
+    </tr>
+    <tr>
+      <th>1989</th>
+      <td>152.0</td>
+      <td>5727.480263</td>
+      <td>1284.464853</td>
+      <td>2600.0</td>
+      <td>5500.00</td>
+      <td>5900.0</td>
+      <td>6300.0</td>
+      <td>9800.0</td>
+    </tr>
+    <tr>
+      <th>1990</th>
+      <td>300.0</td>
+      <td>5584.476667</td>
+      <td>2031.466372</td>
+      <td>2600.0</td>
+      <td>3500.00</td>
+      <td>5900.0</td>
+      <td>6780.0</td>
+      <td>14800.0</td>
+    </tr>
+    <tr>
+      <th>1991</th>
+      <td>336.0</td>
+      <td>7015.708333</td>
+      <td>4032.813111</td>
+      <td>1000.0</td>
+      <td>3960.00</td>
+      <td>6500.0</td>
+      <td>8252.0</td>
+      <td>23800.0</td>
+    </tr>
+    <tr>
+      <th>1992</th>
+      <td>398.0</td>
+      <td>7497.690955</td>
+      <td>3590.501653</td>
+      <td>1500.0</td>
+      <td>4825.00</td>
+      <td>7586.5</td>
+      <td>8800.0</td>
+      <td>28000.0</td>
+    </tr>
+    <tr>
+      <th>1993</th>
+      <td>427.0</td>
+      <td>8327.093677</td>
+      <td>3340.675027</td>
+      <td>2900.0</td>
+      <td>6800.00</td>
+      <td>8800.0</td>
+      <td>9700.0</td>
+      <td>29800.0</td>
+    </tr>
+    <tr>
+      <th>1994</th>
+      <td>613.0</td>
+      <td>8471.101142</td>
+      <td>3627.019740</td>
+      <td>1980.0</td>
+      <td>6800.00</td>
+      <td>8800.0</td>
+      <td>9800.0</td>
+      <td>29800.0</td>
+    </tr>
+    <tr>
+      <th>1995</th>
+      <td>735.0</td>
+      <td>8297.306122</td>
+      <td>4079.354925</td>
+      <td>1280.0</td>
+      <td>5800.00</td>
+      <td>7800.0</td>
+      <td>9800.0</td>
+      <td>34800.0</td>
+    </tr>
+    <tr>
+      <th>1996</th>
+      <td>840.0</td>
+      <td>6729.544048</td>
+      <td>3678.101536</td>
+      <td>1280.0</td>
+      <td>5800.00</td>
+      <td>5800.0</td>
+      <td>6800.0</td>
+      <td>34000.0</td>
+    </tr>
+    <tr>
+      <th>1997</th>
+      <td>855.0</td>
+      <td>6072.762573</td>
+      <td>2971.631541</td>
+      <td>500.0</td>
+      <td>5800.00</td>
+      <td>5800.0</td>
+      <td>6800.0</td>
+      <td>36800.0</td>
+    </tr>
+    <tr>
+      <th>1998</th>
+      <td>988.0</td>
+      <td>5495.774291</td>
+      <td>3066.746656</td>
+      <td>500.0</td>
+      <td>3980.00</td>
+      <td>5800.0</td>
+      <td>5825.0</td>
+      <td>58000.0</td>
+    </tr>
+    <tr>
+      <th>1999</th>
+      <td>1165.0</td>
+      <td>4828.793133</td>
+      <td>2729.871216</td>
+      <td>500.0</td>
+      <td>2800.00</td>
+      <td>4800.0</td>
+      <td>5800.0</td>
+      <td>38000.0</td>
+    </tr>
+    <tr>
+      <th>2000</th>
+      <td>1232.0</td>
+      <td>4519.135552</td>
+      <td>2615.820313</td>
+      <td>500.0</td>
+      <td>2800.00</td>
+      <td>4200.0</td>
+      <td>5800.0</td>
+      <td>38000.0</td>
+    </tr>
+    <tr>
+      <th>2001</th>
+      <td>1067.0</td>
+      <td>4793.573571</td>
+      <td>2692.631026</td>
+      <td>398.0</td>
+      <td>2800.00</td>
+      <td>4800.0</td>
+      <td>6090.0</td>
+      <td>38900.0</td>
+    </tr>
+    <tr>
+      <th>2002</th>
+      <td>1159.0</td>
+      <td>5177.123382</td>
+      <td>3036.948767</td>
+      <td>498.0</td>
+      <td>2940.00</td>
+      <td>5040.0</td>
+      <td>6800.0</td>
+      <td>39800.0</td>
+    </tr>
+    <tr>
+      <th>2003</th>
+      <td>1065.0</td>
+      <td>5628.345540</td>
+      <td>3169.873266</td>
+      <td>1000.0</td>
+      <td>3800.00</td>
+      <td>5800.0</td>
+      <td>7140.0</td>
+      <td>39800.0</td>
+    </tr>
+    <tr>
+      <th>2004</th>
+      <td>1036.0</td>
+      <td>5776.046332</td>
+      <td>3563.713279</td>
+      <td>404.0</td>
+      <td>3654.00</td>
+      <td>5659.5</td>
+      <td>7140.0</td>
+      <td>39800.0</td>
+    </tr>
+    <tr>
+      <th>2005</th>
+      <td>1104.0</td>
+      <td>5497.354167</td>
+      <td>2455.662403</td>
+      <td>400.0</td>
+      <td>3487.50</td>
+      <td>5040.0</td>
+      <td>7140.0</td>
+      <td>26040.0</td>
+    </tr>
+    <tr>
+      <th>2006</th>
+      <td>1239.0</td>
+      <td>5081.142857</td>
+      <td>3194.186034</td>
+      <td>340.0</td>
+      <td>2940.00</td>
+      <td>5040.0</td>
+      <td>7140.0</td>
+      <td>44800.0</td>
+    </tr>
+    <tr>
+      <th>2007</th>
+      <td>1641.0</td>
+      <td>4244.517977</td>
+      <td>3358.101973</td>
+      <td>300.0</td>
+      <td>1554.00</td>
+      <td>3990.0</td>
+      <td>6090.0</td>
+      <td>49980.0</td>
+    </tr>
+    <tr>
+      <th>2008</th>
+      <td>1676.0</td>
+      <td>4535.547136</td>
+      <td>3899.966591</td>
+      <td>200.0</td>
+      <td>2079.00</td>
+      <td>4410.0</td>
+      <td>6279.0</td>
+      <td>49800.0</td>
+    </tr>
+    <tr>
+      <th>2009</th>
+      <td>1965.0</td>
+      <td>4012.208651</td>
+      <td>3713.353797</td>
+      <td>100.0</td>
+      <td>823.00</td>
+      <td>3800.0</td>
+      <td>6090.0</td>
+      <td>48980.0</td>
+    </tr>
+    <tr>
+      <th>2010</th>
+      <td>1921.0</td>
+      <td>3812.234253</td>
+      <td>3239.902939</td>
+      <td>200.0</td>
+      <td>800.00</td>
+      <td>3500.0</td>
+      <td>6090.0</td>
+      <td>39800.0</td>
+    </tr>
+    <tr>
+      <th>2011</th>
+      <td>1572.0</td>
+      <td>4398.479644</td>
+      <td>3437.800788</td>
+      <td>200.0</td>
+      <td>1321.00</td>
+      <td>4712.5</td>
+      <td>6090.0</td>
+      <td>37905.0</td>
+    </tr>
+    <tr>
+      <th>2012</th>
+      <td>1687.0</td>
+      <td>4825.491998</td>
+      <td>4103.191562</td>
+      <td>190.0</td>
+      <td>2376.00</td>
+      <td>4800.0</td>
+      <td>6280.0</td>
+      <td>39800.0</td>
+    </tr>
+    <tr>
+      <th>2013</th>
+      <td>1976.0</td>
+      <td>4750.717105</td>
+      <td>3540.089675</td>
+      <td>100.0</td>
+      <td>2480.00</td>
+      <td>4847.0</td>
+      <td>6612.0</td>
+      <td>40000.0</td>
+    </tr>
+    <tr>
+      <th>2014</th>
+      <td>2033.0</td>
+      <td>4770.133792</td>
+      <td>4093.907411</td>
+      <td>100.0</td>
+      <td>1543.00</td>
+      <td>5119.0</td>
+      <td>6800.0</td>
+      <td>49980.0</td>
+    </tr>
+    <tr>
+      <th>2015</th>
+      <td>1926.0</td>
+      <td>5183.372793</td>
+      <td>4228.746421</td>
+      <td>185.0</td>
+      <td>2517.75</td>
+      <td>5500.0</td>
+      <td>6800.0</td>
+      <td>49980.0</td>
+    </tr>
+    <tr>
+      <th>2016</th>
+      <td>1697.0</td>
+      <td>5002.194461</td>
+      <td>3545.231779</td>
+      <td>93.0</td>
+      <td>1944.00</td>
+      <td>5184.0</td>
+      <td>6990.0</td>
+      <td>35980.0</td>
+    </tr>
+    <tr>
+      <th>2017</th>
+      <td>1974.0</td>
+      <td>4935.767984</td>
+      <td>3598.236800</td>
+      <td>54.0</td>
+      <td>1503.00</td>
+      <td>4980.0</td>
+      <td>7000.0</td>
+      <td>30000.0</td>
+    </tr>
+    <tr>
+      <th>2018</th>
+      <td>9.0</td>
+      <td>9693.333333</td>
+      <td>7692.242846</td>
+      <td>3700.0</td>
+      <td>7600.00</td>
+      <td>7800.0</td>
+      <td>7980.0</td>
+      <td>29800.0</td>
+    </tr>
+    <tr>
+      <th>2019</th>
+      <td>1.0</td>
+      <td>2980.000000</td>
+      <td>NaN</td>
+      <td>2980.0</td>
+      <td>2980.00</td>
+      <td>2980.0</td>
+      <td>2980.0</td>
+      <td>2980.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 各プラットフォーム（`pfname`）ごとに価格（`price`）の統計を取得</span>
+<span class="c1"># 結果は平均価格でソート</span>
+<span class="n">df_pkg_pf</span><span class="p">[</span><span class="n">df_pkg_pf</span><span class="p">[</span><span class="s2">&quot;pfid&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">pfids</span><span class="p">)]</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;pfname&quot;</span><span class="p">])[</span>
+    <span class="s2">&quot;price&quot;</span>
+<span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;mean&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>count</th>
+      <th>mean</th>
+      <th>std</th>
+      <th>min</th>
+      <th>25%</th>
+      <th>50%</th>
+      <th>75%</th>
+      <th>max</th>
+    </tr>
+    <tr>
+      <th>pfname</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>プレイステーション</th>
+      <td>3715.0</td>
+      <td>4665.390040</td>
+      <td>2253.040373</td>
+      <td>800.0</td>
+      <td>2800.0</td>
+      <td>5800.0</td>
+      <td>5800.0</td>
+      <td>58000.0</td>
+    </tr>
+    <tr>
+      <th>プレイステーション・ポータブル</th>
+      <td>3411.0</td>
+      <td>4822.775432</td>
+      <td>2867.958954</td>
+      <td>200.0</td>
+      <td>2800.0</td>
+      <td>5040.0</td>
+      <td>5980.0</td>
+      <td>36729.0</td>
+    </tr>
+    <tr>
+      <th>プレイステーション3</th>
+      <td>2435.0</td>
+      <td>5803.462423</td>
+      <td>4075.340210</td>
+      <td>100.0</td>
+      <td>3000.0</td>
+      <td>6000.0</td>
+      <td>7429.0</td>
+      <td>49980.0</td>
+    </tr>
+    <tr>
+      <th>プレイステーションVita</th>
+      <td>2215.0</td>
+      <td>5808.051467</td>
+      <td>2895.232131</td>
+      <td>190.0</td>
+      <td>4600.0</td>
+      <td>5800.0</td>
+      <td>6800.0</td>
+      <td>38076.0</td>
+    </tr>
+    <tr>
+      <th>プレイステーション2</th>
+      <td>4211.0</td>
+      <td>5888.962954</td>
+      <td>2759.501278</td>
+      <td>1500.0</td>
+      <td>3129.0</td>
+      <td>6800.0</td>
+      <td>7140.0</td>
+      <td>38900.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 販売会社（publisher）について、各出版社ごとの価格（price）の基本統計量を計算</span>
+<span class="c1"># 結果は平均価格でソート</span>
+<span class="n">df_pkg_pf</span><span class="p">[</span><span class="n">df_pkg_pf</span><span class="p">[</span><span class="s2">&quot;publisher&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">pubs</span><span class="p">)]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;publisher&quot;</span><span class="p">)[</span>
+    <span class="s2">&quot;price&quot;</span>
+<span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;mean&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>count</th>
+      <th>mean</th>
+      <th>std</th>
+      <th>min</th>
+      <th>25%</th>
+      <th>50%</th>
+      <th>75%</th>
+      <th>max</th>
+    </tr>
+    <tr>
+      <th>publisher</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>任天堂株式会社</th>
+      <td>1385.0</td>
+      <td>3428.166787</td>
+      <td>3734.275082</td>
+      <td>200.0</td>
+      <td>800.0</td>
+      <td>2800.0</td>
+      <td>4800.0</td>
+      <td>40824.0</td>
+    </tr>
+    <tr>
+      <th>株式会社ソニー・コンピュータエンタテインメント</th>
+      <td>899.0</td>
+      <td>4460.625139</td>
+      <td>6017.885150</td>
+      <td>100.0</td>
+      <td>1500.0</td>
+      <td>3048.0</td>
+      <td>5747.5</td>
+      <td>49800.0</td>
+    </tr>
+    <tr>
+      <th>株式会社カプコン</th>
+      <td>971.0</td>
+      <td>4659.969104</td>
+      <td>4591.441594</td>
+      <td>93.0</td>
+      <td>2090.0</td>
+      <td>3990.0</td>
+      <td>5800.0</td>
+      <td>48980.0</td>
+    </tr>
+    <tr>
+      <th>株式会社バンダイナムコゲームス</th>
+      <td>1205.0</td>
+      <td>5268.454772</td>
+      <td>3757.199341</td>
+      <td>200.0</td>
+      <td>2800.0</td>
+      <td>5122.0</td>
+      <td>7120.0</td>
+      <td>39800.0</td>
+    </tr>
+    <tr>
+      <th>エレクトロニック・アーツ株式会社</th>
+      <td>843.0</td>
+      <td>5630.930012</td>
+      <td>2862.258948</td>
+      <td>200.0</td>
+      <td>3129.0</td>
+      <td>6090.0</td>
+      <td>7300.0</td>
+      <td>39980.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./vol1/06"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="gm_preprocess.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">ゲームデータの前処理</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="practice_q.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">【練習問題】</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">準備</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#import">Import</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">変数</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gm-pkg-pf-csv"><code class="docutils literal notranslate"><span class="pre">gm_pkg_pf.csv</span></code>の基礎分析</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">全体像の把握</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#date"><code class="docutils literal notranslate"><span class="pre">date</span></code>列の深掘り</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pkgidpkgname"><code class="docutils literal notranslate"><span class="pre">pkgid</span></code>、<code class="docutils literal notranslate"><span class="pre">pkgname</span></code>列の深掘り</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pfidpfname"><code class="docutils literal notranslate"><span class="pre">pfid</span></code>、<code class="docutils literal notranslate"><span class="pre">pfname</span></code>列の深掘り</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#publisher"><code class="docutils literal notranslate"><span class="pre">publisher</span></code>列の深掘り</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#price"><code class="docutils literal notranslate"><span class="pre">price</span></code>列の深掘り</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  © Copyright 2026 by <a rel="kakeami" href="https://github.com/kakeami"> Kakeami </a>. この作品は<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">クリエイティブ・コモンズ 表示 - 非営利 - 改変禁止 4.0 国際 ライセンス</a>の下に提供されています． <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="クリエイティブ・コモンズ・ライセンス" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>　ただし，作品中のコードセル部分は<a rel="license" href="https://opensource.org/licenses/MIT">MITライセンス</a>の下に提供されています．
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

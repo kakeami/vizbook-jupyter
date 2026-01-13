@@ -1,0 +1,58 @@
+title: データ可視化技術入門
+author: ""
+#logo: images/earth.png
+#logo: images/sample.jpg
+
+execute:
+  execute_notebooks: off
+  #exclude_patterns:
+  #  - "*/*/_*.ipynb"  # アンダースコアで始まるipynbをすべて除外
+
+latex:
+  latex_documents:
+    targetname: book.tex
+
+bibtex_bibfiles:
+  - references.bib
+
+repository:
+  url: https://github.com/kakeami/vizbook # Online location of your book
+  path_to_book: book # Optional path to your book, relative to the repository root
+  branch: master  # Which branch of the repository should be used when creating links (optional)
+
+html:
+  favicon: images/pen.png
+  use_issues_button: true
+  use_repository_button: true
+  use_multitoc_numbering: true
+  home_page_in_navbar: false
+  #google_analytics_id: "UA-195969608-1"
+  extra_footer: |
+    © Copyright 2026 by <a rel="kakeami" href="https://github.com/kakeami"> Kakeami </a>. この作品は<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">クリエイティブ・コモンズ 表示 - 非営利 - 改変禁止 4.0 国際 ライセンス</a>の下に提供されています． <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="クリエイティブ・コモンズ・ライセンス" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>　ただし，作品中のコードセル部分は<a rel="license" href="https://opensource.org/licenses/MIT">MITライセンス</a>の下に提供されています．
+
+# Plotly
+sphinx:
+  config:
+    html_js_files:
+    - https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js
+    html_show_copyright: false
+    suppress_warnings: ["mystnb.unknown_mime_type"]
+    #bibtex_reference_style: author_year
+    bibtex_reference_style: label
+    #bibtex_bibfiles: references.bib
+
+parse:
+  myst_enable_extensions:  # default extensions to enable in the myst parser. See https://myst-parser.readthedocs.io/en/latest/using/syntax-optional.html
+    - amsmath
+    - colon_fence
+    - deflist
+    - dollarmath
+    - html_admonition
+    - html_image
+    - linkify
+    - replacements
+    - smartquotes
+    - substitution
+
+exclude_patterns:
+  - "**/_*.ipynb"  # アンダースコアで始まるipynbをすべて除外

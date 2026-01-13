@@ -1,0 +1,98 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: index
+parts:
+  - caption: 上巻
+    numbered: False
+    chapters:
+    - file: vol1/03/index
+      sections:
+      - file: vol1/03/cm_preprocess
+      - file: vol1/03/eda
+      - file: vol1/03/practice_q
+      - file: vol1/03/practice_a
+    - file: vol1/04/index
+      sections:
+      - file: vol1/04/amounts
+      - file: vol1/04/dists
+      - file: vol1/04/props
+      - file: vol1/04/assocs
+      - file: vol1/04/practice_q
+      - file: vol1/04/practice_a
+    - file: vol1/05/index
+      sections:
+      - file: vol1/05/python
+      - file: vol1/05/pandas
+      - file: vol1/05/plotly
+      - file: vol1/05/practice_q
+      - file: vol1/05/practice_a
+    - file: vol1/06/index
+      sections:
+      - file: vol1/06/an_preprocess
+      - file: vol1/06/an_eda
+      - file: vol1/06/gm_preprocess
+      - file: vol1/06/gm_eda
+      - file: vol1/06/practice_q
+      - file: vol1/06/practice_a
+  - caption: 下巻
+    numbered: False
+    chapters:
+    - file: vol2/01/index
+      sections:
+      - file: vol2/01/bar
+      - file: vol2/01/gbar
+      - file: vol2/01/sbar
+      - file: vol2/01/heatmap
+      - file: vol2/01/practice_q
+      - file: vol2/01/practice_a
+    - file: vol2/02/index
+      sections:
+      - file: vol2/02/hist
+      - file: vol2/02/density
+      - file: vol2/02/box
+      - file: vol2/02/violin
+      - file: vol2/02/ridge
+      - file: vol2/02/practice_q
+      - file: vol2/02/practice_a
+    - file: vol2/03/index
+      sections:
+      - file: vol2/03/pie
+      - file: vol2/03/bar
+      - file: vol2/03/mosaic
+      - file: vol2/03/area
+      - file: vol2/03/tree
+      - file: vol2/03/parallel
+      - file: vol2/03/practice_q
+      - file: vol2/03/practice_a
+    - file: vol2/04/index
+      sections:
+      - file: vol2/04/scatter
+      - file: vol2/04/bubble
+      - file: vol2/04/matrix
+      - file: vol2/04/2d
+      - file: vol2/04/contour
+      - file: vol2/04/line
+      - file: vol2/04/connected
+      - file: vol2/04/practice_q
+      - file: vol2/04/practice_a
+    - file: vol2/05/index
+      sections:
+      - file: vol2/05/mix_preprocess
+      - file: vol2/05/eda
+      - file: vol2/05/practice_q
+      - file: vol2/05/practice_a
+    - file: vol2/06/index
+      sections:
+      - file: vol2/06/amounts
+      - file: vol2/06/dists
+      - file: vol2/06/props
+      - file: vol2/06/assocs
+      - file: vol2/06/practice_q
+      - file: vol2/06/practice_a
+  - caption: Appendix
+    numbered: False
+    chapters:
+    - file: appendix/setup
+    - file: appendix/references

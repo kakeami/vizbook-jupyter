@@ -1,0 +1,5555 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Pandasの基本 &#8212; データ可視化技術入門</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'vol1/05/pandas';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="icon" href="../../_static/pen.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Plotlyの基本" href="plotly.html" />
+    <link rel="prev" title="Pythonの基本" href="python.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">データ可視化技術入門</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">上巻</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../03/index.html">3章 マンガデータ分析①</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../03/cm_preprocess.html">マンガデータの前処理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../03/eda.html">マンガデータの基礎分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../03/practice_q.html">【練習問題】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../03/practice_a.html">【解答例】</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../04/index.html">4章 マンガデータ分析②</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../04/amounts.html">マンガデータの量を見る</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04/dists.html">マンガデータの分布を見る</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04/props.html">マンガデータの内訳を見る</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04/assocs.html">マンガデータの関係を見る</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04/practice_q.html">【練習問題】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04/practice_a.html">【解答例】</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">5章 Python/Pandas/Plotly</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="python.html">Pythonの基本</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Pandasの基本</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plotly.html">Plotlyの基本</a></li>
+<li class="toctree-l2"><a class="reference internal" href="practice_q.html">【練習問題】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="practice_a.html">【解答例】</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../06/index.html">6章 取得/前処理/基礎分析</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../06/an_preprocess.html">アニメデータの前処理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../06/an_eda.html">アニメデータの基礎分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../06/gm_preprocess.html">ゲームデータの前処理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../06/gm_eda.html">ゲームデータの基礎分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../06/practice_q.html">【練習問題】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../06/practice_a.html">【解答例】</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">下巻</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../vol2/01/index.html">1章 量を見る手法</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/01/bar.html">棒グラフ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/01/gbar.html">集合棒グラフ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/01/sbar.html">積上げ棒グラフ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/01/heatmap.html">ヒートマップ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/01/practice_q.html">【練習問題】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/01/practice_a.html">【解答例】</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../vol2/02/index.html">2章 分布を見る手法</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/02/hist.html">ヒストグラム</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/02/density.html">密度プロット</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/02/box.html">箱ひげ図</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/02/violin.html">バイオリンプロット</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/02/ridge.html">リッジラインプロット</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/02/practice_q.html">【練習問題】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/02/practice_a.html">【解答例】</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../vol2/03/index.html">3章 内訳を見る手法</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/03/pie.html">円グラフ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/03/bar.html">棒グラフ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/03/mosaic.html">モザイクプロット</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/03/area.html">積上げ密度プロット</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/03/tree.html">ツリーマップ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/03/parallel.html">パラレルセットグラフ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/03/practice_q.html">【練習問題】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/03/practice_a.html">【解答例】</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../vol2/04/index.html">4章 関係を見る手法</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/04/scatter.html">散布図</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/04/bubble.html">バブルチャート</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/04/matrix.html">散布図行列</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/04/2d.html">二次元ヒストグラム</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/04/contour.html">等値線図</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/04/line.html">折れ線グラフ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/04/connected.html">連結散布図</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/04/practice_q.html">【練習問題】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/04/practice_a.html">【解答例】</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../vol2/05/index.html">5章 メディア展開データ分析①</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/05/mix_preprocess.html">メディア展開データの前処理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/05/eda.html">メディア展開データの基礎分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/05/practice_q.html">【練習問題】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/05/practice_a.html">【解答例】</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../vol2/06/index.html">6章 メディア展開データ分析②</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/06/amounts.html">メディア展開データの量を見る</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/06/dists.html">メディア展開データの分布を見る</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/06/props.html">メディア展開データの内訳を見る</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/06/assocs.html">メディア展開データの関係を見る</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/06/practice_q.html">【練習問題】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/06/practice_a.html">【解答例】</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../appendix/setup.html">本書の再現と発展</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appendix/references.html">参考文献</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/kakeami/vizbook" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/kakeami/vizbook/issues/new?title=Issue%20on%20page%20%2Fvol1/05/pandas.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/vol1/05/pandas.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Pandasの基本</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">基本的なデータ構造</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas-dataframe"><code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code>型</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas-series"><code class="docutils literal notranslate"><span class="pre">pandas.Series</span></code>型</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas-dataframepandas-series"><code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code>型と<code class="docutils literal notranslate"><span class="pre">pandas.Series</span></code>型の相互変換</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">データの読み込みと書き出し</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">読み込み</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">書き出し</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">データの選択とフィルタリング</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">カラムの選択</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">行の選択</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">条件に基づくフィルタリング</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">データの整形と操作</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">欠損値の処理</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">カラム名の変更</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">データ型の変換</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">カラムの追加・削除</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">重複の処理</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">各行へのカスタム処理</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">データのソートと集計</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">ソート</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">基礎集計</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">データの結合とマージ</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">結合</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">マージ</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">データのグルーピングとピボット</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">グルーピング</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">ピボット</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="pandas">
+<h1>Pandasの基本<a class="headerlink" href="#pandas" title="Link to this heading">#</a></h1>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># pandasをpdという名前でインポート</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="c1"># バージョンを確認</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">__version__</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;2.1.1&#39;
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<section id="id1">
+<h2>基本的なデータ構造<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<section id="pandas-dataframe">
+<h3><code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code>型<a class="headerlink" href="#pandas-dataframe" title="Link to this heading">#</a></h3>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># SPY×FAMILYを例に、forger家を表現する辞書を作成</span>
+<span class="c1"># キーには&quot;名前&quot;、&quot;役割&quot;、&quot;秘密&quot;というラベルを、</span>
+<span class="c1"># それぞれの値にはリストを使って登場人物の情報を格納</span>
+<span class="n">forger</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;名前&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;ロイド&quot;</span><span class="p">,</span> <span class="s2">&quot;ヨル&quot;</span><span class="p">,</span> <span class="s2">&quot;アーニャ&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;役割&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;父&quot;</span><span class="p">,</span> <span class="s2">&quot;母&quot;</span><span class="p">,</span> <span class="s2">&quot;娘&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;秘密&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;スパイ&quot;</span><span class="p">,</span> <span class="s2">&quot;殺し屋&quot;</span><span class="p">,</span> <span class="s2">&quot;超能力者&quot;</span><span class="p">],</span>
+<span class="p">}</span>
+
+<span class="c1"># 上で作成したforger辞書を使ってDataFrameを作成</span>
+<span class="c1"># pandasのDataFrameは表形式のデータを扱うのに適した構造で、</span>
+<span class="c1"># ここではforgerのキーが列のヘッダーに、値のリストが各列のデータになる</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">forger</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># データフレームの内容を表示</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>名前</th>
+      <th>役割</th>
+      <th>秘密</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>ロイド</td>
+      <td>父</td>
+      <td>スパイ</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>ヨル</td>
+      <td>母</td>
+      <td>殺し屋</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>アーニャ</td>
+      <td>娘</td>
+      <td>超能力者</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># DataFrameを入れ子の辞書に変換</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;名前&#39;: {0: &#39;ロイド&#39;, 1: &#39;ヨル&#39;, 2: &#39;アーニャ&#39;},
+ &#39;役割&#39;: {0: &#39;父&#39;, 1: &#39;母&#39;, 2: &#39;娘&#39;},
+ &#39;秘密&#39;: {0: &#39;スパイ&#39;, 1: &#39;殺し屋&#39;, 2: &#39;超能力者&#39;}}
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># DataFrameを行ごとに辞書化されたリストに変換</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="s2">&quot;records&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;名前&#39;: &#39;ロイド&#39;, &#39;役割&#39;: &#39;父&#39;, &#39;秘密&#39;: &#39;スパイ&#39;},
+ {&#39;名前&#39;: &#39;ヨル&#39;, &#39;役割&#39;: &#39;母&#39;, &#39;秘密&#39;: &#39;殺し屋&#39;},
+ {&#39;名前&#39;: &#39;アーニャ&#39;, &#39;役割&#39;: &#39;娘&#39;, &#39;秘密&#39;: &#39;超能力者&#39;}]
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ループの冒頭に「フォージャー家の秘密」という文字列を表示</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;フォージャー家の秘密&quot;</span><span class="p">)</span>
+
+<span class="c1"># df.to_dict(&quot;records&quot;)で、データフレームdfを辞書のリストに変換</span>
+<span class="c1"># 各要素r（辞書）についてループを回す</span>
+<span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="s2">&quot;records&quot;</span><span class="p">):</span>
+    <span class="c1"># 変数nameに辞書rから&quot;名前&quot;の値を代入</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;名前&quot;</span><span class="p">]</span>
+    <span class="c1"># 変数roleに辞書rから&quot;役割&quot;の値を代入</span>
+    <span class="n">role</span> <span class="o">=</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;役割&quot;</span><span class="p">]</span>
+    <span class="c1"># 変数secretに辞書rから&quot;秘密&quot;の値を代入</span>
+    <span class="n">secret</span> <span class="o">=</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;秘密&quot;</span><span class="p">]</span>
+    <span class="c1"># name、role、secretの値を用いてフォーマットされた文字列を出力</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">は「</span><span class="si">{</span><span class="n">role</span><span class="si">}</span><span class="s2">」を演じているが、実は</span><span class="si">{</span><span class="n">secret</span><span class="si">}</span><span class="s2">だ&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>フォージャー家の秘密
+- ロイドは「父」を演じているが、実はスパイだ
+- ヨルは「母」を演じているが、実は殺し屋だ
+- アーニャは「娘」を演じているが、実は超能力者だ
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+<section id="pandas-series">
+<h3><code class="docutils literal notranslate"><span class="pre">pandas.Series</span></code>型<a class="headerlink" href="#pandas-series" title="Link to this heading">#</a></h3>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># namesというリストを作成</span>
+<span class="c1"># リスト内には&quot;ロイド&quot;、&quot;ヨル&quot;、&quot;アーニャ&quot;という3人の名前を格納</span>
+<span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;ロイド&quot;</span><span class="p">,</span> <span class="s2">&quot;ヨル&quot;</span><span class="p">,</span> <span class="s2">&quot;アーニャ&quot;</span><span class="p">]</span>
+
+<span class="c1"># namesリストを使ってpandasのSeriesを作成</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">names</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Seriesの内容を表示</span>
+<span class="n">s</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0     ロイド
+1      ヨル
+2    アーニャ
+dtype: object
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+<section id="pandas-dataframepandas-series">
+<h3><code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code>型と<code class="docutils literal notranslate"><span class="pre">pandas.Series</span></code>型の相互変換<a class="headerlink" href="#pandas-dataframepandas-series" title="Link to this heading">#</a></h3>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># DataFrameから&#39;役割&#39;列を抽出し、Seriesに変換</span>
+<span class="n">roles</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;役割&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># rolesというSeriesの中身を表示</span>
+<span class="n">roles</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    父
+1    母
+2    娘
+Name: 役割, dtype: object
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># コードネームを格納するリストを作成</span>
+<span class="n">codenames</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;黄昏&quot;</span><span class="p">,</span> <span class="s2">&quot;いばら姫&quot;</span><span class="p">,</span> <span class="s2">&quot;被験体007&quot;</span><span class="p">]</span>
+
+<span class="c1"># リストを元にSeriesを作成</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">codenames</span><span class="p">)</span>
+
+<span class="c1"># SeriesからDataFrameを作成</span>
+<span class="c1"># 列名として「コードネーム」を指定</span>
+<span class="n">df_c</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;コードネーム&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Seriesから作成したDataFrameを確認</span>
+<span class="n">df_c</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>コードネーム</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>黄昏</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>いばら姫</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>被験体007</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># dfにdf_cをコードネーム列として追加</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;コードネーム&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_c</span><span class="p">[</span><span class="s2">&quot;コードネーム&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># dfの内容を表示</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>名前</th>
+      <th>役割</th>
+      <th>秘密</th>
+      <th>コードネーム</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>ロイド</td>
+      <td>父</td>
+      <td>スパイ</td>
+      <td>黄昏</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>ヨル</td>
+      <td>母</td>
+      <td>殺し屋</td>
+      <td>いばら姫</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>アーニャ</td>
+      <td>娘</td>
+      <td>超能力者</td>
+      <td>被験体007</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+</section>
+</section>
+<section id="id2">
+<h2>データの読み込みと書き出し<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<section id="id3">
+<h3>読み込み<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># cm_ce.csvの中身をheadコマンドで確認</span>
+<span class="o">!</span>head<span class="w"> </span>../../../data/cm/input/cm_ce.csv
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ceid,cename,ccid,miid,page_start,page_end,pages,page_start_position,two_colored,four_colored,miname,mcid,mcname,date,price,ccname
+CE00000,第238話/この世代,C90829,M535428,10.0,31.0,22.0,0.0213675213675213,False,True,週刊少年マガジン 2011年 表示号数24,C119033,週刊少年マガジン,2011-05-25,248.0,ダイヤのA
+CE00001,#134 話の続き,C90482,M535428,33.0,50.0,18.0,0.0705128205128205,False,False,週刊少年マガジン 2011年 表示号数24,C119033,週刊少年マガジン,2011-05-25,248.0,君のいる町
+CE00002,第5話 チア・ザ・マシンガン!,C90297,M535428,51.0,68.0,18.0,0.1089743589743589,False,False,週刊少年マガジン 2011年 表示号数24,C119033,週刊少年マガジン,2011-05-25,248.0,アゲイン!!
+CE00003,第233話 妖精の輝き,C89978,M535428,69.0,88.0,20.0,0.1474358974358974,False,False,週刊少年マガジン 2011年 表示号数24,C119033,週刊少年マガジン,2011-05-25,248.0,FAIRY TAIL
+CE00004,-BOUT 71- From Dark Zone,C89929,M535428,89.0,108.0,20.0,0.1901709401709401,False,False,週刊少年マガジン 2011年 表示号数24,C119033,週刊少年マガジン,2011-05-25,248.0,A-BOUT!
+CE00005,第94話,C90168,M535428,109.0,130.0,22.0,0.2329059829059829,False,True,週刊少年マガジン 2011年 表示号数24,C119033,週刊少年マガジン,2011-05-25,248.0,我間乱 ～GAMARAN～
+CE00006,第36話 星,C89936,M535428,131.0,150.0,20.0,0.2799145299145299,False,False,週刊少年マガジン 2011年 表示号数24,C119033,週刊少年マガジン,2011-05-25,248.0,AKB49 ～恋愛禁止条例～
+CE00007,#164 どうやって,C89939,M535428,151.0,168.0,18.0,0.3226495726495726,False,False,週刊少年マガジン 2011年 表示号数24,C119033,週刊少年マガジン,2011-05-25,248.0,Baby Steps ベイビーステップ
+CE00008,code:133 覚悟の証,C89961,M535428,169.0,188.0,20.0,0.3611111111111111,False,False,週刊少年マガジン 2011年 表示号数24,C119033,週刊少年マガジン,2011-05-25,248.0,CODE:BREAKER コード:ブレイカー
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># マンガ各話データを格納するcm_ceを読み出し</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../../../data/cm/input/cm_ce.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># headメソッドで冒頭5行を確認</span>
+<span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;ceid&quot;</span><span class="p">,</span> <span class="s2">&quot;cename&quot;</span><span class="p">,</span> <span class="s2">&quot;pages&quot;</span><span class="p">,</span> <span class="s2">&quot;page_start_position&quot;</span><span class="p">,</span> <span class="s2">&quot;ccname&quot;</span><span class="p">,</span> <span class="s2">&quot;mcname&quot;</span><span class="p">,</span> <span class="s2">&quot;date&quot;</span><span class="p">]</span>
+<span class="n">df</span><span class="p">[</span><span class="n">cols</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ceid</th>
+      <th>cename</th>
+      <th>pages</th>
+      <th>page_start_position</th>
+      <th>ccname</th>
+      <th>mcname</th>
+      <th>date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>CE00000</td>
+      <td>第238話/この世代</td>
+      <td>22.0</td>
+      <td>0.021368</td>
+      <td>ダイヤのA</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-05-25</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>CE00001</td>
+      <td>#134 話の続き</td>
+      <td>18.0</td>
+      <td>0.070513</td>
+      <td>君のいる町</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-05-25</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>CE00002</td>
+      <td>第5話 チア・ザ・マシンガン!</td>
+      <td>18.0</td>
+      <td>0.108974</td>
+      <td>アゲイン!!</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-05-25</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>CE00003</td>
+      <td>第233話 妖精の輝き</td>
+      <td>20.0</td>
+      <td>0.147436</td>
+      <td>FAIRY TAIL</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-05-25</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>CE00004</td>
+      <td>-BOUT 71- From Dark Zone</td>
+      <td>20.0</td>
+      <td>0.190171</td>
+      <td>A-BOUT!</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-05-25</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># headメソッドで末尾5行を確認</span>
+<span class="n">df</span><span class="p">[</span><span class="n">cols</span><span class="p">]</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ceid</th>
+      <th>cename</th>
+      <th>pages</th>
+      <th>page_start_position</th>
+      <th>ccname</th>
+      <th>mcname</th>
+      <th>date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>180071</th>
+      <td>CE190276</td>
+      <td>SPIN.82/決裂のセカンドドライブ</td>
+      <td>20.0</td>
+      <td>0.799523</td>
+      <td>少年ラケット</td>
+      <td>週刊少年チャンピオン</td>
+      <td>2017-02-02</td>
+    </tr>
+    <tr>
+      <th>180072</th>
+      <td>CE190277</td>
+      <td>第105話 助っ人土井</td>
+      <td>20.0</td>
+      <td>0.852029</td>
+      <td>Gメン</td>
+      <td>週刊少年チャンピオン</td>
+      <td>2017-02-02</td>
+    </tr>
+    <tr>
+      <th>180073</th>
+      <td>CE190278</td>
+      <td>第194話 「卒業しよう!」</td>
+      <td>20.0</td>
+      <td>0.899761</td>
+      <td>実は私は</td>
+      <td>週刊少年チャンピオン</td>
+      <td>2017-02-02</td>
+    </tr>
+    <tr>
+      <th>180074</th>
+      <td>CE190279</td>
+      <td>最終話 ユグドラシル</td>
+      <td>18.0</td>
+      <td>0.947494</td>
+      <td>マル勇 九ノ島さん</td>
+      <td>週刊少年チャンピオン</td>
+      <td>2017-02-02</td>
+    </tr>
+    <tr>
+      <th>180075</th>
+      <td>CE190280</td>
+      <td>鯨井先輩の巻 68</td>
+      <td>2.0</td>
+      <td>0.997613</td>
+      <td>木曜日のフルット</td>
+      <td>週刊少年チャンピオン</td>
+      <td>2017-02-02</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># dfの最初の5行を抽出し、行と列を転置して表示</span>
+<span class="n">df</span><span class="p">[</span><span class="n">cols</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>ceid</th>
+      <td>CE00000</td>
+      <td>CE00001</td>
+      <td>CE00002</td>
+      <td>CE00003</td>
+      <td>CE00004</td>
+    </tr>
+    <tr>
+      <th>cename</th>
+      <td>第238話/この世代</td>
+      <td>#134 話の続き</td>
+      <td>第5話 チア・ザ・マシンガン!</td>
+      <td>第233話 妖精の輝き</td>
+      <td>-BOUT 71- From Dark Zone</td>
+    </tr>
+    <tr>
+      <th>pages</th>
+      <td>22.0</td>
+      <td>18.0</td>
+      <td>18.0</td>
+      <td>20.0</td>
+      <td>20.0</td>
+    </tr>
+    <tr>
+      <th>page_start_position</th>
+      <td>0.021368</td>
+      <td>0.070513</td>
+      <td>0.108974</td>
+      <td>0.147436</td>
+      <td>0.190171</td>
+    </tr>
+    <tr>
+      <th>ccname</th>
+      <td>ダイヤのA</td>
+      <td>君のいる町</td>
+      <td>アゲイン!!</td>
+      <td>FAIRY TAIL</td>
+      <td>A-BOUT!</td>
+    </tr>
+    <tr>
+      <th>mcname</th>
+      <td>週刊少年マガジン</td>
+      <td>週刊少年マガジン</td>
+      <td>週刊少年マガジン</td>
+      <td>週刊少年マガジン</td>
+      <td>週刊少年マガジン</td>
+    </tr>
+    <tr>
+      <th>date</th>
+      <td>2011-05-25</td>
+      <td>2011-05-25</td>
+      <td>2011-05-25</td>
+      <td>2011-05-25</td>
+      <td>2011-05-25</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+</section>
+<section id="id4">
+<h3>書き出し<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 一部の列を指定し、冒頭500行のみを抽出して小型化</span>
+<span class="n">df_save</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">cols</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+
+<span class="c1"># データをCSVファイルに書き出す</span>
+<span class="n">df_save</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;../../../data/sandbox/cm_ce_small.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># CSVファイルの中身をheadコマンドで確認</span>
+<span class="o">!</span>head<span class="w"> </span>../../../data/sandbox/cm_ce_small.csv
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>,ceid,cename,pages,page_start_position,ccname,mcname,date
+0,CE00000,第238話/この世代,22.0,0.0213675213675213,ダイヤのA,週刊少年マガジン,2011-05-25
+1,CE00001,#134 話の続き,18.0,0.0705128205128205,君のいる町,週刊少年マガジン,2011-05-25
+2,CE00002,第5話 チア・ザ・マシンガン!,18.0,0.1089743589743589,アゲイン!!,週刊少年マガジン,2011-05-25
+3,CE00003,第233話 妖精の輝き,20.0,0.1474358974358974,FAIRY TAIL,週刊少年マガジン,2011-05-25
+4,CE00004,-BOUT 71- From Dark Zone,20.0,0.1901709401709401,A-BOUT!,週刊少年マガジン,2011-05-25
+5,CE00005,第94話,22.0,0.2329059829059829,我間乱 ～GAMARAN～,週刊少年マガジン,2011-05-25
+6,CE00006,第36話 星,20.0,0.2799145299145299,AKB49 ～恋愛禁止条例～,週刊少年マガジン,2011-05-25
+7,CE00007,#164 どうやって,18.0,0.3226495726495726,Baby Steps ベイビーステップ,週刊少年マガジン,2011-05-25
+8,CE00008,code:133 覚悟の証,20.0,0.3611111111111111,CODE:BREAKER コード:ブレイカー,週刊少年マガジン,2011-05-25
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># インデックス以外のデータをCSVファイルに書き出す</span>
+<span class="n">df_save</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;../../../data/sandbox/cm_ce_small_wo_index.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># CSVファイルの中身をheadコマンドで確認</span>
+<span class="o">!</span>head<span class="w"> </span>../../../data/sandbox/cm_ce_small_wo_index.csv
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ceid,cename,pages,page_start_position,ccname,mcname,date
+CE00000,第238話/この世代,22.0,0.0213675213675213,ダイヤのA,週刊少年マガジン,2011-05-25
+CE00001,#134 話の続き,18.0,0.0705128205128205,君のいる町,週刊少年マガジン,2011-05-25
+CE00002,第5話 チア・ザ・マシンガン!,18.0,0.1089743589743589,アゲイン!!,週刊少年マガジン,2011-05-25
+CE00003,第233話 妖精の輝き,20.0,0.1474358974358974,FAIRY TAIL,週刊少年マガジン,2011-05-25
+CE00004,-BOUT 71- From Dark Zone,20.0,0.1901709401709401,A-BOUT!,週刊少年マガジン,2011-05-25
+CE00005,第94話,22.0,0.2329059829059829,我間乱 ～GAMARAN～,週刊少年マガジン,2011-05-25
+CE00006,第36話 星,20.0,0.2799145299145299,AKB49 ～恋愛禁止条例～,週刊少年マガジン,2011-05-25
+CE00007,#164 どうやって,18.0,0.3226495726495726,Baby Steps ベイビーステップ,週刊少年マガジン,2011-05-25
+CE00008,code:133 覚悟の証,20.0,0.3611111111111111,CODE:BREAKER コード:ブレイカー,週刊少年マガジン,2011-05-25
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># インデックス以外のデータをExcelファイルに書き出す</span>
+<span class="n">df_save</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="s2">&quot;../../../data/sandbox/cm_ce_small_wo_index.xlsx&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+</section>
+<section id="id5">
+<h2>データの選択とフィルタリング<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<section id="id6">
+<h3>カラムの選択<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 先ほど保存した小型化した各話データを再度読み込む</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../../../data/sandbox/cm_ce_small_wo_index.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># cename列の内容を表示</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;cename&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0                             第238話/この世代
+1                              #134 話の続き
+2                        第5話 チア・ザ・マシンガン!
+3                            第233話 妖精の輝き
+4               -BOUT 71- From Dark Zone
+                     ...                
+495                            Trick:299
+496                        第65話 伝統シー・ロール
+497              File.290 西本、「劇団四季」に入門!?
+498                            第310話 風待ち
+499    第92話 a man-made mountain:人の造り給いし山
+Name: cename, Length: 500, dtype: object
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># cename列とccname列を同時に表示</span>
+<span class="n">df</span><span class="p">[[</span><span class="s2">&quot;cename&quot;</span><span class="p">,</span> <span class="s2">&quot;ccname&quot;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cename</th>
+      <th>ccname</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>第238話/この世代</td>
+      <td>ダイヤのA</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>#134 話の続き</td>
+      <td>君のいる町</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>第5話 チア・ザ・マシンガン!</td>
+      <td>アゲイン!!</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>第233話 妖精の輝き</td>
+      <td>FAIRY TAIL</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-BOUT 71- From Dark Zone</td>
+      <td>A-BOUT!</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>495</th>
+      <td>Trick:299</td>
+      <td>エア・ギア</td>
+    </tr>
+    <tr>
+      <th>496</th>
+      <td>第65話 伝統シー・ロール</td>
+      <td>だぶるじぇい</td>
+    </tr>
+    <tr>
+      <th>497</th>
+      <td>File.290 西本、「劇団四季」に入門!?</td>
+      <td>もう、しませんから。</td>
+    </tr>
+    <tr>
+      <th>498</th>
+      <td>第310話 風待ち</td>
+      <td>あひるの空</td>
+    </tr>
+    <tr>
+      <th>499</th>
+      <td>第92話 a man-made mountain:人の造り給いし山</td>
+      <td>エデンの檻</td>
+    </tr>
+  </tbody>
+</table>
+<p>500 rows × 2 columns</p>
+</div></div></div>
+</details>
+</div>
+</section>
+<section id="id7">
+<h3>行の選択<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ceidをインデックス列として指定</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;ceid&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># インデックス0の行を選択する</span>
+<span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cename                 第238話/この世代
+pages                        22.0
+page_start_position      0.021368
+ccname                      ダイヤのA
+mcname                   週刊少年マガジン
+date                   2011-05-25
+Name: CE00000, dtype: object
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># インデックスのラベルが&quot;CE00000&quot;行を選択する</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;CE00000&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cename                 第238話/この世代
+pages                        22.0
+page_start_position      0.021368
+ccname                      ダイヤのA
+mcname                   週刊少年マガジン
+date                   2011-05-25
+Name: CE00000, dtype: object
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+<section id="id8">
+<h3>条件に基づくフィルタリング<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># pages列が1と一致するか否かを表すシリーズを作成</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;pages&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ceid
+CE00000    False
+CE00001    False
+CE00002    False
+CE00003    False
+CE00004    False
+           ...  
+CE00495    False
+CE00496    False
+CE00497    False
+CE00498    False
+CE00499    False
+Name: pages, Length: 500, dtype: bool
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># &quot;pages&quot;が1と一致する行を抽出</span>
+<span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;pages&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cename</th>
+      <th>pages</th>
+      <th>page_start_position</th>
+      <th>ccname</th>
+      <th>mcname</th>
+      <th>date</th>
+    </tr>
+    <tr>
+      <th>ceid</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>CE00443</th>
+      <td>『毎日かあさん』</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>マガジンシアター</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-01-29</td>
+    </tr>
+    <tr>
+      <th>CE00444</th>
+      <td>49号</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>[プレゼント当選者発表]</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-01-29</td>
+    </tr>
+    <tr>
+      <th>CE00470</th>
+      <td>48号</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>[プレゼント当選者発表]</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-01-22</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># &quot;pages&quot;が5未満、かつ&quot;page_start_position&quot;が0.5以下</span>
+<span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;pages&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;page_start_position&quot;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mf">0.5</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cename</th>
+      <th>pages</th>
+      <th>page_start_position</th>
+      <th>ccname</th>
+      <th>mcname</th>
+      <th>date</th>
+    </tr>
+    <tr>
+      <th>ceid</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>CE00054</th>
+      <td>#132　／　視線の先　／　紳士的飲み方　／　男の放課後　／　おべんきょ　／　乙女の園　／　...</td>
+      <td>4.0</td>
+      <td>0.182403</td>
+      <td>生徒会役員共</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-05-04</td>
+    </tr>
+    <tr>
+      <th>CE00187</th>
+      <td>エビ・フラ彦さん　／　まんじゅう　／　ディナー</td>
+      <td>2.0</td>
+      <td>0.278761</td>
+      <td>チョイとだけ劇場</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-03-30</td>
+    </tr>
+    <tr>
+      <th>CE00191</th>
+      <td>#128　／　ひまつぶし　／　約束の時　／　ベリベリ　／　カチコチ　／　激しく運動　／　精神...</td>
+      <td>4.0</td>
+      <td>0.400442</td>
+      <td>生徒会役員共</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-03-30</td>
+    </tr>
+    <tr>
+      <th>CE00214</th>
+      <td>#127　／　愛情×2　／　要望メニュー　／　好物頂戴　／　あっ　／　おいしくできました　／...</td>
+      <td>4.0</td>
+      <td>0.310573</td>
+      <td>生徒会役員共</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-03-23</td>
+    </tr>
+    <tr>
+      <th>CE00265</th>
+      <td>#125　／　隠れ巨乳共　／　おだて名人　／　抜きポイント　／　青い時代　／　あの頃から今　...</td>
+      <td>4.0</td>
+      <td>0.162222</td>
+      <td>生徒会役員共</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-03-09</td>
+    </tr>
+    <tr>
+      <th>CE00322</th>
+      <td>#123　／　血がたぎる　／　くせもの　／　もったいないおばけ　／　裏の組織　／　復活の日　...</td>
+      <td>4.0</td>
+      <td>0.478541</td>
+      <td>生徒会役員共</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-02-23</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+</section>
+</section>
+<section id="id9">
+<h2>データの整形と操作<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
+<section id="id10">
+<h3>欠損値の処理<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># isnaでcename（各話名）に欠損値のある行を抽出</span>
+<span class="n">df_na</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;cename&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()]</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 欠損値のある行を確認</span>
+<span class="n">df_na</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cename</th>
+      <th>pages</th>
+      <th>page_start_position</th>
+      <th>ccname</th>
+      <th>mcname</th>
+      <th>date</th>
+    </tr>
+    <tr>
+      <th>ceid</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>CE00036</th>
+      <td>NaN</td>
+      <td>4.0</td>
+      <td>0.601145</td>
+      <td>ネギほ(幼)文</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-05-18</td>
+    </tr>
+    <tr>
+      <th>CE00064</th>
+      <td>NaN</td>
+      <td>4.0</td>
+      <td>0.564378</td>
+      <td>竹植物語</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-05-04</td>
+    </tr>
+    <tr>
+      <th>CE00154</th>
+      <td>NaN</td>
+      <td>2.0</td>
+      <td>0.997912</td>
+      <td>ミヤジマがお知らせします。</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-04-13</td>
+    </tr>
+    <tr>
+      <th>CE00211</th>
+      <td>NaN</td>
+      <td>20.0</td>
+      <td>0.174009</td>
+      <td>さんかれあ</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-03-23</td>
+    </tr>
+    <tr>
+      <th>CE00261</th>
+      <td>NaN</td>
+      <td>2.0</td>
+      <td>0.997895</td>
+      <td>ミヤジマがお知らせします。</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-03-16</td>
+    </tr>
+    <tr>
+      <th>CE00298</th>
+      <td>NaN</td>
+      <td>12.0</td>
+      <td>0.431330</td>
+      <td>カウントラブル</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-03-02</td>
+    </tr>
+    <tr>
+      <th>CE00416</th>
+      <td>NaN</td>
+      <td>2.0</td>
+      <td>0.997831</td>
+      <td>ミヤジマがお知らせします。</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-02-02</td>
+    </tr>
+    <tr>
+      <th>CE00450</th>
+      <td>NaN</td>
+      <td>60.0</td>
+      <td>0.219713</td>
+      <td>極味ドラゴン</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-01-22</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 欠損値を&quot;タイトルなし&quot;で埋める</span>
+<span class="n">df_na</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s2">&quot;各話名なし&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cename</th>
+      <th>pages</th>
+      <th>page_start_position</th>
+      <th>ccname</th>
+      <th>mcname</th>
+      <th>date</th>
+    </tr>
+    <tr>
+      <th>ceid</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>CE00036</th>
+      <td>各話名なし</td>
+      <td>4.0</td>
+      <td>0.601145</td>
+      <td>ネギほ(幼)文</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-05-18</td>
+    </tr>
+    <tr>
+      <th>CE00064</th>
+      <td>各話名なし</td>
+      <td>4.0</td>
+      <td>0.564378</td>
+      <td>竹植物語</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-05-04</td>
+    </tr>
+    <tr>
+      <th>CE00154</th>
+      <td>各話名なし</td>
+      <td>2.0</td>
+      <td>0.997912</td>
+      <td>ミヤジマがお知らせします。</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-04-13</td>
+    </tr>
+    <tr>
+      <th>CE00211</th>
+      <td>各話名なし</td>
+      <td>20.0</td>
+      <td>0.174009</td>
+      <td>さんかれあ</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-03-23</td>
+    </tr>
+    <tr>
+      <th>CE00261</th>
+      <td>各話名なし</td>
+      <td>2.0</td>
+      <td>0.997895</td>
+      <td>ミヤジマがお知らせします。</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-03-16</td>
+    </tr>
+    <tr>
+      <th>CE00298</th>
+      <td>各話名なし</td>
+      <td>12.0</td>
+      <td>0.431330</td>
+      <td>カウントラブル</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-03-02</td>
+    </tr>
+    <tr>
+      <th>CE00416</th>
+      <td>各話名なし</td>
+      <td>2.0</td>
+      <td>0.997831</td>
+      <td>ミヤジマがお知らせします。</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-02-02</td>
+    </tr>
+    <tr>
+      <th>CE00450</th>
+      <td>各話名なし</td>
+      <td>60.0</td>
+      <td>0.219713</td>
+      <td>極味ドラゴン</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-01-22</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 欠損値を含む行を削除</span>
+<span class="n">df_na</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cename</th>
+      <th>pages</th>
+      <th>page_start_position</th>
+      <th>ccname</th>
+      <th>mcname</th>
+      <th>date</th>
+    </tr>
+    <tr>
+      <th>ceid</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+</section>
+<section id="id11">
+<h3>カラム名の変更<a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># columns引数に辞書を渡すことでカラム名を変更</span>
+<span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;cename&quot;</span><span class="p">:</span> <span class="s2">&quot;各話名&quot;</span><span class="p">,</span> <span class="s2">&quot;mcname&quot;</span><span class="p">:</span> <span class="s2">&quot;雑誌名&quot;</span><span class="p">,</span> <span class="s2">&quot;ccname&quot;</span><span class="p">:</span> <span class="s2">&quot;作品名&quot;</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>各話名</th>
+      <th>pages</th>
+      <th>page_start_position</th>
+      <th>作品名</th>
+      <th>雑誌名</th>
+      <th>date</th>
+    </tr>
+    <tr>
+      <th>ceid</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>CE00000</th>
+      <td>第238話/この世代</td>
+      <td>22.0</td>
+      <td>0.021368</td>
+      <td>ダイヤのA</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-05-25</td>
+    </tr>
+    <tr>
+      <th>CE00001</th>
+      <td>#134 話の続き</td>
+      <td>18.0</td>
+      <td>0.070513</td>
+      <td>君のいる町</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-05-25</td>
+    </tr>
+    <tr>
+      <th>CE00002</th>
+      <td>第5話 チア・ザ・マシンガン!</td>
+      <td>18.0</td>
+      <td>0.108974</td>
+      <td>アゲイン!!</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-05-25</td>
+    </tr>
+    <tr>
+      <th>CE00003</th>
+      <td>第233話 妖精の輝き</td>
+      <td>20.0</td>
+      <td>0.147436</td>
+      <td>FAIRY TAIL</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-05-25</td>
+    </tr>
+    <tr>
+      <th>CE00004</th>
+      <td>-BOUT 71- From Dark Zone</td>
+      <td>20.0</td>
+      <td>0.190171</td>
+      <td>A-BOUT!</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-05-25</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>CE00495</th>
+      <td>Trick:299</td>
+      <td>18.0</td>
+      <td>0.938492</td>
+      <td>エア・ギア</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-01-15</td>
+    </tr>
+    <tr>
+      <th>CE00496</th>
+      <td>第65話 伝統シー・ロール</td>
+      <td>8.0</td>
+      <td>0.974206</td>
+      <td>だぶるじぇい</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-01-15</td>
+    </tr>
+    <tr>
+      <th>CE00497</th>
+      <td>File.290 西本、「劇団四季」に入門!?</td>
+      <td>6.0</td>
+      <td>0.990079</td>
+      <td>もう、しませんから。</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-01-15</td>
+    </tr>
+    <tr>
+      <th>CE00498</th>
+      <td>第310話 風待ち</td>
+      <td>21.0</td>
+      <td>0.021318</td>
+      <td>あひるの空</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-01-08</td>
+    </tr>
+    <tr>
+      <th>CE00499</th>
+      <td>第92話 a man-made mountain:人の造り給いし山</td>
+      <td>20.0</td>
+      <td>0.063953</td>
+      <td>エデンの檻</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-01-08</td>
+    </tr>
+  </tbody>
+</table>
+<p>500 rows × 6 columns</p>
+</div></div></div>
+</details>
+</div>
+</section>
+<section id="id12">
+<h3>データ型の変換<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># pages（各話の合計ページ数）列の型を確認</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;pages&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dtype(&#39;float64&#39;)
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># pages（各話の合計ページ数）をint型に変換</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;pages&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ceid
+CE00000    22
+CE00001    18
+CE00002    18
+CE00003    20
+CE00004    20
+           ..
+CE00495    18
+CE00496     8
+CE00497     6
+CE00498    21
+CE00499    20
+Name: pages, Length: 500, dtype: int64
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># date列の型を確認</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dtype(&#39;O&#39;)
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># to_datetimeでdate列を変換</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ceid
+CE00000   2011-05-25
+CE00001   2011-05-25
+CE00002   2011-05-25
+CE00003   2011-05-25
+CE00004   2011-05-25
+             ...    
+CE00495   2011-01-15
+CE00496   2011-01-15
+CE00497   2011-01-15
+CE00498   2011-01-08
+CE00499   2011-01-08
+Name: date, Length: 500, dtype: datetime64[ns]
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># dt.yearメソッドで年だけを抽出</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ceid
+CE00000    2011
+CE00001    2011
+CE00002    2011
+CE00003    2011
+CE00004    2011
+           ... 
+CE00495    2011
+CE00496    2011
+CE00497    2011
+CE00498    2011
+CE00499    2011
+Name: date, Length: 500, dtype: int32
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># dt.monthメソッドで月だけを抽出</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ceid
+CE00000    5
+CE00001    5
+CE00002    5
+CE00003    5
+CE00004    5
+          ..
+CE00495    1
+CE00496    1
+CE00497    1
+CE00498    1
+CE00499    1
+Name: date, Length: 500, dtype: int32
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># dt.dayメソッドで日だけを抽出</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">day</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ceid
+CE00000    25
+CE00001    25
+CE00002    25
+CE00003    25
+CE00004    25
+           ..
+CE00495    15
+CE00496    15
+CE00497    15
+CE00498     8
+CE00499     8
+Name: date, Length: 500, dtype: int32
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># dt.weekdayメソッドで曜日（0：月曜、1：火曜、…、6：日曜）を抽出</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">weekday</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ceid
+CE00000    2
+CE00001    2
+CE00002    2
+CE00003    2
+CE00004    2
+          ..
+CE00495    5
+CE00496    5
+CE00497    5
+CE00498    5
+CE00499    5
+Name: date, Length: 500, dtype: int32
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ユニークなccname（マンガ作品名）を抽出し、リストに変換</span>
+<span class="n">ccnames</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;ccname&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+
+<span class="c1"># DataFrameのccname列をカテゴリ型に変換する</span>
+<span class="c1"># ccnamesリストに含まれるユニークなマンガ作品名をカテゴリとして使用</span>
+<span class="c1"># ordered=Trueにより、カテゴリに順序を持たせる（ただし、この例ではccnamesの順序に依存）</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;ccname&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;ccname&quot;</span><span class="p">],</span> <span class="n">categories</span><span class="o">=</span><span class="n">ccnames</span><span class="p">,</span> <span class="n">ordered</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ccname列の型を確認</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;ccname&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CategoricalDtype(categories=[&#39;ダイヤのA&#39;, &#39;君のいる町&#39;, &#39;アゲイン!!&#39;, &#39;FAIRY TAIL&#39;, &#39;A-BOUT!&#39;,
+                  &#39;我間乱 ～GAMARAN～&#39;, &#39;AKB49 ～恋愛禁止条例～&#39;, &#39;Baby Steps ベイビーステップ&#39;,
+                  &#39;CODE:BREAKER コード:ブレイカー&#39;, &#39;魔法先生 ネギま! MAGISTER NEGI MAGI&#39;,
+                  &#39;ファイ・ブレイン 最期のパズル&#39;, &#39;波打際のむろみさん&#39;, &#39;はじめの一歩&#39;, &#39;さよなら絶望先生&#39;,
+                  &#39;あひるの空&#39;, &#39;ヤンキー君とメガネちゃん&#39;, &#39;ゴッドハンド輝&#39;, &#39;エリアの騎士&#39;, &#39;金田一少年の事件簿&#39;,
+                  &#39;この彼女はフィクションです。&#39;, &#39;生徒会役員共&#39;, &#39;振り向くな君は&#39;, &#39;エデンの檻&#39;, &#39;かってに改蔵&#39;,
+                  &#39;エア・ギア&#39;, &#39;ネギほ(幼)文&#39;, &#39;GE ～グッドエンディング～&#39;, &#39;くろのロワイヤル&#39;, &#39;だぶるじぇい&#39;,
+                  &#39;もう、しませんから。&#39;, &#39;竹植物語&#39;, &#39;BLOODY MONDAY&#39;, &#39;チョイとだけ劇場&#39;,
+                  &#39;ほんとにあった!霊媒先生&#39;, &#39;ぷあぷあ?&#39;, &#39;ゼウスの種&#39;, &#39;ミヤジマがお知らせします。&#39;, &#39;GTO&#39;,
+                  &#39;さんかれあ&#39;, &#39;カウントラブル&#39;, &#39;ラブプラス Rinko Days&#39;, &#39;BUN BUN BEE&#39;,
+                  &#39;マガジンシアター&#39;, &#39;[プレゼント当選者発表]&#39;, &#39;極味ドラゴン&#39;, &#39;花形  新約「巨人の星」&#39;],
+, ordered=True, categories_dtype=object)
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+<section id="id13">
+<h3>カラムの追加・削除<a class="headerlink" href="#id13" title="Link to this heading">#</a></h3>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 発売曜日を示す列をweekdayとして追加</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;weekday&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">weekday</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 列を追加されたdfの冒頭5行を表示</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cename</th>
+      <th>pages</th>
+      <th>page_start_position</th>
+      <th>ccname</th>
+      <th>mcname</th>
+      <th>date</th>
+      <th>weekday</th>
+    </tr>
+    <tr>
+      <th>ceid</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>CE00000</th>
+      <td>第238話/この世代</td>
+      <td>22.0</td>
+      <td>0.021368</td>
+      <td>ダイヤのA</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-05-25</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>CE00001</th>
+      <td>#134 話の続き</td>
+      <td>18.0</td>
+      <td>0.070513</td>
+      <td>君のいる町</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-05-25</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>CE00002</th>
+      <td>第5話 チア・ザ・マシンガン!</td>
+      <td>18.0</td>
+      <td>0.108974</td>
+      <td>アゲイン!!</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-05-25</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>CE00003</th>
+      <td>第233話 妖精の輝き</td>
+      <td>20.0</td>
+      <td>0.147436</td>
+      <td>FAIRY TAIL</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-05-25</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>CE00004</th>
+      <td>-BOUT 71- From Dark Zone</td>
+      <td>20.0</td>
+      <td>0.190171</td>
+      <td>A-BOUT!</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-05-25</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 先程作成したweekdayを削除</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;weekday&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># weekday列を削除したdfの冒頭5行を表示</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cename</th>
+      <th>pages</th>
+      <th>page_start_position</th>
+      <th>ccname</th>
+      <th>mcname</th>
+      <th>date</th>
+    </tr>
+    <tr>
+      <th>ceid</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>CE00000</th>
+      <td>第238話/この世代</td>
+      <td>22.0</td>
+      <td>0.021368</td>
+      <td>ダイヤのA</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-05-25</td>
+    </tr>
+    <tr>
+      <th>CE00001</th>
+      <td>#134 話の続き</td>
+      <td>18.0</td>
+      <td>0.070513</td>
+      <td>君のいる町</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-05-25</td>
+    </tr>
+    <tr>
+      <th>CE00002</th>
+      <td>第5話 チア・ザ・マシンガン!</td>
+      <td>18.0</td>
+      <td>0.108974</td>
+      <td>アゲイン!!</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-05-25</td>
+    </tr>
+    <tr>
+      <th>CE00003</th>
+      <td>第233話 妖精の輝き</td>
+      <td>20.0</td>
+      <td>0.147436</td>
+      <td>FAIRY TAIL</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-05-25</td>
+    </tr>
+    <tr>
+      <th>CE00004</th>
+      <td>-BOUT 71- From Dark Zone</td>
+      <td>20.0</td>
+      <td>0.190171</td>
+      <td>A-BOUT!</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-05-25</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># indexがCE00000の行を削除して冒頭5行を表示</span>
+<span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;CE00000&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cename</th>
+      <th>pages</th>
+      <th>page_start_position</th>
+      <th>ccname</th>
+      <th>mcname</th>
+      <th>date</th>
+    </tr>
+    <tr>
+      <th>ceid</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>CE00001</th>
+      <td>#134 話の続き</td>
+      <td>18.0</td>
+      <td>0.070513</td>
+      <td>君のいる町</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-05-25</td>
+    </tr>
+    <tr>
+      <th>CE00002</th>
+      <td>第5話 チア・ザ・マシンガン!</td>
+      <td>18.0</td>
+      <td>0.108974</td>
+      <td>アゲイン!!</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-05-25</td>
+    </tr>
+    <tr>
+      <th>CE00003</th>
+      <td>第233話 妖精の輝き</td>
+      <td>20.0</td>
+      <td>0.147436</td>
+      <td>FAIRY TAIL</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-05-25</td>
+    </tr>
+    <tr>
+      <th>CE00004</th>
+      <td>-BOUT 71- From Dark Zone</td>
+      <td>20.0</td>
+      <td>0.190171</td>
+      <td>A-BOUT!</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-05-25</td>
+    </tr>
+    <tr>
+      <th>CE00005</th>
+      <td>第94話</td>
+      <td>22.0</td>
+      <td>0.232906</td>
+      <td>我間乱 ～GAMARAN～</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-05-25</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+</section>
+<section id="id14">
+<h3>重複の処理<a class="headerlink" href="#id14" title="Link to this heading">#</a></h3>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># DataFrameの作成</span>
+<span class="n">df_bobobo</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;キャラクター&quot;</span><span class="p">],</span> <span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;ボボボーボ・ボーボボ&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># 1から始まる順位列をインデックスとして設定</span>
+<span class="n">df_bobobo</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">df_bobobo</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># インデックス名を&quot;順位&quot;に設定</span>
+<span class="n">df_bobobo</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;順位&quot;</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 人気投票結果を表示</span>
+<span class="n">df_bobobo</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>キャラクター</th>
+    </tr>
+    <tr>
+      <th>順位</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>ボボボーボ・ボーボボ</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>ボボボーボ・ボーボボ</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>ボボボーボ・ボーボボ</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>ボボボーボ・ボーボボ</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>ボボボーボ・ボーボボ</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># duplicatedメソッドで重複行を特定</span>
+<span class="n">df_bobobo</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>順位
+1    False
+2     True
+3     True
+4     True
+5     True
+dtype: bool
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 重複していない行のみを表示</span>
+<span class="n">df_bobobo</span><span class="p">[</span><span class="o">~</span><span class="n">df_bobobo</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>キャラクター</th>
+    </tr>
+    <tr>
+      <th>順位</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>ボボボーボ・ボーボボ</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># drop_duplicatedメソッドで重複行を削除</span>
+<span class="n">df_bobobo</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>キャラクター</th>
+    </tr>
+    <tr>
+      <th>順位</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>ボボボーボ・ボーボボ</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># keep=Falseを指定することで全ての重複行を削除</span>
+<span class="n">df_bobobo</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">keep</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>キャラクター</th>
+    </tr>
+    <tr>
+      <th>順位</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 得票数列に各キャラクターの得票数を格納</span>
+<span class="n">df_bobobo</span><span class="p">[</span><span class="s2">&quot;得票数&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5071</span><span class="p">,</span> <span class="mi">3072</span><span class="p">,</span> <span class="mi">1802</span><span class="p">,</span> <span class="mi">721</span><span class="p">,</span> <span class="mi">514</span><span class="p">]</span>
+<span class="c1"># コメント列に各キャラクターの受賞コメントを格納</span>
+<span class="n">df_bobobo</span><span class="p">[</span><span class="s2">&quot;コメント&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;みんなありがとう&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;フン&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;神に感謝&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;くっ ボーボボに負けた…&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;順当な順位ですね&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 更新されたDataFrameを表示</span>
+<span class="n">df_bobobo</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>キャラクター</th>
+      <th>得票数</th>
+      <th>コメント</th>
+    </tr>
+    <tr>
+      <th>順位</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>ボボボーボ・ボーボボ</td>
+      <td>5071</td>
+      <td>みんなありがとう</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>ボボボーボ・ボーボボ</td>
+      <td>3072</td>
+      <td>フン</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>ボボボーボ・ボーボボ</td>
+      <td>1802</td>
+      <td>神に感謝</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>ボボボーボ・ボーボボ</td>
+      <td>721</td>
+      <td>くっ ボーボボに負けた…</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>ボボボーボ・ボーボボ</td>
+      <td>514</td>
+      <td>順当な順位ですね</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># drop_duplicatedメソッドで重複行を削除</span>
+<span class="n">df_bobobo</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>キャラクター</th>
+      <th>得票数</th>
+      <th>コメント</th>
+    </tr>
+    <tr>
+      <th>順位</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>ボボボーボ・ボーボボ</td>
+      <td>5071</td>
+      <td>みんなありがとう</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>ボボボーボ・ボーボボ</td>
+      <td>3072</td>
+      <td>フン</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>ボボボーボ・ボーボボ</td>
+      <td>1802</td>
+      <td>神に感謝</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>ボボボーボ・ボーボボ</td>
+      <td>721</td>
+      <td>くっ ボーボボに負けた…</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>ボボボーボ・ボーボボ</td>
+      <td>514</td>
+      <td>順当な順位ですね</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># drop_duplicatedメソッドで「キャラクター」列が重複している行を削除</span>
+<span class="n">df_bobobo</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;キャラクター&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>キャラクター</th>
+      <th>得票数</th>
+      <th>コメント</th>
+    </tr>
+    <tr>
+      <th>順位</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>ボボボーボ・ボーボボ</td>
+      <td>5071</td>
+      <td>みんなありがとう</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+</section>
+<section id="id15">
+<h3>各行へのカスタム処理<a class="headerlink" href="#id15" title="Link to this heading">#</a></h3>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># dateに基づき、曜日情報をweekday列として追加</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;weekday&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">weekday</span>
+<span class="c1"># 変換後のDataFrameの一部を表示</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cename</th>
+      <th>pages</th>
+      <th>page_start_position</th>
+      <th>ccname</th>
+      <th>mcname</th>
+      <th>date</th>
+      <th>weekday</th>
+    </tr>
+    <tr>
+      <th>ceid</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>CE00000</th>
+      <td>第238話/この世代</td>
+      <td>22.0</td>
+      <td>0.021368</td>
+      <td>ダイヤのA</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-05-25</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>CE00001</th>
+      <td>#134 話の続き</td>
+      <td>18.0</td>
+      <td>0.070513</td>
+      <td>君のいる町</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-05-25</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>CE00002</th>
+      <td>第5話 チア・ザ・マシンガン!</td>
+      <td>18.0</td>
+      <td>0.108974</td>
+      <td>アゲイン!!</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-05-25</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>CE00003</th>
+      <td>第233話 妖精の輝き</td>
+      <td>20.0</td>
+      <td>0.147436</td>
+      <td>FAIRY TAIL</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-05-25</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>CE00004</th>
+      <td>-BOUT 71- From Dark Zone</td>
+      <td>20.0</td>
+      <td>0.190171</td>
+      <td>A-BOUT!</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-05-25</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># weekdayと曜日を対応付ける辞書</span>
+<span class="n">weekday2yobi</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;月&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;火&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;水&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="s2">&quot;木&quot;</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span> <span class="s2">&quot;金&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">:</span> <span class="s2">&quot;土&quot;</span><span class="p">,</span> <span class="mi">6</span><span class="p">:</span> <span class="s2">&quot;日&quot;</span><span class="p">}</span>
+<span class="c1"># weekdayを元に、weekday2yobiを用いてyobi列に曜日表現を格納</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;yobi&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;weekday&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">weekday2yobi</span><span class="p">)</span>
+
+<span class="c1"># 変換後のDataFrameの一部を表示</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cename</th>
+      <th>pages</th>
+      <th>page_start_position</th>
+      <th>ccname</th>
+      <th>mcname</th>
+      <th>date</th>
+      <th>weekday</th>
+      <th>yobi</th>
+    </tr>
+    <tr>
+      <th>ceid</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>CE00000</th>
+      <td>第238話/この世代</td>
+      <td>22.0</td>
+      <td>0.021368</td>
+      <td>ダイヤのA</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-05-25</td>
+      <td>2</td>
+      <td>水</td>
+    </tr>
+    <tr>
+      <th>CE00001</th>
+      <td>#134 話の続き</td>
+      <td>18.0</td>
+      <td>0.070513</td>
+      <td>君のいる町</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-05-25</td>
+      <td>2</td>
+      <td>水</td>
+    </tr>
+    <tr>
+      <th>CE00002</th>
+      <td>第5話 チア・ザ・マシンガン!</td>
+      <td>18.0</td>
+      <td>0.108974</td>
+      <td>アゲイン!!</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-05-25</td>
+      <td>2</td>
+      <td>水</td>
+    </tr>
+    <tr>
+      <th>CE00003</th>
+      <td>第233話 妖精の輝き</td>
+      <td>20.0</td>
+      <td>0.147436</td>
+      <td>FAIRY TAIL</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-05-25</td>
+      <td>2</td>
+      <td>水</td>
+    </tr>
+    <tr>
+      <th>CE00004</th>
+      <td>-BOUT 71- From Dark Zone</td>
+      <td>20.0</td>
+      <td>0.190171</td>
+      <td>A-BOUT!</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-05-25</td>
+      <td>2</td>
+      <td>水</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># DataFrameの形状を再確認</span>
+<span class="n">df_bobobo</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>キャラクター</th>
+      <th>得票数</th>
+      <th>コメント</th>
+    </tr>
+    <tr>
+      <th>順位</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>ボボボーボ・ボーボボ</td>
+      <td>5071</td>
+      <td>みんなありがとう</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>ボボボーボ・ボーボボ</td>
+      <td>3072</td>
+      <td>フン</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>ボボボーボ・ボーボボ</td>
+      <td>1802</td>
+      <td>神に感謝</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>ボボボーボ・ボーボボ</td>
+      <td>721</td>
+      <td>くっ ボーボボに負けた…</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>ボボボーボ・ボーボボ</td>
+      <td>514</td>
+      <td>順当な順位ですね</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># summarize_ranking関数の定義</span>
+<span class="c1"># 行ごとにキャラクター名、得票数、コメントをまとめた文字列を作成</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">summarize_ranking</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
+    <span class="c1"># 各行の&#39;キャラクター&#39;、&#39;得票数&#39;、&#39;コメント&#39;列の値を使用して、フォーマットされた文字列を返す</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;キャラクター&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">(</span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;得票数&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">票)「</span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;コメント&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">」&quot;</span>
+
+
+<span class="c1"># df_boboboデータフレームの各行に対してsummarize_ranking関数を適用し、&#39;まとめ&#39;列として結果を追加</span>
+<span class="c1"># 各行ごとのデータに対して関数を適用するため axis=1 を指定</span>
+<span class="n">df_bobobo</span><span class="p">[</span><span class="s2">&quot;まとめ&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_bobobo</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">summarize_ranking</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># 結果のデータフレームを表示</span>
+<span class="n">df_bobobo</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>キャラクター</th>
+      <th>得票数</th>
+      <th>コメント</th>
+      <th>まとめ</th>
+    </tr>
+    <tr>
+      <th>順位</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>ボボボーボ・ボーボボ</td>
+      <td>5071</td>
+      <td>みんなありがとう</td>
+      <td>ボボボーボ・ボーボボ(5071票)「みんなありがとう」</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>ボボボーボ・ボーボボ</td>
+      <td>3072</td>
+      <td>フン</td>
+      <td>ボボボーボ・ボーボボ(3072票)「フン」</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>ボボボーボ・ボーボボ</td>
+      <td>1802</td>
+      <td>神に感謝</td>
+      <td>ボボボーボ・ボーボボ(1802票)「神に感謝」</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>ボボボーボ・ボーボボ</td>
+      <td>721</td>
+      <td>くっ ボーボボに負けた…</td>
+      <td>ボボボーボ・ボーボボ(721票)「くっ ボーボボに負けた…」</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>ボボボーボ・ボーボボ</td>
+      <td>514</td>
+      <td>順当な順位ですね</td>
+      <td>ボボボーボ・ボーボボ(514票)「順当な順位ですね」</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+</section>
+</section>
+<section id="id16">
+<h2>データのソートと集計<a class="headerlink" href="#id16" title="Link to this heading">#</a></h2>
+<section id="id17">
+<h3>ソート<a class="headerlink" href="#id17" title="Link to this heading">#</a></h3>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># dateで昇順にソートして冒頭5行を表示</span>
+<span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;date&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cename</th>
+      <th>pages</th>
+      <th>page_start_position</th>
+      <th>ccname</th>
+      <th>mcname</th>
+      <th>date</th>
+      <th>weekday</th>
+      <th>yobi</th>
+    </tr>
+    <tr>
+      <th>ceid</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>CE00499</th>
+      <td>第92話 a man-made mountain:人の造り給いし山</td>
+      <td>20.0</td>
+      <td>0.063953</td>
+      <td>エデンの檻</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-01-08</td>
+      <td>5</td>
+      <td>土</td>
+    </tr>
+    <tr>
+      <th>CE00498</th>
+      <td>第310話 風待ち</td>
+      <td>21.0</td>
+      <td>0.021318</td>
+      <td>あひるの空</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-01-08</td>
+      <td>5</td>
+      <td>土</td>
+    </tr>
+    <tr>
+      <th>CE00496</th>
+      <td>第65話 伝統シー・ロール</td>
+      <td>8.0</td>
+      <td>0.974206</td>
+      <td>だぶるじぇい</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-01-15</td>
+      <td>5</td>
+      <td>土</td>
+    </tr>
+    <tr>
+      <th>CE00471</th>
+      <td>第221話/Progress</td>
+      <td>22.0</td>
+      <td>0.021825</td>
+      <td>ダイヤのA</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-01-15</td>
+      <td>5</td>
+      <td>土</td>
+    </tr>
+    <tr>
+      <th>CE00472</th>
+      <td>#117 ・・・・ね?</td>
+      <td>18.0</td>
+      <td>0.065476</td>
+      <td>君のいる町</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-01-15</td>
+      <td>5</td>
+      <td>土</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># dateで降順にソートして冒頭5行を表示</span>
+<span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;date&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cename</th>
+      <th>pages</th>
+      <th>page_start_position</th>
+      <th>ccname</th>
+      <th>mcname</th>
+      <th>date</th>
+      <th>weekday</th>
+      <th>yobi</th>
+    </tr>
+    <tr>
+      <th>ceid</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>CE00000</th>
+      <td>第238話/この世代</td>
+      <td>22.0</td>
+      <td>0.021368</td>
+      <td>ダイヤのA</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-05-25</td>
+      <td>2</td>
+      <td>水</td>
+    </tr>
+    <tr>
+      <th>CE00012</th>
+      <td>Round 935 未見の強振</td>
+      <td>18.0</td>
+      <td>0.579060</td>
+      <td>はじめの一歩</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-05-25</td>
+      <td>2</td>
+      <td>水</td>
+    </tr>
+    <tr>
+      <th>CE00001</th>
+      <td>#134 話の続き</td>
+      <td>18.0</td>
+      <td>0.070513</td>
+      <td>君のいる町</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-05-25</td>
+      <td>2</td>
+      <td>水</td>
+    </tr>
+    <tr>
+      <th>CE00022</th>
+      <td>第109話 Pyramid:第三の塔</td>
+      <td>20.0</td>
+      <td>0.959402</td>
+      <td>エデンの檻</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-05-25</td>
+      <td>2</td>
+      <td>水</td>
+    </tr>
+    <tr>
+      <th>CE00021</th>
+      <td>第22話 震える世界。</td>
+      <td>20.0</td>
+      <td>0.916667</td>
+      <td>振り向くな君は</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-05-25</td>
+      <td>2</td>
+      <td>水</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># date、pagesで昇順にソートして冒頭5行を表示</span>
+<span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s2">&quot;date&quot;</span><span class="p">,</span> <span class="s2">&quot;pages&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cename</th>
+      <th>pages</th>
+      <th>page_start_position</th>
+      <th>ccname</th>
+      <th>mcname</th>
+      <th>date</th>
+      <th>weekday</th>
+      <th>yobi</th>
+    </tr>
+    <tr>
+      <th>ceid</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>CE00499</th>
+      <td>第92話 a man-made mountain:人の造り給いし山</td>
+      <td>20.0</td>
+      <td>0.063953</td>
+      <td>エデンの檻</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-01-08</td>
+      <td>5</td>
+      <td>土</td>
+    </tr>
+    <tr>
+      <th>CE00498</th>
+      <td>第310話 風待ち</td>
+      <td>21.0</td>
+      <td>0.021318</td>
+      <td>あひるの空</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-01-08</td>
+      <td>5</td>
+      <td>土</td>
+    </tr>
+    <tr>
+      <th>CE00493</th>
+      <td>#116　／　朝一コール　／　キリッ　／　つぶやき　／　気のせい　／　雪と戯れ　／　先生の日...</td>
+      <td>4.0</td>
+      <td>0.890873</td>
+      <td>生徒会役員共</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-01-15</td>
+      <td>5</td>
+      <td>土</td>
+    </tr>
+    <tr>
+      <th>CE00482</th>
+      <td>373 歳末とむろみさん</td>
+      <td>6.0</td>
+      <td>0.501984</td>
+      <td>波打際のむろみさん</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-01-15</td>
+      <td>5</td>
+      <td>土</td>
+    </tr>
+    <tr>
+      <th>CE00497</th>
+      <td>File.290 西本、「劇団四季」に入門!?</td>
+      <td>6.0</td>
+      <td>0.990079</td>
+      <td>もう、しませんから。</td>
+      <td>週刊少年マガジン</td>
+      <td>2011-01-15</td>
+      <td>5</td>
+      <td>土</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+</section>
+<section id="id18">
+<h3>基礎集計<a class="headerlink" href="#id18" title="Link to this heading">#</a></h3>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># dfの行数と列数を取得</span>
+<span class="n">df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(500, 8)
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># date列のユニークな値を登場順に列挙</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;2011-05-25&#39;, &#39;2011-05-18&#39;, &#39;2011-05-04&#39;, &#39;2011-04-27&#39;,
+       &#39;2011-04-20&#39;, &#39;2011-04-13&#39;, &#39;2011-04-06&#39;, &#39;2011-03-30&#39;,
+       &#39;2011-03-23&#39;, &#39;2011-03-16&#39;, &#39;2011-03-09&#39;, &#39;2011-03-02&#39;,
+       &#39;2011-02-23&#39;, &#39;2011-02-16&#39;, &#39;2011-02-09&#39;, &#39;2011-02-02&#39;,
+       &#39;2011-01-29&#39;, &#39;2011-01-22&#39;, &#39;2011-01-15&#39;, &#39;2011-01-08&#39;],
+      dtype=object)
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># date列のユニークな値の数を集計</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>20
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># pages列の平均値を算出</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;pages&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>17.138
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># pagesとpage_start_positionの平均値をそれぞれ算出</span>
+<span class="n">df</span><span class="p">[[</span><span class="s2">&quot;pages&quot;</span><span class="p">,</span> <span class="s2">&quot;page_start_position&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pages                  17.138000
+page_start_position     0.540504
+dtype: float64
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># （算出可能な列に対して）基本的な統計量を一括算出</span>
+<span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>pages</th>
+      <th>page_start_position</th>
+      <th>weekday</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>500.000000</td>
+      <td>500.000000</td>
+      <td>500.00000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>17.138000</td>
+      <td>0.540504</td>
+      <td>2.49800</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>7.621491</td>
+      <td>0.291936</td>
+      <td>1.11736</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>1.000000</td>
+      <td>0.006263</td>
+      <td>2.00000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>16.000000</td>
+      <td>0.285873</td>
+      <td>2.00000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>20.000000</td>
+      <td>0.559800</td>
+      <td>2.00000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>20.000000</td>
+      <td>0.791845</td>
+      <td>2.00000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>66.000000</td>
+      <td>1.000000</td>
+      <td>5.00000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># pagesとpage_start_positionの相関行列を算出</span>
+<span class="n">df</span><span class="p">[[</span><span class="s2">&quot;pages&quot;</span><span class="p">,</span> <span class="s2">&quot;page_start_position&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>pages</th>
+      <th>page_start_position</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>pages</th>
+      <td>1.000000</td>
+      <td>-0.424604</td>
+    </tr>
+    <tr>
+      <th>page_start_position</th>
+      <td>-0.424604</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+</section>
+</section>
+<section id="id19">
+<h2>データの結合とマージ<a class="headerlink" href="#id19" title="Link to this heading">#</a></h2>
+<section id="id20">
+<h3>結合<a class="headerlink" href="#id20" title="Link to this heading">#</a></h3>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># マンガ各話データを格納するcm_ceを読み出し</span>
+<span class="n">df_ce</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../../../data/cm/input/cm_ce.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 簡略化のために列を選択</span>
+<span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;mcname&quot;</span><span class="p">,</span> <span class="s2">&quot;miname&quot;</span><span class="p">,</span> <span class="s2">&quot;ccname&quot;</span><span class="p">,</span> <span class="s2">&quot;ccid&quot;</span><span class="p">]</span>
+
+<span class="c1"># 週刊少年ジャンプおよび週刊少年サンデーの最初の5行だけ抽出してDataFrame化</span>
+<span class="n">df_jump</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">df_ce</span><span class="p">[</span><span class="n">df_ce</span><span class="p">[</span><span class="s2">&quot;mcname&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;週刊少年ジャンプ&quot;</span><span class="p">][</span><span class="n">cols</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="p">)</span>
+<span class="n">df_sunday</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">df_ce</span><span class="p">[</span><span class="n">df_ce</span><span class="p">[</span><span class="s2">&quot;mcname&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;週刊少年サンデー&quot;</span><span class="p">][</span><span class="n">cols</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 週刊少年ジャンプに関するDataFrameの中身を確認</span>
+<span class="n">df_jump</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>mcname</th>
+      <th>miname</th>
+      <th>ccname</th>
+      <th>ccid</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>週刊少年ジャンプ</td>
+      <td>週刊少年ジャンプ 1983年 表示号数3</td>
+      <td>スキャンドール</td>
+      <td>C88521</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>週刊少年ジャンプ</td>
+      <td>週刊少年ジャンプ 1983年 表示号数3</td>
+      <td>風魔の小次郎</td>
+      <td>C89489</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>週刊少年ジャンプ</td>
+      <td>週刊少年ジャンプ 1983年 表示号数3</td>
+      <td>キャッツ・アイ CATS・EYE</td>
+      <td>C88386</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>週刊少年ジャンプ</td>
+      <td>週刊少年ジャンプ 1983年 表示号数3</td>
+      <td>やぶれかぶれ</td>
+      <td>C89747</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>週刊少年ジャンプ</td>
+      <td>週刊少年ジャンプ 1983年 表示号数3</td>
+      <td>キン肉マン</td>
+      <td>C88427</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 週刊少年ジャンプに関するDataFrameの中身を確認</span>
+<span class="n">df_sunday</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>mcname</th>
+      <th>miname</th>
+      <th>ccname</th>
+      <th>ccid</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>週刊少年サンデー</td>
+      <td>週刊少年サンデー 1971年 表示号数3</td>
+      <td>怒りよさらば</td>
+      <td>C92147</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>週刊少年サンデー</td>
+      <td>週刊少年サンデー 1971年 表示号数3</td>
+      <td>ケンカの聖書</td>
+      <td>C92340</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>週刊少年サンデー</td>
+      <td>週刊少年サンデー 1971年 表示号数3</td>
+      <td>烈火</td>
+      <td>C93935</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>週刊少年サンデー</td>
+      <td>週刊少年サンデー 1971年 表示号数3</td>
+      <td>男どアホウ甲子園</td>
+      <td>C92472</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>週刊少年サンデー</td>
+      <td>週刊少年サンデー 1971年 表示号数3</td>
+      <td>ダメおやじ</td>
+      <td>C92856</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># df_jumpとdf_sundayをconcatメソッドを用いて結合</span>
+<span class="c1"># ignore_index=Trueとすることで、インデックスを新たに振り直す</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_jump</span><span class="p">,</span> <span class="n">df_sunday</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>mcname</th>
+      <th>miname</th>
+      <th>ccname</th>
+      <th>ccid</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>週刊少年ジャンプ</td>
+      <td>週刊少年ジャンプ 1983年 表示号数3</td>
+      <td>スキャンドール</td>
+      <td>C88521</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>週刊少年ジャンプ</td>
+      <td>週刊少年ジャンプ 1983年 表示号数3</td>
+      <td>風魔の小次郎</td>
+      <td>C89489</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>週刊少年ジャンプ</td>
+      <td>週刊少年ジャンプ 1983年 表示号数3</td>
+      <td>キャッツ・アイ CATS・EYE</td>
+      <td>C88386</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>週刊少年ジャンプ</td>
+      <td>週刊少年ジャンプ 1983年 表示号数3</td>
+      <td>やぶれかぶれ</td>
+      <td>C89747</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>週刊少年ジャンプ</td>
+      <td>週刊少年ジャンプ 1983年 表示号数3</td>
+      <td>キン肉マン</td>
+      <td>C88427</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>週刊少年サンデー</td>
+      <td>週刊少年サンデー 1971年 表示号数3</td>
+      <td>怒りよさらば</td>
+      <td>C92147</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>週刊少年サンデー</td>
+      <td>週刊少年サンデー 1971年 表示号数3</td>
+      <td>ケンカの聖書</td>
+      <td>C92340</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>週刊少年サンデー</td>
+      <td>週刊少年サンデー 1971年 表示号数3</td>
+      <td>烈火</td>
+      <td>C93935</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>週刊少年サンデー</td>
+      <td>週刊少年サンデー 1971年 表示号数3</td>
+      <td>男どアホウ甲子園</td>
+      <td>C92472</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>週刊少年サンデー</td>
+      <td>週刊少年サンデー 1971年 表示号数3</td>
+      <td>ダメおやじ</td>
+      <td>C92856</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+</section>
+<section id="id21">
+<h3>マージ<a class="headerlink" href="#id21" title="Link to this heading">#</a></h3>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># SPY×FAMILYを例に、forger家を表現するDataFrameを作成</span>
+<span class="n">df_forger</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;名前&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;ロイド&quot;</span><span class="p">,</span> <span class="s2">&quot;ヨル&quot;</span><span class="p">,</span> <span class="s2">&quot;アーニャ&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;役割&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;父&quot;</span><span class="p">,</span> <span class="s2">&quot;母&quot;</span><span class="p">,</span> <span class="s2">&quot;娘&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;秘密&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;スパイ&quot;</span><span class="p">,</span> <span class="s2">&quot;殺し屋&quot;</span><span class="p">,</span> <span class="s2">&quot;超能力者&quot;</span><span class="p">],</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+
+<span class="c1"># 内容を表示</span>
+<span class="n">df_forger</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>名前</th>
+      <th>役割</th>
+      <th>秘密</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>ロイド</td>
+      <td>父</td>
+      <td>スパイ</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>ヨル</td>
+      <td>母</td>
+      <td>殺し屋</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>アーニャ</td>
+      <td>娘</td>
+      <td>超能力者</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># アーニャが所属するイーデン校を表現するDataFrameを作成</span>
+<span class="n">df_eden</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;名前&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;アーニャ&quot;</span><span class="p">,</span> <span class="s2">&quot;ダミアン&quot;</span><span class="p">,</span> <span class="s2">&quot;ベッキー&quot;</span><span class="p">,</span> <span class="s2">&quot;ビル&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;クラス&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;1年3組&quot;</span><span class="p">,</span> <span class="s2">&quot;1年3組&quot;</span><span class="p">,</span> <span class="s2">&quot;1年3組&quot;</span><span class="p">,</span> <span class="s2">&quot;1年4組&quot;</span><span class="p">],</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+
+<span class="c1"># 内容を表示</span>
+<span class="n">df_eden</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>名前</th>
+      <th>クラス</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>アーニャ</td>
+      <td>1年3組</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>ダミアン</td>
+      <td>1年3組</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>ベッキー</td>
+      <td>1年3組</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>ビル</td>
+      <td>1年4組</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># onで名前をキーとして指定し、how=&quot;inner&quot;で内部結合を指定</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_forger</span><span class="p">,</span> <span class="n">df_eden</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;名前&quot;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;inner&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>名前</th>
+      <th>役割</th>
+      <th>秘密</th>
+      <th>クラス</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>アーニャ</td>
+      <td>娘</td>
+      <td>超能力者</td>
+      <td>1年3組</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># onで名前をキーとして指定し、how=&quot;outer&quot;で外部結合を指定</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_forger</span><span class="p">,</span> <span class="n">df_eden</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;名前&quot;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;outer&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>名前</th>
+      <th>役割</th>
+      <th>秘密</th>
+      <th>クラス</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>ロイド</td>
+      <td>父</td>
+      <td>スパイ</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>ヨル</td>
+      <td>母</td>
+      <td>殺し屋</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>アーニャ</td>
+      <td>娘</td>
+      <td>超能力者</td>
+      <td>1年3組</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>ダミアン</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1年3組</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>ベッキー</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1年3組</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>ビル</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1年4組</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># onで名前をキーとして指定し、how=&quot;left&quot;で左外部結合を指定</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_forger</span><span class="p">,</span> <span class="n">df_eden</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;名前&quot;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>名前</th>
+      <th>役割</th>
+      <th>秘密</th>
+      <th>クラス</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>ロイド</td>
+      <td>父</td>
+      <td>スパイ</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>ヨル</td>
+      <td>母</td>
+      <td>殺し屋</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>アーニャ</td>
+      <td>娘</td>
+      <td>超能力者</td>
+      <td>1年3組</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># onで名前をキーとして指定し、how=&quot;right&quot;で右外部結合を指定</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_forger</span><span class="p">,</span> <span class="n">df_eden</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;名前&quot;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>名前</th>
+      <th>役割</th>
+      <th>秘密</th>
+      <th>クラス</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>アーニャ</td>
+      <td>娘</td>
+      <td>超能力者</td>
+      <td>1年3組</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>ダミアン</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1年3組</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>ベッキー</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1年3組</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>ビル</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1年4組</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+</section>
+</section>
+<section id="id22">
+<h2>データのグルーピングとピボット<a class="headerlink" href="#id22" title="Link to this heading">#</a></h2>
+<section id="id23">
+<h3>グルーピング<a class="headerlink" href="#id23" title="Link to this heading">#</a></h3>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ccidごとにグループ化し、それぞれのceidのユニーク数を集約して冒頭5行を表示</span>
+<span class="n">df_ce</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;ccid&quot;</span><span class="p">)[</span><span class="s2">&quot;ceid&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ccid</th>
+      <th>ceid</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>C102235</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>C109295</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>C109296</td>
+      <td>19</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>C109297</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>C110879</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># まず、dateでソートすることで、発売日順に並ぶように調整</span>
+<span class="n">df_ce</span> <span class="o">=</span> <span class="n">df_ce</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s2">&quot;ccid&quot;</span><span class="p">,</span> <span class="s2">&quot;date&quot;</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># その上で、マンガ作品（ccid）ごとに冒頭8話を抽出</span>
+<span class="c1"># 代表的な列のみ選択肢、最初の10行を表示</span>
+<span class="n">df_ce</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;ccid&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">8</span><span class="p">)[[</span><span class="s2">&quot;ccname&quot;</span><span class="p">,</span> <span class="s2">&quot;date&quot;</span><span class="p">,</span> <span class="s2">&quot;cename&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ccname</th>
+      <th>date</th>
+      <th>cename</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>さばげぶっ！</td>
+      <td>2014-08-06</td>
+      <td>出張編</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>マウンドの稲妻</td>
+      <td>1980-08-18</td>
+      <td>野性の鉄腕の巻</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>マウンドの稲妻</td>
+      <td>1980-08-25</td>
+      <td>●サンダーボンバー誕生の巻</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>マウンドの稲妻</td>
+      <td>1980-09-01</td>
+      <td>●エースのあかし!の巻●</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>マウンドの稲妻</td>
+      <td>1980-09-08</td>
+      <td>●ボンバーズ登場!!の巻●</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>マウンドの稲妻</td>
+      <td>1980-09-15</td>
+      <td>●戦りつのマフィアリーグの巻●</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>マウンドの稲妻</td>
+      <td>1980-09-22</td>
+      <td>●マフィアリーグへの出発の巻●</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>マウンドの稲妻</td>
+      <td>1980-09-29</td>
+      <td>●マフィアリーグ開戦の巻●</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>マウンドの稲妻</td>
+      <td>1980-10-06</td>
+      <td>黒い罠に勝て!の巻</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>SCRAP三太夫</td>
+      <td>1988-10-03</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+</section>
+<section id="id24">
+<h3>ピボット<a class="headerlink" href="#id24" title="Link to this heading">#</a></h3>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># df_ceに曜日情報を追加</span>
+<span class="n">df_ce</span><span class="p">[</span><span class="s2">&quot;weekday&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df_ce</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">weekday</span>
+
+<span class="c1"># マンガ雑誌（mcname）別に曜日（weekday）別の発売巻号（miid）数を集計</span>
+<span class="c1"># 行（index）としてmcname、列（columns）としてweekdayを指定</span>
+<span class="c1"># valuesで指定した列（miid）をaggfuncで指定した集約関数（nunique）で集約</span>
+<span class="n">df_ce</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s2">&quot;mcname&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s2">&quot;weekday&quot;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s2">&quot;miid&quot;</span><span class="p">,</span> <span class="n">aggfunc</span><span class="o">=</span><span class="s2">&quot;nunique&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>weekday</th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+    </tr>
+    <tr>
+      <th>mcname</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>週刊少年サンデー</th>
+      <td>9</td>
+      <td>9</td>
+      <td>1706</td>
+      <td>22</td>
+      <td>16</td>
+      <td>15</td>
+      <td>530</td>
+    </tr>
+    <tr>
+      <th>週刊少年ジャンプ</th>
+      <td>2177</td>
+      <td>25</td>
+      <td>25</td>
+      <td>22</td>
+      <td>22</td>
+      <td>15</td>
+      <td>20</td>
+    </tr>
+    <tr>
+      <th>週刊少年チャンピオン</th>
+      <td>554</td>
+      <td>9</td>
+      <td>5</td>
+      <td>1298</td>
+      <td>444</td>
+      <td>5</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>週刊少年マガジン</th>
+      <td>11</td>
+      <td>13</td>
+      <td>1673</td>
+      <td>26</td>
+      <td>26</td>
+      <td>20</td>
+      <td>539</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./vol1/05"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="python.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Pythonの基本</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="plotly.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Plotlyの基本</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">基本的なデータ構造</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas-dataframe"><code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code>型</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas-series"><code class="docutils literal notranslate"><span class="pre">pandas.Series</span></code>型</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas-dataframepandas-series"><code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code>型と<code class="docutils literal notranslate"><span class="pre">pandas.Series</span></code>型の相互変換</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">データの読み込みと書き出し</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">読み込み</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">書き出し</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">データの選択とフィルタリング</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">カラムの選択</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">行の選択</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">条件に基づくフィルタリング</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">データの整形と操作</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">欠損値の処理</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">カラム名の変更</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">データ型の変換</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">カラムの追加・削除</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">重複の処理</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">各行へのカスタム処理</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">データのソートと集計</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">ソート</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">基礎集計</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">データの結合とマージ</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">結合</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">マージ</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">データのグルーピングとピボット</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">グルーピング</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">ピボット</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  © Copyright 2026 by <a rel="kakeami" href="https://github.com/kakeami"> Kakeami </a>. この作品は<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">クリエイティブ・コモンズ 表示 - 非営利 - 改変禁止 4.0 国際 ライセンス</a>の下に提供されています． <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="クリエイティブ・コモンズ・ライセンス" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>　ただし，作品中のコードセル部分は<a rel="license" href="https://opensource.org/licenses/MIT">MITライセンス</a>の下に提供されています．
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
