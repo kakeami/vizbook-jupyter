@@ -12,31 +12,28 @@
 :gutter: 3
 
 :::{grid-item-card}
-:link: https://gihyo.jp/book
+:link: https://gihyo.jp/book/2026/978-4-297-15271-0
 :class-header: bg-light
 
 **上巻**：データを見る力・見せる技術
 ^^^
-```{image} images/index/vol1.jpg
+```{image} images/index/vol1.png
 :height: 200
 ```
 :::
 
 :::{grid-item-card}
-:link: https://gihyo.jp/book
+:link: https://gihyo.jp/book/2026/978-4-297-15273-4
 :class-header: bg-light
 
 **下巻**：データを問う力・伝える技術
 ^^^
-```{image} images/index/vol2.jpg
+```{image} images/index/vol2.png
 :height: 200
 ```
 :::
 ::::
 
-<!-- TODO
-書影、リンク先、タイトルを更新
--->
 
 上巻は3部構成です。
 
@@ -64,7 +61,7 @@
 
 ## このサイトについて
 
-このサイトは、本書で紹介したソースコードを公開・解説することを目的にしています。
+このサイトは、本書で紹介したソースコードを公開することを目的にしています。
 
 ### 上巻
 
