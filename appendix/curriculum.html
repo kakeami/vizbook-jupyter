@@ -1,0 +1,1096 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>本書を用いたカリキュラム例 &#8212; データ可視化技術入門</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'appendix/curriculum';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="icon" href="../_static/pen.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="参考文献" href="references.html" />
+    <link rel="prev" title="本書の再現と発展" href="setup.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">データ可視化技術入門</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">上巻</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../vol1/03/index.html">3章 マンガデータ分析①</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../vol1/03/cm_preprocess.html">マンガデータの前処理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol1/03/eda.html">マンガデータの基礎分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol1/03/practice_q.html">【練習問題】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol1/03/practice_a.html">【解答例】</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../vol1/04/index.html">4章 マンガデータ分析②</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../vol1/04/amounts.html">マンガデータの量を見る</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol1/04/dists.html">マンガデータの分布を見る</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol1/04/props.html">マンガデータの内訳を見る</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol1/04/assocs.html">マンガデータの関係を見る</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol1/04/practice_q.html">【練習問題】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol1/04/practice_a.html">【解答例】</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../vol1/05/index.html">5章 Python/Pandas/Plotly</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../vol1/05/python.html">Pythonの基本</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol1/05/pandas.html">Pandasの基本</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol1/05/plotly.html">Plotlyの基本</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol1/05/practice_q.html">【練習問題】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol1/05/practice_a.html">【解答例】</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../vol1/06/index.html">6章 取得/前処理/基礎分析</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../vol1/06/an_preprocess.html">アニメデータの前処理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol1/06/an_eda.html">アニメデータの基礎分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol1/06/gm_preprocess.html">ゲームデータの前処理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol1/06/gm_eda.html">ゲームデータの基礎分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol1/06/practice_q.html">【練習問題】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol1/06/practice_a.html">【解答例】</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">下巻</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../vol2/01/index.html">1章 量を見る手法</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/01/bar.html">棒グラフ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/01/gbar.html">集合棒グラフ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/01/sbar.html">積上げ棒グラフ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/01/heatmap.html">ヒートマップ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/01/practice_q.html">【練習問題】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/01/practice_a.html">【解答例】</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../vol2/02/index.html">2章 分布を見る手法</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/02/hist.html">ヒストグラム</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/02/density.html">密度プロット</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/02/box.html">箱ひげ図</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/02/violin.html">バイオリンプロット</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/02/ridge.html">リッジラインプロット</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/02/practice_q.html">【練習問題】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/02/practice_a.html">【解答例】</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../vol2/03/index.html">3章 内訳を見る手法</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/03/pie.html">円グラフ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/03/bar.html">棒グラフ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/03/mosaic.html">モザイクプロット</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/03/area.html">積上げ密度プロット</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/03/tree.html">ツリーマップ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/03/parallel.html">パラレルセットグラフ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/03/practice_q.html">【練習問題】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/03/practice_a.html">【解答例】</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../vol2/04/index.html">4章 関係を見る手法</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/04/scatter.html">散布図</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/04/bubble.html">バブルチャート</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/04/matrix.html">散布図行列</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/04/2d.html">二次元ヒストグラム</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/04/contour.html">等値線図</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/04/line.html">折れ線グラフ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/04/connected.html">連結散布図</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/04/practice_q.html">【練習問題】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/04/practice_a.html">【解答例】</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../vol2/05/index.html">5章 メディア展開データ分析①</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/05/mix_preprocess.html">メディア展開データの前処理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/05/eda.html">メディア展開データの基礎分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/05/practice_q.html">【練習問題】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/05/practice_a.html">【解答例】</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../vol2/06/index.html">6章 メディア展開データ分析②</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/06/amounts.html">メディア展開データの量を見る</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/06/dists.html">メディア展開データの分布を見る</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/06/props.html">メディア展開データの内訳を見る</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/06/assocs.html">メディア展開データの関係を見る</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/06/practice_q.html">【練習問題】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vol2/06/practice_a.html">【解答例】</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="setup.html">本書の再現と発展</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">本書を用いたカリキュラム例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">参考文献</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/kakeami/vizbook-jupyter" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/kakeami/vizbook-jupyter/issues/new?title=Issue%20on%20page%20%2Fappendix/curriculum.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/appendix/curriculum.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>本書を用いたカリキュラム例</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">共通事項</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">想定受講者</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">授業形態</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">前提条件</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">練習問題の活用</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">例①：上巻のみ（15回）</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">概要</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">到達目標</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">授業計画</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#notebook">参考Notebook</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">備考</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">例②：下巻のみ（15回）</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">概要</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">到達目標</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">授業計画</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">参考Notebook</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">備考</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">例③：上下巻両方（15回）</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">概要</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">到達目標</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">授業計画</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">参考Notebook</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">備考</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">発展</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>本書を用いたカリキュラム例<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p>本章では、本書を用いた大学授業向けのカリキュラム案（全15回 × 3パターン）を紹介します。
+授業設計の参考として、ご活用いただければ幸いです。</p>
+<section id="id2">
+<h2>共通事項<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<section id="id3">
+<h3>想定受講者<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>プログラミング未経験者</p></li>
+<li><p>データ可視化に興味のある学生</p></li>
+</ul>
+</section>
+<section id="id4">
+<h3>授業形態<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>授業時間</strong>: 90分（講義＋演習）</p></li>
+<li><p><strong>回数</strong>: 全15回</p></li>
+</ul>
+</section>
+<section id="id5">
+<h3>前提条件<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>第1回は全パターン共通で環境構築を行います。書籍が手元になくても実施可能です</p></li>
+<li><p>詳細な環境構築手順は<a class="reference internal" href="setup.html"><span class="doc std std-doc">本書の再現と発展</span></a>を参照してください</p></li>
+</ul>
+</section>
+<section id="id6">
+<h3>練習問題の活用<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<p>各章末に用意された練習問題は、以下の方法で活用できます：</p>
+<ul class="simple">
+<li><p><strong>授業内演習</strong>: 講義後の理解度確認として</p></li>
+<li><p><strong>宿題</strong>: 授業外学習の課題として</p></li>
+<li><p><strong>試験対策</strong>: 期末試験の参考問題として</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="id7">
+<h2>例①：上巻のみ（15回）<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<section id="id8">
+<h3>概要<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<p>上巻のみを使用するカリキュラムです。
+データ可視化の理論的基盤から始め、マンガ・アニメ・ゲームデータを用いた実践的な分析までを学びます。</p>
+</section>
+<section id="id9">
+<h3>到達目標<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>データ可視化の基本概念と重要性を理解する</p></li>
+<li><p>Pythonを用いたデータ分析の基礎スキルを習得する</p></li>
+<li><p>目的に応じた適切な可視化手法を選択できる</p></li>
+<li><p>実データを用いた分析プロジェクトを遂行できる</p></li>
+</ul>
+</section>
+<section id="id10">
+<h3>授業計画<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>回</p></th>
+<th class="head"><p>テーマ</p></th>
+<th class="head"><p>書籍範囲</p></th>
+<th class="head"><p>内容</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>環境構築</p></td>
+<td><p><a class="reference internal" href="setup.html"><span class="doc std std-doc">環境構築</span></a></p></td>
+<td><p>Docker/Git/Jupyter Lab導入、動作確認</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>データ可視化の定義と分類</p></td>
+<td><p>上巻1章</p></td>
+<td><p>データ可視化とは、ビジュアライゼーションの分類、ツール紹介</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>認知科学と可視化の構成要素</p></td>
+<td><p>上巻1-2章</p></td>
+<td><p>視覚認知の基礎、視覚属性、座標系、配色</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>可視化手法の概要と留意点</p></td>
+<td><p>上巻2章</p></td>
+<td><p>代表的な可視化手法、誤解を招く表現、ベストプラクティス</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>Pythonの基礎</p></td>
+<td><p><a class="reference internal" href="../vol1/05/python.html"><span class="doc std std-doc">上巻5章 Python</span></a></p></td>
+<td><p>変数、制御構文、関数、リスト</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>Pandasの基礎</p></td>
+<td><p><a class="reference internal" href="../vol1/05/pandas.html"><span class="doc std std-doc">上巻5章 Pandas</span></a></p></td>
+<td><p>DataFrame操作、集計、マージ</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>Plotlyの基礎</p></td>
+<td><p><a class="reference internal" href="../vol1/05/plotly.html"><span class="doc std std-doc">上巻5章 Plotly</span></a></p></td>
+<td><p>plotly.express、レイアウト調整</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>マンガデータの前処理</p></td>
+<td><p><a class="reference internal" href="../vol1/03/cm_preprocess.html"><span class="doc std std-doc">上巻3章 前処理</span></a></p></td>
+<td><p>データ取得、読み込み、クレンジング</p></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>マンガデータの基礎分析</p></td>
+<td><p><a class="reference internal" href="../vol1/03/eda.html"><span class="doc std std-doc">上巻3章 EDA</span></a></p></td>
+<td><p>探索的データ分析、Pandasによる集計、仮説検証の流れ</p></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p>量を見る・分布を見る</p></td>
+<td><p><a class="reference internal" href="../vol1/04/index.html"><span class="doc std std-doc">上巻4章</span></a></p></td>
+<td><p>棒グラフ、ヒストグラム、密度プロット</p></td>
+</tr>
+<tr class="row-even"><td><p>11</p></td>
+<td><p>内訳を見る・関係を見る</p></td>
+<td><p><a class="reference internal" href="../vol1/04/index.html"><span class="doc std std-doc">上巻4章</span></a></p></td>
+<td><p>円グラフ、積上げ棒グラフ、散布図</p></td>
+</tr>
+<tr class="row-odd"><td><p>12</p></td>
+<td><p>アニメデータ分析</p></td>
+<td><p><a class="reference internal" href="../vol1/06/index.html"><span class="doc std std-doc">上巻6章 アニメ</span></a></p></td>
+<td><p>異なるデータソースの前処理と分析</p></td>
+</tr>
+<tr class="row-even"><td><p>13</p></td>
+<td><p>ゲームデータ分析</p></td>
+<td><p><a class="reference internal" href="../vol1/06/index.html"><span class="doc std std-doc">上巻6章 ゲーム</span></a></p></td>
+<td><p>ゲームデータの前処理と分析</p></td>
+</tr>
+<tr class="row-odd"><td><p>14</p></td>
+<td><p>総合演習</p></td>
+<td><p>練習問題</p></td>
+<td><p>学習内容の総復習、実践課題</p></td>
+</tr>
+<tr class="row-even"><td><p>15</p></td>
+<td><p>まとめと発展</p></td>
+<td><p>上巻7章</p></td>
+<td><p>学習内容の振り返り、発展課題の紹介</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="notebook">
+<h3>参考Notebook<a class="headerlink" href="#notebook" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>第5-7回: <a class="reference internal" href="../vol1/05/python.html"><span class="doc std std-doc">python.ipynb</span></a>, <a class="reference internal" href="../vol1/05/pandas.html"><span class="doc std std-doc">pandas.ipynb</span></a>, <a class="reference internal" href="../vol1/05/plotly.html"><span class="doc std std-doc">plotly.ipynb</span></a></p></li>
+<li><p>第8-9回: <a class="reference internal" href="../vol1/03/cm_preprocess.html"><span class="doc std std-doc">cm_preprocess.ipynb</span></a>, <a class="reference internal" href="../vol1/03/eda.html"><span class="doc std std-doc">eda.ipynb</span></a></p></li>
+<li><p>第10-11回: <a class="reference internal" href="../vol1/04/amounts.html"><span class="doc std std-doc">amounts.ipynb</span></a>, <a class="reference internal" href="../vol1/04/dists.html"><span class="doc std std-doc">dists.ipynb</span></a>, <a class="reference internal" href="../vol1/04/props.html"><span class="doc std std-doc">props.ipynb</span></a>, <a class="reference internal" href="../vol1/04/assocs.html"><span class="doc std std-doc">assocs.ipynb</span></a></p></li>
+<li><p>第12回: <a class="reference internal" href="../vol1/06/an_preprocess.html"><span class="doc std std-doc">an_preprocess.ipynb</span></a>, <a class="reference internal" href="../vol1/06/an_eda.html"><span class="doc std std-doc">an_eda.ipynb</span></a></p></li>
+<li><p>第13回: <a class="reference internal" href="../vol1/06/gm_preprocess.html"><span class="doc std std-doc">gm_preprocess.ipynb</span></a>, <a class="reference internal" href="../vol1/06/gm_eda.html"><span class="doc std std-doc">gm_eda.ipynb</span></a></p></li>
+</ul>
+</section>
+<section id="id11">
+<h3>備考<a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>第2-4回で理論編（1-2章）を丁寧に扱い、可視化の基礎概念をしっかり理解させます</p></li>
+<li><p>第5-7回でPython/Pandas/Plotlyの基礎を学んでから実践に入ることで、プログラミング未経験者でも無理なく学習を進められます</p></li>
+<li><p>第10-11回は4章の内容を圧縮して扱います。詳細は宿題や自習で補完することを推奨します</p></li>
+<li><p>第14回の総合演習では、練習問題を活用して学習内容の定着を図ります</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="id12">
+<h2>例②：下巻のみ（15回）<a class="headerlink" href="#id12" title="Link to this heading">#</a></h2>
+<section id="id13">
+<h3>概要<a class="headerlink" href="#id13" title="Link to this heading">#</a></h3>
+<p>下巻のみを使用するカリキュラムです。
+様々な可視化手法を体系的に学び、メディア展開データを用いた総合演習で実践力を養います。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>このカリキュラムはPythonの基本的な知識（変数、制御構文、リストなど）を前提としています。
+プログラミング完全未経験の場合は、パターン①またはパターン③をご検討ください。</p>
+</div>
+</section>
+<section id="id14">
+<h3>到達目標<a class="headerlink" href="#id14" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>目的に応じた可視化手法を適切に選択・実装できる</p></li>
+<li><p>各可視化手法の特性と適用場面を理解する</p></li>
+<li><p>複合的なデータセットに対する分析プロジェクトを遂行できる</p></li>
+</ul>
+</section>
+<section id="id15">
+<h3>授業計画<a class="headerlink" href="#id15" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>回</p></th>
+<th class="head"><p>テーマ</p></th>
+<th class="head"><p>書籍範囲</p></th>
+<th class="head"><p>内容</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>環境構築</p></td>
+<td><p><a class="reference internal" href="setup.html"><span class="doc std std-doc">環境構築</span></a></p></td>
+<td><p>Docker/Git/Jupyter Lab導入、動作確認</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>量を見る（基礎）</p></td>
+<td><p><a class="reference internal" href="../vol2/01/bar.html"><span class="doc std std-doc">下巻1章 棒グラフ</span></a></p></td>
+<td><p>単純棒グラフ、横棒グラフ</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>量を見る（発展）</p></td>
+<td><p><a class="reference internal" href="../vol2/01/index.html"><span class="doc std std-doc">下巻1章</span></a></p></td>
+<td><p>集合棒グラフ、積上げ棒グラフ、ヒートマップ</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>分布を見る（基礎）</p></td>
+<td><p><a class="reference internal" href="../vol2/02/index.html"><span class="doc std std-doc">下巻2章前半</span></a></p></td>
+<td><p>ヒストグラム、密度プロット</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>分布を見る（比較・推移）</p></td>
+<td><p><a class="reference internal" href="../vol2/02/index.html"><span class="doc std std-doc">下巻2章後半</span></a></p></td>
+<td><p>箱ひげ図、バイオリンプロット、リッジラインプロット</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>内訳を見る（基礎）</p></td>
+<td><p><a class="reference internal" href="../vol2/03/index.html"><span class="doc std std-doc">下巻3章前半</span></a></p></td>
+<td><p>円グラフ、棒グラフによる割合の可視化</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>内訳を見る（発展）</p></td>
+<td><p><a class="reference internal" href="../vol2/03/index.html"><span class="doc std std-doc">下巻3章後半</span></a></p></td>
+<td><p>モザイクプロット、ツリーマップ</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>関係を見る（基礎）</p></td>
+<td><p><a class="reference internal" href="../vol2/04/index.html"><span class="doc std std-doc">下巻4章前半</span></a></p></td>
+<td><p>散布図、バブルチャート</p></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>関係を見る（多変量）</p></td>
+<td><p><a class="reference internal" href="../vol2/04/index.html"><span class="doc std std-doc">下巻4章中盤</span></a></p></td>
+<td><p>散布図行列、二次元ヒストグラム</p></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p>関係を見る（時系列）</p></td>
+<td><p><a class="reference internal" href="../vol2/04/index.html"><span class="doc std std-doc">下巻4章後半</span></a></p></td>
+<td><p>折れ線グラフ、連結散布図</p></td>
+</tr>
+<tr class="row-even"><td><p>11</p></td>
+<td><p>メディア展開データの前処理</p></td>
+<td><p><a class="reference internal" href="../vol2/05/index.html"><span class="doc std std-doc">下巻5章</span></a></p></td>
+<td><p>データ結合、品質確認</p></td>
+</tr>
+<tr class="row-odd"><td><p>12</p></td>
+<td><p>メディア展開データの可視化（量・分布）</p></td>
+<td><p><a class="reference internal" href="../vol2/06/index.html"><span class="doc std std-doc">下巻6章前半</span></a></p></td>
+<td><p>量・分布の可視化実践</p></td>
+</tr>
+<tr class="row-even"><td><p>13</p></td>
+<td><p>メディア展開データの可視化（内訳・関係）</p></td>
+<td><p><a class="reference internal" href="../vol2/06/index.html"><span class="doc std std-doc">下巻6章後半</span></a></p></td>
+<td><p>内訳・関係の可視化実践</p></td>
+</tr>
+<tr class="row-odd"><td><p>14</p></td>
+<td><p>総合演習</p></td>
+<td><p>練習問題</p></td>
+<td><p>学習内容の総復習、実践課題</p></td>
+</tr>
+<tr class="row-even"><td><p>15</p></td>
+<td><p>総まとめ</p></td>
+<td><p>-</p></td>
+<td><p>学習内容の振り返り、発展課題の紹介</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="id16">
+<h3>参考Notebook<a class="headerlink" href="#id16" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>第2-3回: <a class="reference internal" href="../vol2/01/bar.html"><span class="doc std std-doc">bar.ipynb</span></a>, <a class="reference internal" href="../vol2/01/gbar.html"><span class="doc std std-doc">gbar.ipynb</span></a>, <a class="reference internal" href="../vol2/01/sbar.html"><span class="doc std std-doc">sbar.ipynb</span></a>, <a class="reference internal" href="../vol2/01/heatmap.html"><span class="doc std std-doc">heatmap.ipynb</span></a></p></li>
+<li><p>第4-5回: <a class="reference internal" href="../vol2/02/hist.html"><span class="doc std std-doc">hist.ipynb</span></a>, <a class="reference internal" href="../vol2/02/density.html"><span class="doc std std-doc">density.ipynb</span></a>, <a class="reference internal" href="../vol2/02/box.html"><span class="doc std std-doc">box.ipynb</span></a>, <a class="reference internal" href="../vol2/02/violin.html"><span class="doc std std-doc">violin.ipynb</span></a>, <a class="reference internal" href="../vol2/02/ridge.html"><span class="doc std std-doc">ridge.ipynb</span></a></p></li>
+<li><p>第6-7回: <a class="reference internal" href="../vol2/03/pie.html"><span class="doc std std-doc">pie.ipynb</span></a>, <a class="reference internal" href="../vol2/03/bar.html"><span class="doc std std-doc">bar.ipynb</span></a>, <a class="reference internal" href="../vol2/03/mosaic.html"><span class="doc std std-doc">mosaic.ipynb</span></a>, <a class="reference internal" href="../vol2/03/tree.html"><span class="doc std std-doc">tree.ipynb</span></a></p></li>
+<li><p>第8-10回: <a class="reference internal" href="../vol2/04/scatter.html"><span class="doc std std-doc">scatter.ipynb</span></a>, <a class="reference internal" href="../vol2/04/bubble.html"><span class="doc std std-doc">bubble.ipynb</span></a>, <a class="reference internal" href="../vol2/04/matrix.html"><span class="doc std std-doc">matrix.ipynb</span></a>, <a class="reference internal" href="../vol2/04/2d.html"><span class="doc std std-doc">2d.ipynb</span></a>, <a class="reference internal" href="../vol2/04/line.html"><span class="doc std std-doc">line.ipynb</span></a>, <a class="reference internal" href="../vol2/04/connected.html"><span class="doc std std-doc">connected.ipynb</span></a></p></li>
+<li><p>第11回: <a class="reference internal" href="../vol2/05/mix_preprocess.html"><span class="doc std std-doc">mix_preprocess.ipynb</span></a>, <a class="reference internal" href="../vol2/05/eda.html"><span class="doc std std-doc">eda.ipynb</span></a></p></li>
+<li><p>第12-13回: <a class="reference internal" href="../vol2/06/amounts.html"><span class="doc std std-doc">amounts.ipynb</span></a>, <a class="reference internal" href="../vol2/06/dists.html"><span class="doc std std-doc">dists.ipynb</span></a>, <a class="reference internal" href="../vol2/06/props.html"><span class="doc std std-doc">props.ipynb</span></a>, <a class="reference internal" href="../vol2/06/assocs.html"><span class="doc std std-doc">assocs.ipynb</span></a></p></li>
+</ul>
+</section>
+<section id="id17">
+<h3>備考<a class="headerlink" href="#id17" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>「量→分布→内訳→関係」の体系的な順序で可視化手法を学びます</p></li>
+<li><p>各カテゴリを基礎と発展に分けることで、段階的な理解を促進します</p></li>
+<li><p>第12-13回のメディア展開データ可視化は2回に拡張し、十分な演習時間を確保しています</p></li>
+<li><p>第14回の総合演習では、練習問題を活用して学習内容の定着を図ります</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="id18">
+<h2>例③：上下巻両方（15回）<a class="headerlink" href="#id18" title="Link to this heading">#</a></h2>
+<section id="id19">
+<h3>概要<a class="headerlink" href="#id19" title="Link to this heading">#</a></h3>
+<p>上下巻の両方を使用する集約カリキュラムです。
+理論と実践をバランスよく学び、幅広い可視化スキルを効率的に習得します。</p>
+</section>
+<section id="id20">
+<h3>到達目標<a class="headerlink" href="#id20" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>データ可視化の理論的基盤を理解する</p></li>
+<li><p>多様な可視化手法を目的に応じて選択・実装できる</p></li>
+<li><p>複数のデータソースを統合した分析プロジェクトを遂行できる</p></li>
+</ul>
+</section>
+<section id="id21">
+<h3>授業計画<a class="headerlink" href="#id21" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>回</p></th>
+<th class="head"><p>テーマ</p></th>
+<th class="head"><p>書籍範囲</p></th>
+<th class="head"><p>内容</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>環境構築</p></td>
+<td><p><a class="reference internal" href="setup.html"><span class="doc std std-doc">環境構築</span></a></p></td>
+<td><p>Docker/Git/Jupyter Lab導入、動作確認</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>データ可視化入門</p></td>
+<td><p>上巻1章</p></td>
+<td><p>定義、分類、ツール概要</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>可視化の構成要素と留意点</p></td>
+<td><p>上巻2章</p></td>
+<td><p>視覚属性、認知科学、ベストプラクティス</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>マンガデータの前処理と基礎分析</p></td>
+<td><p><a class="reference internal" href="../vol1/03/index.html"><span class="doc std std-doc">上巻3章</span></a></p></td>
+<td><p>データ取得からEDAまで</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>マンガデータの可視化実践</p></td>
+<td><p><a class="reference internal" href="../vol1/04/index.html"><span class="doc std std-doc">上巻4章</span></a></p></td>
+<td><p>量・分布・内訳・関係（代表手法）</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>Python/Pandas/Plotly概要</p></td>
+<td><p><a class="reference internal" href="../vol1/05/index.html"><span class="doc std std-doc">上巻5章</span></a></p></td>
+<td><p>ツールの基礎（ダイジェスト）</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>アニメ・ゲームデータ概要</p></td>
+<td><p><a class="reference internal" href="../vol1/06/index.html"><span class="doc std std-doc">上巻6章</span></a></p></td>
+<td><p>複数データソースの扱い</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>量を見る手法</p></td>
+<td><p><a class="reference internal" href="../vol2/01/index.html"><span class="doc std std-doc">下巻1章</span></a></p></td>
+<td><p>棒グラフ、集合棒、積上げ棒、ヒートマップ</p></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>分布を見る手法①</p></td>
+<td><p><a class="reference internal" href="../vol2/02/index.html"><span class="doc std std-doc">下巻2章前半</span></a></p></td>
+<td><p>ヒストグラム、密度プロット</p></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p>分布を見る手法②</p></td>
+<td><p><a class="reference internal" href="../vol2/02/index.html"><span class="doc std std-doc">下巻2章後半</span></a></p></td>
+<td><p>箱ひげ図、バイオリン、リッジライン</p></td>
+</tr>
+<tr class="row-even"><td><p>11</p></td>
+<td><p>内訳を見る手法</p></td>
+<td><p><a class="reference internal" href="../vol2/03/index.html"><span class="doc std std-doc">下巻3章</span></a></p></td>
+<td><p>円グラフ、モザイク、ツリーマップ</p></td>
+</tr>
+<tr class="row-odd"><td><p>12</p></td>
+<td><p>関係を見る手法①</p></td>
+<td><p><a class="reference internal" href="../vol2/04/index.html"><span class="doc std std-doc">下巻4章前半</span></a></p></td>
+<td><p>散布図、バブルチャート</p></td>
+</tr>
+<tr class="row-even"><td><p>13</p></td>
+<td><p>関係を見る手法②</p></td>
+<td><p><a class="reference internal" href="../vol2/04/index.html"><span class="doc std std-doc">下巻4章後半</span></a></p></td>
+<td><p>折れ線グラフ、連結散布図</p></td>
+</tr>
+<tr class="row-odd"><td><p>14</p></td>
+<td><p>メディア展開データ分析</p></td>
+<td><p><a class="reference internal" href="../vol2/05/index.html"><span class="doc std std-doc">下巻5-6章</span></a></p></td>
+<td><p>総合演習（前処理＋可視化）</p></td>
+</tr>
+<tr class="row-even"><td><p>15</p></td>
+<td><p>総まとめ</p></td>
+<td><p>-</p></td>
+<td><p>学習内容の振り返り、発展課題の紹介</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="id22">
+<h3>参考Notebook<a class="headerlink" href="#id22" title="Link to this heading">#</a></h3>
+<p><strong>上巻</strong></p>
+<ul class="simple">
+<li><p>第4回: <a class="reference internal" href="../vol1/03/cm_preprocess.html"><span class="doc std std-doc">cm_preprocess.ipynb</span></a>, <a class="reference internal" href="../vol1/03/eda.html"><span class="doc std std-doc">eda.ipynb</span></a></p></li>
+<li><p>第5回: <a class="reference internal" href="../vol1/04/amounts.html"><span class="doc std std-doc">amounts.ipynb</span></a>, <a class="reference internal" href="../vol1/04/dists.html"><span class="doc std std-doc">dists.ipynb</span></a>, <a class="reference internal" href="../vol1/04/props.html"><span class="doc std std-doc">props.ipynb</span></a>, <a class="reference internal" href="../vol1/04/assocs.html"><span class="doc std std-doc">assocs.ipynb</span></a></p></li>
+<li><p>第6回: <a class="reference internal" href="../vol1/05/python.html"><span class="doc std std-doc">python.ipynb</span></a>, <a class="reference internal" href="../vol1/05/pandas.html"><span class="doc std std-doc">pandas.ipynb</span></a>, <a class="reference internal" href="../vol1/05/plotly.html"><span class="doc std std-doc">plotly.ipynb</span></a></p></li>
+<li><p>第7回: <a class="reference internal" href="../vol1/06/an_preprocess.html"><span class="doc std std-doc">an_preprocess.ipynb</span></a>, <a class="reference internal" href="../vol1/06/an_eda.html"><span class="doc std std-doc">an_eda.ipynb</span></a>, <a class="reference internal" href="../vol1/06/gm_preprocess.html"><span class="doc std std-doc">gm_preprocess.ipynb</span></a>, <a class="reference internal" href="../vol1/06/gm_eda.html"><span class="doc std std-doc">gm_eda.ipynb</span></a></p></li>
+</ul>
+<p><strong>下巻</strong></p>
+<ul class="simple">
+<li><p>第8回: <a class="reference internal" href="../vol2/01/bar.html"><span class="doc std std-doc">bar.ipynb</span></a>, <a class="reference internal" href="../vol2/01/gbar.html"><span class="doc std std-doc">gbar.ipynb</span></a>, <a class="reference internal" href="../vol2/01/sbar.html"><span class="doc std std-doc">sbar.ipynb</span></a>, <a class="reference internal" href="../vol2/01/heatmap.html"><span class="doc std std-doc">heatmap.ipynb</span></a></p></li>
+<li><p>第9回: <a class="reference internal" href="../vol2/02/hist.html"><span class="doc std std-doc">hist.ipynb</span></a>, <a class="reference internal" href="../vol2/02/density.html"><span class="doc std std-doc">density.ipynb</span></a></p></li>
+<li><p>第10回: <a class="reference internal" href="../vol2/02/box.html"><span class="doc std std-doc">box.ipynb</span></a>, <a class="reference internal" href="../vol2/02/violin.html"><span class="doc std std-doc">violin.ipynb</span></a>, <a class="reference internal" href="../vol2/02/ridge.html"><span class="doc std std-doc">ridge.ipynb</span></a></p></li>
+<li><p>第11回: <a class="reference internal" href="../vol2/03/pie.html"><span class="doc std std-doc">pie.ipynb</span></a>, <a class="reference internal" href="../vol2/03/bar.html"><span class="doc std std-doc">bar.ipynb</span></a>, <a class="reference internal" href="../vol2/03/mosaic.html"><span class="doc std std-doc">mosaic.ipynb</span></a>, <a class="reference internal" href="../vol2/03/tree.html"><span class="doc std std-doc">tree.ipynb</span></a></p></li>
+<li><p>第12回: <a class="reference internal" href="../vol2/04/scatter.html"><span class="doc std std-doc">scatter.ipynb</span></a>, <a class="reference internal" href="../vol2/04/bubble.html"><span class="doc std std-doc">bubble.ipynb</span></a></p></li>
+<li><p>第13回: <a class="reference internal" href="../vol2/04/line.html"><span class="doc std std-doc">line.ipynb</span></a>, <a class="reference internal" href="../vol2/04/connected.html"><span class="doc std std-doc">connected.ipynb</span></a></p></li>
+<li><p>第14回: <a class="reference internal" href="../vol2/05/mix_preprocess.html"><span class="doc std std-doc">mix_preprocess.ipynb</span></a>, <a class="reference internal" href="../vol2/05/eda.html"><span class="doc std std-doc">eda.ipynb</span></a>, <a class="reference internal" href="../vol2/06/amounts.html"><span class="doc std std-doc">amounts.ipynb</span></a>, <a class="reference internal" href="../vol2/06/dists.html"><span class="doc std std-doc">dists.ipynb</span></a>, <a class="reference internal" href="../vol2/06/props.html"><span class="doc std std-doc">props.ipynb</span></a>, <a class="reference internal" href="../vol2/06/assocs.html"><span class="doc std std-doc">assocs.ipynb</span></a></p></li>
+</ul>
+</section>
+<section id="id23">
+<h3>備考<a class="headerlink" href="#id23" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>上下巻の内容を15回に集約しているため、各回の内容は他のパターンより密度が高くなります</p></li>
+<li><p>第2-3回の理論編、第6-7回のツール・データ概要は、ダイジェスト的に扱います</p></li>
+<li><p>受講者の習熟度に応じて、宿題や自習課題として補完することを推奨します</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="id24">
+<h2>発展<a class="headerlink" href="#id24" title="Link to this heading">#</a></h2>
+<p>本カリキュラム修了後の発展として、以下のようなものがありえます：</p>
+<ul class="simple">
+<li><p>学生自身が興味のあるデータを用いた自由課題</p></li>
+<li><p>卒業研究・ゼミ活動でのデータ可視化スキルの応用</p></li>
+<li><p><a class="reference internal" href="setup.html"><span class="doc std std-doc">本書の発展</span></a>セクションを参考にした独自分析</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./appendix"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="setup.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">本書の再現と発展</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="references.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">参考文献</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">共通事項</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">想定受講者</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">授業形態</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">前提条件</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">練習問題の活用</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">例①：上巻のみ（15回）</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">概要</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">到達目標</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">授業計画</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#notebook">参考Notebook</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">備考</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">例②：下巻のみ（15回）</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">概要</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">到達目標</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">授業計画</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">参考Notebook</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">備考</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">例③：上下巻両方（15回）</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">概要</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">到達目標</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">授業計画</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">参考Notebook</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">備考</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">発展</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  © Copyright 2026 by <a rel="kakeami" href="https://github.com/kakeami"> Kakeami </a>. この作品は<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">クリエイティブ・コモンズ 表示 - 非営利 - 改変禁止 4.0 国際 ライセンス</a>の下に提供されています． <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="クリエイティブ・コモンズ・ライセンス" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>　ただし，作品中のコードセル部分は<a rel="license" href="https://opensource.org/licenses/MIT">MITライセンス</a>の下に提供されています．
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
