@@ -7,6 +7,14 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="6章 メディア展開データ分析②" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://kakeami.github.io/vizbook-jupyter/vol2/06/index.html" />
+<meta property="og:site_name" content="データ可視化技術入門" />
+<meta property="og:description" content="メディア展開データを用いて、これまで学んだ可視化手法を総合的に実践します。量・分布・内訳・関係の観点から分析します。,,, セクション, 概要, 主な可視化,,, メディア展開データの量を見る, アニメ化作品数や放送話数の比較, 棒グラフ、ヒートマップ,, メディア展開データの分布を見る, 連載期間や掲載位置の分布分析, ヒストグラム、箱ひげ図,, メディア展開データの内訳を見る, アニメ化..." />
+<meta property="og:image" content="https://kakeami.github.io/vizbook-jupyter/_static/pen.png" />
+<meta property="og:image:alt" content="データ可視化技術入門" />
+<meta name="description" content="メディア展開データを用いて、これまで学んだ可視化手法を総合的に実践します。量・分布・内訳・関係の観点から分析します。,,, セクション, 概要, 主な可視化,,, メディア展開データの量を見る, アニメ化作品数や放送話数の比較, 棒グラフ、ヒートマップ,, メディア展開データの分布を見る, 連載期間や掲載位置の分布分析, ヒストグラム、箱ひげ図,, メディア展開データの内訳を見る, アニメ化..." />
 
     <title>6章 メディア展開データ分析② &#8212; データ可視化技術入門</title>
   
@@ -35,6 +43,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=0265c061" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -57,13 +66,15 @@
     <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'vol2/06/index';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="icon" href="../../_static/pen.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="メディア展開データの量を見る" href="amounts.html" />
-    <link rel="prev" title="【解答例】" href="../05/practice_a.html" />
+    <link rel="prev" title="下巻 第5章 解答例" href="../05/practice_a.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -172,8 +183,8 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../vol1/03/index.html">3章 マンガデータ分析①</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../vol1/03/cm_preprocess.html">マンガデータの前処理</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../vol1/03/eda.html">マンガデータの基礎分析</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../vol1/03/practice_q.html">【練習問題】</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../vol1/03/practice_a.html">【解答例】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol1/03/practice_q.html">❓ 練習問題</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol1/03/practice_a.html">💡 解答例</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../vol1/04/index.html">4章 マンガデータ分析②</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -181,16 +192,16 @@
 <li class="toctree-l2"><a class="reference internal" href="../../vol1/04/dists.html">マンガデータの分布を見る</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../vol1/04/props.html">マンガデータの内訳を見る</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../vol1/04/assocs.html">マンガデータの関係を見る</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../vol1/04/practice_q.html">【練習問題】</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../vol1/04/practice_a.html">【解答例】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol1/04/practice_q.html">❓ 練習問題</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol1/04/practice_a.html">💡 解答例</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../vol1/05/index.html">5章 Python/Pandas/Plotly</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../vol1/05/python.html">Pythonの基本</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../vol1/05/pandas.html">Pandasの基本</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../vol1/05/plotly.html">Plotlyの基本</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../vol1/05/practice_q.html">【練習問題】</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../vol1/05/practice_a.html">【解答例】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol1/05/practice_q.html">❓ 練習問題</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol1/05/practice_a.html">💡 解答例</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../vol1/06/index.html">6章 取得/前処理/基礎分析</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -198,8 +209,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../../vol1/06/an_eda.html">アニメデータの基礎分析</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../vol1/06/gm_preprocess.html">ゲームデータの前処理</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../vol1/06/gm_eda.html">ゲームデータの基礎分析</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../vol1/06/practice_q.html">【練習問題】</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../vol1/06/practice_a.html">【解答例】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol1/06/practice_q.html">❓ 練習問題</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol1/06/practice_a.html">💡 解答例</a></li>
 </ul>
 </details></li>
 </ul>
@@ -210,8 +221,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../01/gbar.html">集合棒グラフ</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../01/sbar.html">積上げ棒グラフ</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../01/heatmap.html">ヒートマップ</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../01/practice_q.html">【練習問題】</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../01/practice_a.html">【解答例】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../01/practice_q.html">❓ 練習問題</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../01/practice_a.html">💡 解答例</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../02/index.html">2章 分布を見る手法</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -220,8 +231,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../02/box.html">箱ひげ図</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../02/violin.html">バイオリンプロット</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../02/ridge.html">リッジラインプロット</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../02/practice_q.html">【練習問題】</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../02/practice_a.html">【解答例】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../02/practice_q.html">❓ 練習問題</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../02/practice_a.html">💡 解答例</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../03/index.html">3章 内訳を見る手法</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -231,8 +242,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../03/area.html">積上げ密度プロット</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../03/tree.html">ツリーマップ</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../03/parallel.html">パラレルセットグラフ</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../03/practice_q.html">【練習問題】</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../03/practice_a.html">【解答例】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../03/practice_q.html">❓ 練習問題</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../03/practice_a.html">💡 解答例</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../04/index.html">4章 関係を見る手法</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -243,15 +254,15 @@
 <li class="toctree-l2"><a class="reference internal" href="../04/contour.html">等値線図</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04/line.html">折れ線グラフ</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04/connected.html">連結散布図</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../04/practice_q.html">【練習問題】</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../04/practice_a.html">【解答例】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04/practice_q.html">❓ 練習問題</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04/practice_a.html">💡 解答例</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../05/index.html">5章 メディア展開データ分析①</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../05/mix_preprocess.html">メディア展開データの前処理</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../05/eda.html">メディア展開データの基礎分析</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../05/practice_q.html">【練習問題】</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../05/practice_a.html">【解答例】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../05/practice_q.html">❓ 練習問題</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../05/practice_a.html">💡 解答例</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">6章 メディア展開データ分析②</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -259,14 +270,16 @@
 <li class="toctree-l2"><a class="reference internal" href="dists.html">メディア展開データの分布を見る</a></li>
 <li class="toctree-l2"><a class="reference internal" href="props.html">メディア展開データの内訳を見る</a></li>
 <li class="toctree-l2"><a class="reference internal" href="assocs.html">メディア展開データの関係を見る</a></li>
-<li class="toctree-l2"><a class="reference internal" href="practice_q.html">【練習問題】</a></li>
-<li class="toctree-l2"><a class="reference internal" href="practice_a.html">【解答例】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="practice_q.html">❓ 練習問題</a></li>
+<li class="toctree-l2"><a class="reference internal" href="practice_a.html">💡 解答例</a></li>
 </ul>
 </details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../appendix/setup.html">本書の再現と発展</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appendix/curriculum.html">本書を用いたカリキュラム例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appendix/practice-index.html">練習問題一覧</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../appendix/references.html">参考文献</a></li>
 </ul>
 
@@ -467,12 +480,38 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
 <h1>6章 メディア展開データ分析②<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
-<ul class="simple">
-<li><p><a class="reference internal" href="amounts.html"><span class="doc std std-doc">メディア展開データの量を見る</span></a></p></li>
-<li><p><a class="reference internal" href="dists.html"><span class="doc std std-doc">メディア展開データの分布を見る</span></a></p></li>
-<li><p><a class="reference internal" href="props.html"><span class="doc std std-doc">メディア展開データの内訳を見る</span></a></p></li>
-<li><p><a class="reference internal" href="assocs.html"><span class="doc std std-doc">メディア展開データの関係を見る</span></a></p></li>
-</ul>
+<p>メディア展開データを用いて、これまで学んだ可視化手法を総合的に実践します。量・分布・内訳・関係の観点から分析します。</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>セクション</p></th>
+<th class="head"><p>概要</p></th>
+<th class="head"><p>主な可視化</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="amounts.html"><span class="doc std std-doc">メディア展開データの量を見る</span></a></p></td>
+<td><p>アニメ化作品数や放送話数の比較</p></td>
+<td><p>棒グラフ、ヒートマップ</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="dists.html"><span class="doc std std-doc">メディア展開データの分布を見る</span></a></p></td>
+<td><p>連載期間や掲載位置の分布分析</p></td>
+<td><p>ヒストグラム、箱ひげ図</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="props.html"><span class="doc std std-doc">メディア展開データの内訳を見る</span></a></p></td>
+<td><p>アニメ化率や雑誌別割合の把握</p></td>
+<td><p>円グラフ、積上げ棒グラフ</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="assocs.html"><span class="doc std std-doc">メディア展開データの関係を見る</span></a></p></td>
+<td><p>掲載特性とアニメ化の関係</p></td>
+<td><p>散布図、等値線図</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>この章の<a class="reference internal" href="practice_q.html"><span class="doc std std-doc">練習問題</span></a>（8問）で理解度を確認できます。</p>
+</div>
 <div class="toctree-wrapper compound">
 </div>
 </section>
@@ -513,7 +552,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">【解答例】</p>
+        <p class="prev-next-title">下巻 第5章 解答例</p>
       </div>
     </a>
     <a class="right-next"

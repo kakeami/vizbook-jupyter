@@ -7,8 +7,16 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="上巻 第4章 練習問題" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://kakeami.github.io/vizbook-jupyter/vol1/04/practice_q.html" />
+<meta property="og:site_name" content="データ可視化技術入門" />
+<meta property="og:description" content="ここでは、 本書の学習内容の定着 を目的とした練習問題を掲載します。 解答・解説は「解答例」ページを参照してください。 なお、問題の性質上、本書で取り上げた処理と重複することがあります。 ご了承ください。 前提: 以下のように、ライブラリのインポートと変数の定義が完了していることを前提とします。 また、本書中で取り上げた以下の関数も、同様に利用可能とします。 以下のようにファイルを読み込んで..." />
+<meta property="og:image" content="https://kakeami.github.io/vizbook-jupyter/_static/pen.png" />
+<meta property="og:image:alt" content="データ可視化技術入門" />
+<meta name="description" content="ここでは、 本書の学習内容の定着 を目的とした練習問題を掲載します。 解答・解説は「解答例」ページを参照してください。 なお、問題の性質上、本書で取り上げた処理と重複することがあります。 ご了承ください。 前提: 以下のように、ライブラリのインポートと変数の定義が完了していることを前提とします。 また、本書中で取り上げた以下の関数も、同様に利用可能とします。 以下のようにファイルを読み込んで..." />
 
-    <title>【練習問題】 &#8212; データ可視化技術入門</title>
+    <title>上巻 第4章 練習問題 &#8212; データ可視化技術入門</title>
   
   
   
@@ -35,6 +43,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=0265c061" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -62,7 +71,7 @@
     <link rel="icon" href="../../_static/pen.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="【解答例】" href="practice_a.html" />
+    <link rel="next" title="上巻 第4章 解答例" href="practice_a.html" />
     <link rel="prev" title="マンガデータの関係を見る" href="assocs.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -172,8 +181,8 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="../03/index.html">3章 マンガデータ分析①</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../03/cm_preprocess.html">マンガデータの前処理</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../03/eda.html">マンガデータの基礎分析</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../03/practice_q.html">【練習問題】</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../03/practice_a.html">【解答例】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../03/practice_q.html">❓ 練習問題</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../03/practice_a.html">💡 解答例</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">4章 マンガデータ分析②</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
@@ -181,16 +190,16 @@
 <li class="toctree-l2"><a class="reference internal" href="dists.html">マンガデータの分布を見る</a></li>
 <li class="toctree-l2"><a class="reference internal" href="props.html">マンガデータの内訳を見る</a></li>
 <li class="toctree-l2"><a class="reference internal" href="assocs.html">マンガデータの関係を見る</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">【練習問題】</a></li>
-<li class="toctree-l2"><a class="reference internal" href="practice_a.html">【解答例】</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">❓ 練習問題</a></li>
+<li class="toctree-l2"><a class="reference internal" href="practice_a.html">💡 解答例</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../05/index.html">5章 Python/Pandas/Plotly</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../05/python.html">Pythonの基本</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../05/pandas.html">Pandasの基本</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../05/plotly.html">Plotlyの基本</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../05/practice_q.html">【練習問題】</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../05/practice_a.html">【解答例】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../05/practice_q.html">❓ 練習問題</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../05/practice_a.html">💡 解答例</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../06/index.html">6章 取得/前処理/基礎分析</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -198,8 +207,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../06/an_eda.html">アニメデータの基礎分析</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../06/gm_preprocess.html">ゲームデータの前処理</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../06/gm_eda.html">ゲームデータの基礎分析</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../06/practice_q.html">【練習問題】</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../06/practice_a.html">【解答例】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../06/practice_q.html">❓ 練習問題</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../06/practice_a.html">💡 解答例</a></li>
 </ul>
 </details></li>
 </ul>
@@ -210,8 +219,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../../vol2/01/gbar.html">集合棒グラフ</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../vol2/01/sbar.html">積上げ棒グラフ</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../vol2/01/heatmap.html">ヒートマップ</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../vol2/01/practice_q.html">【練習問題】</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../vol2/01/practice_a.html">【解答例】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/01/practice_q.html">❓ 練習問題</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/01/practice_a.html">💡 解答例</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../vol2/02/index.html">2章 分布を見る手法</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -220,8 +229,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../../vol2/02/box.html">箱ひげ図</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../vol2/02/violin.html">バイオリンプロット</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../vol2/02/ridge.html">リッジラインプロット</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../vol2/02/practice_q.html">【練習問題】</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../vol2/02/practice_a.html">【解答例】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/02/practice_q.html">❓ 練習問題</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/02/practice_a.html">💡 解答例</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../vol2/03/index.html">3章 内訳を見る手法</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -231,8 +240,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../../vol2/03/area.html">積上げ密度プロット</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../vol2/03/tree.html">ツリーマップ</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../vol2/03/parallel.html">パラレルセットグラフ</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../vol2/03/practice_q.html">【練習問題】</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../vol2/03/practice_a.html">【解答例】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/03/practice_q.html">❓ 練習問題</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/03/practice_a.html">💡 解答例</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../vol2/04/index.html">4章 関係を見る手法</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -243,15 +252,15 @@
 <li class="toctree-l2"><a class="reference internal" href="../../vol2/04/contour.html">等値線図</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../vol2/04/line.html">折れ線グラフ</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../vol2/04/connected.html">連結散布図</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../vol2/04/practice_q.html">【練習問題】</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../vol2/04/practice_a.html">【解答例】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/04/practice_q.html">❓ 練習問題</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/04/practice_a.html">💡 解答例</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../vol2/05/index.html">5章 メディア展開データ分析①</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../vol2/05/mix_preprocess.html">メディア展開データの前処理</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../vol2/05/eda.html">メディア展開データの基礎分析</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../vol2/05/practice_q.html">【練習問題】</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../vol2/05/practice_a.html">【解答例】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/05/practice_q.html">❓ 練習問題</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/05/practice_a.html">💡 解答例</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../vol2/06/index.html">6章 メディア展開データ分析②</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -259,14 +268,16 @@
 <li class="toctree-l2"><a class="reference internal" href="../../vol2/06/dists.html">メディア展開データの分布を見る</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../vol2/06/props.html">メディア展開データの内訳を見る</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../vol2/06/assocs.html">メディア展開データの関係を見る</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../vol2/06/practice_q.html">【練習問題】</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../vol2/06/practice_a.html">【解答例】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/06/practice_q.html">❓ 練習問題</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/06/practice_a.html">💡 解答例</a></li>
 </ul>
 </details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../appendix/setup.html">本書の再現と発展</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appendix/curriculum.html">本書を用いたカリキュラム例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appendix/practice-index.html">練習問題一覧</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../appendix/references.html">参考文献</a></li>
 </ul>
 
@@ -440,7 +451,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -451,11 +464,27 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>【練習問題】</h1>
+    <h1>上巻 第4章 練習問題</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">前提</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vol1-04-q1"><span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">基礎</span> 問題1：合計話数上位10作品</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vol1-04-q2"><span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">基礎</span> 問題2：ページ数の分布</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vol1-04-q3"><span class="sd-sphinx-override sd-badge sd-bg-success sd-bg-text-success">標準</span> 問題3：週刊少年ジャンプの合計話数上位作品</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vol1-04-q4"><span class="sd-sphinx-override sd-badge sd-bg-success sd-bg-text-success">標準</span> 問題4：4色カラー各話のページ数分布</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vol1-04-q5"><span class="sd-sphinx-override sd-badge sd-bg-warning sd-bg-text-warning">発展</span> 問題5：マンガ作者別の合計ページ数</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vol1-04-q6"><span class="sd-sphinx-override sd-badge sd-bg-warning sd-bg-text-warning">発展</span> 問題6：合計話数の累積分布</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vol1-04-q7"><span class="sd-sphinx-override sd-badge sd-bg-warning sd-bg-text-warning">発展</span> 問題7：カラー掲載割合の年代別推移</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vol1-04-q8"><span class="sd-sphinx-override sd-badge sd-bg-danger sd-bg-text-danger">応用</span> 問題8：初回ページ数と掲載位置の関係</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -466,11 +495,394 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>【練習問題】<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>作成中です。出版日（1/22）までに更新予定です。</p>
+<h1>上巻 第4章 練習問題<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p>ここでは、 <strong>本書の学習内容の定着</strong> を目的とした練習問題を掲載します。
+解答・解説は「解答例」ページを参照してください。
+なお、問題の性質上、本書で取り上げた処理と重複することがあります。
+ご了承ください。</p>
+<section id="id2">
+<h2>前提<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>以下のように、ライブラリのインポートと変数の定義が完了していることを前提とします。</p>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># itertoolsモジュールのインポート</span>
+<span class="c1"># 様々なパターンのループを効率的に実行可能</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">itertools</span>
+
+<span class="c1"># pathlibモジュールのインポート</span>
+<span class="c1"># ファイルシステムのパスを扱う</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="c1"># numpy：数値計算ライブラリのインポート</span>
+<span class="c1"># npという名前で参照可能</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># pandas：データ解析ライブラリのインポート</span>
+<span class="c1"># pdという名前で参照可能</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="c1"># plotly.expressのインポート</span>
+<span class="c1"># インタラクティブなグラフ作成のライブラリ</span>
+<span class="c1"># pxという名前で参照可能</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">plotly.express</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">px</span>
+
+<span class="c1"># plotly.graph_objectsからFigureクラスのインポート</span>
+<span class="c1"># 型ヒントの利用を主目的とする</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">plotly.graph_objects</span><span class="w"> </span><span class="kn">import</span> <span class="n">Figure</span>
+</pre></div>
 </div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># データ格納ディレクトリのパス</span>
+<span class="n">DIR_IN</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;../../../data/cm/input&quot;</span><span class="p">)</span>
+
+<span class="c1"># ファイル名の定義</span>
+<span class="n">FN_CE</span> <span class="o">=</span> <span class="s2">&quot;cm_ce.csv&quot;</span>
+<span class="n">FN_CC_CRT</span> <span class="o">=</span> <span class="s2">&quot;cm_cc_crt.csv&quot;</span>
+
+<span class="c1"># plotlyの描画設定の定義</span>
+<span class="c1"># Jupyter Notebook環境のグラフ表示に適切なものを選択</span>
+<span class="n">RENDERER</span> <span class="o">=</span> <span class="s2">&quot;plotly_mimetype+notebook&quot;</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 質的変数の描画用のカラースケールの定義（Okabe and Ito 2008基準）</span>
+<span class="n">OKABE_ITO</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;#000000&quot;</span><span class="p">,</span>  <span class="c1"># 黒 (Black)</span>
+    <span class="s2">&quot;#E69F00&quot;</span><span class="p">,</span>  <span class="c1"># 橙 (Orange)</span>
+    <span class="s2">&quot;#56B4E9&quot;</span><span class="p">,</span>  <span class="c1"># 薄青 (Sky Blue)</span>
+    <span class="s2">&quot;#009E73&quot;</span><span class="p">,</span>  <span class="c1"># 青緑 (Bluish Green)</span>
+    <span class="s2">&quot;#F0E442&quot;</span><span class="p">,</span>  <span class="c1"># 黄色 (Yellow)</span>
+    <span class="s2">&quot;#0072B2&quot;</span><span class="p">,</span>  <span class="c1"># 青 (Blue)</span>
+    <span class="s2">&quot;#D55E00&quot;</span><span class="p">,</span>  <span class="c1"># 赤紫 (Vermilion)</span>
+    <span class="s2">&quot;#CC79A7&quot;</span><span class="p">,</span>  <span class="c1"># 紫 (Reddish Purple)</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<p>また、本書中で取り上げた以下の関数も、同様に利用可能とします。</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">show_fig</span><span class="p">(</span><span class="n">fig</span><span class="p">:</span> <span class="n">Figure</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    所定のレンダラーを用いてplotlyの図を表示</span>
+<span class="sd">    Jupyter Bookなどの環境での正確な表示を目的とする</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    fig : Figure</span>
+<span class="sd">        表示対象のplotly図</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># 図の周囲の余白を設定</span>
+    <span class="c1"># t: 上余白</span>
+    <span class="c1"># l: 左余白</span>
+    <span class="c1"># r: 右余白</span>
+    <span class="c1"># b: 下余白</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">margin</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">l</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">25</span><span class="p">))</span>
+
+    <span class="c1"># 所定のレンダラーで図を表示</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">renderer</span><span class="o">=</span><span class="n">RENDERER</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">add_years_to_df</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">unit_years</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">col_date</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;date&quot;</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    データフレームにunit_years単位で区切った年数を示す新しい列を追加</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    df : pd.DataFrame</span>
+<span class="sd">        入力データフレーム</span>
+<span class="sd">    unit_years : int, optional</span>
+<span class="sd">        年数を区切る単位、デフォルトは10</span>
+<span class="sd">    col_date : str, optional</span>
+<span class="sd">        日付を含むカラム名、デフォルトは &quot;date&quot;</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pd.DataFrame</span>
+<span class="sd">        新しい列が追加されたデータフレーム</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># 入力データフレームをコピー</span>
+    <span class="n">df_new</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="c1"># unit_years単位で年数を区切り、新しい列として追加</span>
+    <span class="n">df_new</span><span class="p">[</span><span class="s2">&quot;years&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df_new</span><span class="p">[</span><span class="n">col_date</span><span class="p">])</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span> <span class="o">//</span> <span class="n">unit_years</span> <span class="o">*</span> <span class="n">unit_years</span>
+    <span class="p">)</span>
+
+    <span class="c1"># &#39;years&#39;列のデータ型を文字列に変更</span>
+    <span class="n">df_new</span><span class="p">[</span><span class="s2">&quot;years&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_new</span><span class="p">[</span><span class="s2">&quot;years&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">df_new</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">resample_df_by_col_and_years</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">col</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    指定されたカラムと年数に基づき、データフレームを再サンプル</span>
+<span class="sd">    colとyearsの全ての組み合わせが存在するように0埋めを行う</span>
+<span class="sd">    この処理は、作図時にX軸方向の順序が変わることを防ぐために必要</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    df : pd.DataFrame</span>
+<span class="sd">        入力データフレーム</span>
+<span class="sd">    col : str</span>
+<span class="sd">        サンプリング対象のカラム名</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pd.DataFrame</span>
+<span class="sd">        再サンプルされたデータフレーム</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># 入力データフレームを新しい変数にコピー</span>
+    <span class="n">df_new</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="c1"># データフレームからユニークな年数一覧を取得</span>
+    <span class="n">unique_years</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;years&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+
+    <span class="c1"># データフレームからユニークなcolの値一覧を取得</span>
+    <span class="n">unique_vals</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+
+    <span class="c1"># 一意なカラムの値と年数の全ての組み合わせに対して処理</span>
+    <span class="k">for</span> <span class="n">val</span><span class="p">,</span> <span class="n">years</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="n">unique_vals</span><span class="p">,</span> <span class="n">unique_years</span><span class="p">):</span>
+        <span class="c1"># 対象のカラムの値と年数が一致するデータを抽出</span>
+        <span class="n">df_tmp</span> <span class="o">=</span> <span class="n">df_new</span><span class="p">[(</span><span class="n">df_new</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">==</span> <span class="n">val</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df_new</span><span class="p">[</span><span class="s2">&quot;years&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">years</span><span class="p">)]</span>
+
+        <span class="c1"># 該当するデータが存在しない場合</span>
+        <span class="k">if</span> <span class="n">df_tmp</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># 0埋めのデータを作成</span>
+            <span class="n">default_data</span> <span class="o">=</span> <span class="p">{</span><span class="n">c</span><span class="p">:</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df_tmp</span><span class="o">.</span><span class="n">columns</span><span class="p">}</span>
+            <span class="c1"># col列についてはvalで埋める</span>
+            <span class="n">default_data</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span>
+            <span class="c1"># years列についてはyearで埋める</span>
+            <span class="n">default_data</span><span class="p">[</span><span class="s2">&quot;years&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">years</span>
+            <span class="c1"># 新たなレコードとして追加</span>
+            <span class="n">df_add</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">default_data</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+            <span class="c1"># 0埋めのデータをデータフレームに追加</span>
+            <span class="n">df_new</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_new</span><span class="p">,</span> <span class="n">df_add</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">df_new</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<p>以下のようにファイルを読み込んでいると仮定します。</p>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># マンガ各話に関するファイルの読み込み</span>
+<span class="n">df_ce</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">DIR_IN</span> <span class="o">/</span> <span class="s2">&quot;cm_ce.csv&quot;</span><span class="p">)</span>
+<span class="c1"># マンガ作品と作者の対応関係に関するファイルの読み込み</span>
+<span class="n">df_cc_crt</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">DIR_IN</span> <span class="o">/</span> <span class="s2">&quot;cm_cc_crt.csv&quot;</span><span class="p">)</span>
+<span class="c1"># date列をdatetime型に変換</span>
+<span class="n">df_ce</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df_ce</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+<section id="vol1-04-q1">
+<span id="id3"></span><h2><span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">基礎</span> 問題1：合計話数上位10作品<a class="headerlink" href="#vol1-04-q1" title="Link to this heading">#</a></h2>
+<p><strong>関連セクション</strong>: <a class="reference internal" href="amounts.html"><span class="doc std std-doc">マンガデータの量を見る</span></a></p>
+<p>本書で紹介したマンガ作品の合計話数ランキングを復習しましょう。
+合計話数が多い上位10作品を横棒グラフで可視化してください。</p>
+<div class="note dropdown admonition">
+<p class="admonition-title">ヒント</p>
+<ul class="simple">
+<li><p>マンガ作品名（<code class="docutils literal notranslate"><span class="pre">ccname</span></code>）ごとにユニークな各話ID（<code class="docutils literal notranslate"><span class="pre">ceid</span></code>）の数をカウントします</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sort_values()</span></code> で降順にソートし、<code class="docutils literal notranslate"><span class="pre">head()</span></code> で上位を抽出します</p></li>
+<li><p>横棒グラフは <code class="docutils literal notranslate"><span class="pre">px.bar()</span></code> で <code class="docutils literal notranslate"><span class="pre">orientation=&quot;h&quot;</span></code> を指定します</p></li>
+</ul>
+</div>
+</section>
+<section id="vol1-04-q2">
+<span id="id4"></span><h2><span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">基礎</span> 問題2：ページ数の分布<a class="headerlink" href="#vol1-04-q2" title="Link to this heading">#</a></h2>
+<p><strong>関連セクション</strong>: <a class="reference internal" href="dists.html"><span class="doc std std-doc">マンガデータの分布を見る</span></a></p>
+<p>マンガ各話のページ数がどのように分布しているかを確認しましょう。
+<code class="docutils literal notranslate"><span class="pre">df_ce</span></code>のページ数（<code class="docutils literal notranslate"><span class="pre">pages</span></code>）のヒストグラムを、ビン数30で作成してください。</p>
+<div class="note dropdown admonition">
+<p class="admonition-title">ヒント</p>
+<ul class="simple">
+<li><p>ヒストグラムは <code class="docutils literal notranslate"><span class="pre">px.histogram()</span></code> で作成します</p></li>
+<li><p>ビン数は <code class="docutils literal notranslate"><span class="pre">nbins</span></code> 引数で指定できます（例: <code class="docutils literal notranslate"><span class="pre">nbins=30</span></code>）</p></li>
+</ul>
+</div>
+</section>
+<section id="vol1-04-q3">
+<span id="id5"></span><h2><span class="sd-sphinx-override sd-badge sd-bg-success sd-bg-text-success">標準</span> 問題3：週刊少年ジャンプの合計話数上位作品<a class="headerlink" href="#vol1-04-q3" title="Link to this heading">#</a></h2>
+<p><strong>関連セクション</strong>: <a class="reference internal" href="amounts.html"><span class="doc std std-doc">マンガデータの量を見る</span></a></p>
+<p>特定の雑誌に絞って分析することで、雑誌ごとの特徴が見えてきます。
+週刊少年ジャンプ（<code class="docutils literal notranslate"><span class="pre">mcname</span></code>が「週刊少年ジャンプ」）のみに絞り、合計話数上位10作品を横棒グラフで可視化してください。</p>
+<div class="note dropdown admonition">
+<p class="admonition-title">ヒント</p>
+<ul class="simple">
+<li><p>まず <code class="docutils literal notranslate"><span class="pre">df_ce[df_ce[&quot;mcname&quot;]</span> <span class="pre">==</span> <span class="pre">&quot;週刊少年ジャンプ&quot;]</span></code> でデータを絞り込みます</p></li>
+<li><p>絞り込んだデータに対して、問題1と同様の集計・可視化を行います</p></li>
+</ul>
+</div>
+</section>
+<section id="vol1-04-q4">
+<span id="id6"></span><h2><span class="sd-sphinx-override sd-badge sd-bg-success sd-bg-text-success">標準</span> 問題4：4色カラー各話のページ数分布<a class="headerlink" href="#vol1-04-q4" title="Link to this heading">#</a></h2>
+<p><strong>関連セクション</strong>: <a class="reference internal" href="dists.html"><span class="doc std std-doc">マンガデータの分布を見る</span></a></p>
+<p>4色カラーで掲載された各話は、通常のモノクロ掲載とはページ数が異なる可能性があります。
+<code class="docutils literal notranslate"><span class="pre">four_colored</span></code>がTrueの各話のみに絞り、ページ数のヒストグラムを作成してください。</p>
+<div class="note dropdown admonition">
+<p class="admonition-title">ヒント</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">df_ce[df_ce[&quot;four_colored&quot;]]</span></code> でカラー各話のみを抽出できます</p></li>
+<li><p>抽出したデータに対して <code class="docutils literal notranslate"><span class="pre">px.histogram()</span></code> でヒストグラムを作成します</p></li>
+</ul>
+</div>
+</section>
+<section id="vol1-04-q5">
+<span id="id7"></span><h2><span class="sd-sphinx-override sd-badge sd-bg-warning sd-bg-text-warning">発展</span> 問題5：マンガ作者別の合計ページ数<a class="headerlink" href="#vol1-04-q5" title="Link to this heading">#</a></h2>
+<p><strong>関連セクション</strong>: <a class="reference internal" href="amounts.html"><span class="doc std std-doc">マンガデータの量を見る</span></a></p>
+<p>マンガ作者<a class="footnote-reference brackets" href="#creator" id="id8" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>がその生涯で「何ページ描いたか」は、その作業量を測る一つの指標となります。
+ページ数という観点から、マンガ作者の <strong>量</strong> を可視化してみましょう。</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">df_ce</span></code> と <code class="docutils literal notranslate"><span class="pre">df_cc_crt</span></code> を <code class="docutils literal notranslate"><span class="pre">ccid</span></code> をキーにマージしてください</p></li>
+<li><p>各マンガ作者（<code class="docutils literal notranslate"><span class="pre">crtname</span></code>）ごとの合計ページ数（<code class="docutils literal notranslate"><span class="pre">pages</span></code>）を集計してください</p></li>
+<li><p>上位15名を横棒グラフで可視化してください</p></li>
+</ul>
+<div class="note dropdown admonition">
+<p class="admonition-title">ヒント</p>
+<ul class="simple">
+<li><p>2つのDataFrameの結合には <code class="docutils literal notranslate"><span class="pre">pd.merge()</span></code> を使用します</p></li>
+<li><p>横棒グラフは <code class="docutils literal notranslate"><span class="pre">px.bar()</span></code> で <code class="docutils literal notranslate"><span class="pre">orientation=&quot;h&quot;</span></code> を指定します</p></li>
+<li><p>ソート後に <code class="docutils literal notranslate"><span class="pre">.head(15)</span></code> で上位15件を取得できます</p></li>
+</ul>
+</div>
+</section>
+<section id="vol1-04-q6">
+<span id="id9"></span><h2><span class="sd-sphinx-override sd-badge sd-bg-warning sd-bg-text-warning">発展</span> 問題6：合計話数の累積分布<a class="headerlink" href="#vol1-04-q6" title="Link to this heading">#</a></h2>
+<p><strong>関連セクション</strong>: <a class="reference internal" href="dists.html"><span class="doc std std-doc">マンガデータの分布を見る</span></a></p>
+<p>マンガ業界、とくに週刊少年誌は非常に厳しい世界です。
+多くの作品が短期間で連載を終える一方で、ごく一部の作品だけが長期連載を勝ち取ります。
+掲載された作品が、どれくらいの話数まで到達できるのか、その生存競争の過酷さを可視化してみましょう。</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">df_ce</span></code> を <code class="docutils literal notranslate"><span class="pre">ccid</span></code>（マンガ作品ID）でグループ化し、各作品の合計話数を集計してください</p></li>
+<li><p>集計した合計話数の累積ヒストグラムを作成してください</p></li>
+<li><p>X軸の範囲を <code class="docutils literal notranslate"><span class="pre">0</span></code> から <code class="docutils literal notranslate"><span class="pre">200</span></code> までに制限してください</p></li>
+</ul>
+<div class="note dropdown admonition">
+<p class="admonition-title">ヒント</p>
+<ul class="simple">
+<li><p>マンガ作品ごとの話数カウントには <code class="docutils literal notranslate"><span class="pre">.groupby(&quot;ccid&quot;)[&quot;ceid&quot;].nunique()</span></code> を使用します</p></li>
+<li><p>累積ヒストグラムは <code class="docutils literal notranslate"><span class="pre">px.histogram()</span></code> で <code class="docutils literal notranslate"><span class="pre">cumulative=True</span></code> を指定します</p></li>
+<li><p>X軸の範囲は <code class="docutils literal notranslate"><span class="pre">.update_xaxes(range=[min,</span> <span class="pre">max])</span></code> で設定できます</p></li>
+</ul>
+</div>
+</section>
+<section id="vol1-04-q7">
+<span id="id10"></span><h2><span class="sd-sphinx-override sd-badge sd-bg-warning sd-bg-text-warning">発展</span> 問題7：カラー掲載割合の年代別推移<a class="headerlink" href="#vol1-04-q7" title="Link to this heading">#</a></h2>
+<p><strong>関連セクション</strong>: <a class="reference internal" href="props.html"><span class="doc std std-doc">マンガデータの内訳を見る</span></a></p>
+<p>時代とともに、マンガ雑誌の「カラー掲載」作品の扱いは変化してきたのでしょうか。
+各年代（<code class="docutils literal notranslate"><span class="pre">years</span></code>）の中で、4色カラー各話が占める割合を比較してみましょう。</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">df_ce</span></code> に <code class="docutils literal notranslate"><span class="pre">add_years_to_df()</span></code> 関数で年代情報を追加してください</p></li>
+<li><p>年代ごとにカラー有無の割合（合計を1.0としたスケーリング）を算出してください</p></li>
+<li><p>積上げ棒グラフを作成し、配色には <code class="docutils literal notranslate"><span class="pre">OKABE_ITO</span></code> カラーパレットを使用してください</p></li>
+</ul>
+<div class="note dropdown admonition">
+<p class="admonition-title">ヒント</p>
+<ul class="simple">
+<li><p>年代とカラー有無で <code class="docutils literal notranslate"><span class="pre">.groupby()</span></code> してカウント後、割合を計算します</p></li>
+<li><p>各年代の合計は <code class="docutils literal notranslate"><span class="pre">.transform(&quot;sum&quot;)</span></code> で各行に付与できます</p></li>
+<li><p>積上げ棒グラフは <code class="docutils literal notranslate"><span class="pre">px.bar()</span></code> で <code class="docutils literal notranslate"><span class="pre">barmode=&quot;stack&quot;</span></code> を指定します</p></li>
+</ul>
+</div>
+</section>
+<section id="vol1-04-q8">
+<span id="id11"></span><h2><span class="sd-sphinx-override sd-badge sd-bg-danger sd-bg-text-danger">応用</span> 問題8：初回ページ数と掲載位置の関係<a class="headerlink" href="#vol1-04-q8" title="Link to this heading">#</a></h2>
+<p><strong>関連セクション</strong>: <a class="reference internal" href="assocs.html"><span class="doc std std-doc">マンガデータの関係を見る</span></a></p>
+<p>新連載がどのような条件でスタートするかは、雑誌ごとの編集戦略の違いを映し出します。
+8話以上継続した作品の「第1話」について、掲載位置とページ数の関係を散布図で可視化しましょう。</p>
+<ul class="simple">
+<li><p>8話以上継続した作品のIDを抽出し、各作品の第1話のみを取得してください</p></li>
+<li><p>掲載位置（<code class="docutils literal notranslate"><span class="pre">page_start_position</span></code>）とページ数（<code class="docutils literal notranslate"><span class="pre">pages</span></code>）の散布図を作成してください</p></li>
+<li><p>雑誌別にファセットを分割し、重なりを防いで各雑誌の傾向を詳しく見られるようにしてください</p></li>
+</ul>
+<div class="note dropdown admonition">
+<p class="admonition-title">ヒント</p>
+<ul class="simple">
+<li><p>作品ごとの話数は <code class="docutils literal notranslate"><span class="pre">.groupby(&quot;ccid&quot;)[&quot;ceid&quot;].nunique()</span></code> でカウントできます</p></li>
+<li><p>第1話の抽出は <code class="docutils literal notranslate"><span class="pre">.sort_values([&quot;ccid&quot;,</span> <span class="pre">&quot;date&quot;]).groupby(&quot;ccid&quot;).head(1)</span></code> で実現できます</p></li>
+<li><p>ファセット分割は <code class="docutils literal notranslate"><span class="pre">px.scatter()</span></code> の <code class="docutils literal notranslate"><span class="pre">facet_col</span></code> 引数で指定します</p></li>
+</ul>
+</div>
+<hr class="footnotes docutils" />
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="creator" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id8">1</a><span class="fn-bracket">]</span></span>
+<p>なお、本書ではマンガ製作（制作）に携わる方の役割（企画、原作、作画等）をとくに区別せずに「マンガ作者」として表現します。</p>
+</aside>
+</aside>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -517,7 +929,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">【解答例】</p>
+        <p class="prev-next-title">上巻 第4章 解答例</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -527,6 +939,29 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">前提</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vol1-04-q1"><span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">基礎</span> 問題1：合計話数上位10作品</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vol1-04-q2"><span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">基礎</span> 問題2：ページ数の分布</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vol1-04-q3"><span class="sd-sphinx-override sd-badge sd-bg-success sd-bg-text-success">標準</span> 問題3：週刊少年ジャンプの合計話数上位作品</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vol1-04-q4"><span class="sd-sphinx-override sd-badge sd-bg-success sd-bg-text-success">標準</span> 問題4：4色カラー各話のページ数分布</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vol1-04-q5"><span class="sd-sphinx-override sd-badge sd-bg-warning sd-bg-text-warning">発展</span> 問題5：マンガ作者別の合計ページ数</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vol1-04-q6"><span class="sd-sphinx-override sd-badge sd-bg-warning sd-bg-text-warning">発展</span> 問題6：合計話数の累積分布</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vol1-04-q7"><span class="sd-sphinx-override sd-badge sd-bg-warning sd-bg-text-warning">発展</span> 問題7：カラー掲載割合の年代別推移</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vol1-04-q8"><span class="sd-sphinx-override sd-badge sd-bg-danger sd-bg-text-danger">応用</span> 問題8：初回ページ数と掲載位置の関係</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

@@ -7,8 +7,16 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="上巻 第6章 練習問題" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://kakeami.github.io/vizbook-jupyter/vol1/06/practice_q.html" />
+<meta property="og:site_name" content="データ可視化技術入門" />
+<meta property="og:description" content="ここでは、 本書の学習内容の定着 を目的とした練習問題を掲載します。 解答・解説は「解答例」ページを参照してください。 なお、問題の性質上、本書で取り上げた処理と重複することがあります。 ご了承ください。 前提: 以下のように、ライブラリのインポートと変数の定義が完了していることを前提とします。 以下のファイルを読み込み済みと仮定します。 基礎 問題1：特定列のユニーク値数の確認: 関連セク..." />
+<meta property="og:image" content="https://kakeami.github.io/vizbook-jupyter/_static/pen.png" />
+<meta property="og:image:alt" content="データ可視化技術入門" />
+<meta name="description" content="ここでは、 本書の学習内容の定着 を目的とした練習問題を掲載します。 解答・解説は「解答例」ページを参照してください。 なお、問題の性質上、本書で取り上げた処理と重複することがあります。 ご了承ください。 前提: 以下のように、ライブラリのインポートと変数の定義が完了していることを前提とします。 以下のファイルを読み込み済みと仮定します。 基礎 問題1：特定列のユニーク値数の確認: 関連セク..." />
 
-    <title>【練習問題】 &#8212; データ可視化技術入門</title>
+    <title>上巻 第6章 練習問題 &#8212; データ可視化技術入門</title>
   
   
   
@@ -35,6 +43,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=0265c061" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -62,7 +71,7 @@
     <link rel="icon" href="../../_static/pen.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="【解答例】" href="practice_a.html" />
+    <link rel="next" title="上巻 第6章 解答例" href="practice_a.html" />
     <link rel="prev" title="ゲームデータの基礎分析" href="gm_eda.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -172,8 +181,8 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="../03/index.html">3章 マンガデータ分析①</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../03/cm_preprocess.html">マンガデータの前処理</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../03/eda.html">マンガデータの基礎分析</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../03/practice_q.html">【練習問題】</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../03/practice_a.html">【解答例】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../03/practice_q.html">❓ 練習問題</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../03/practice_a.html">💡 解答例</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../04/index.html">4章 マンガデータ分析②</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -181,16 +190,16 @@
 <li class="toctree-l2"><a class="reference internal" href="../04/dists.html">マンガデータの分布を見る</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04/props.html">マンガデータの内訳を見る</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04/assocs.html">マンガデータの関係を見る</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../04/practice_q.html">【練習問題】</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../04/practice_a.html">【解答例】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04/practice_q.html">❓ 練習問題</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04/practice_a.html">💡 解答例</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../05/index.html">5章 Python/Pandas/Plotly</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../05/python.html">Pythonの基本</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../05/pandas.html">Pandasの基本</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../05/plotly.html">Plotlyの基本</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../05/practice_q.html">【練習問題】</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../05/practice_a.html">【解答例】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../05/practice_q.html">❓ 練習問題</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../05/practice_a.html">💡 解答例</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">6章 取得/前処理/基礎分析</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
@@ -198,8 +207,8 @@
 <li class="toctree-l2"><a class="reference internal" href="an_eda.html">アニメデータの基礎分析</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gm_preprocess.html">ゲームデータの前処理</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gm_eda.html">ゲームデータの基礎分析</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">【練習問題】</a></li>
-<li class="toctree-l2"><a class="reference internal" href="practice_a.html">【解答例】</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">❓ 練習問題</a></li>
+<li class="toctree-l2"><a class="reference internal" href="practice_a.html">💡 解答例</a></li>
 </ul>
 </details></li>
 </ul>
@@ -210,8 +219,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../../vol2/01/gbar.html">集合棒グラフ</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../vol2/01/sbar.html">積上げ棒グラフ</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../vol2/01/heatmap.html">ヒートマップ</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../vol2/01/practice_q.html">【練習問題】</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../vol2/01/practice_a.html">【解答例】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/01/practice_q.html">❓ 練習問題</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/01/practice_a.html">💡 解答例</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../vol2/02/index.html">2章 分布を見る手法</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -220,8 +229,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../../vol2/02/box.html">箱ひげ図</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../vol2/02/violin.html">バイオリンプロット</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../vol2/02/ridge.html">リッジラインプロット</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../vol2/02/practice_q.html">【練習問題】</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../vol2/02/practice_a.html">【解答例】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/02/practice_q.html">❓ 練習問題</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/02/practice_a.html">💡 解答例</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../vol2/03/index.html">3章 内訳を見る手法</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -231,8 +240,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../../vol2/03/area.html">積上げ密度プロット</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../vol2/03/tree.html">ツリーマップ</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../vol2/03/parallel.html">パラレルセットグラフ</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../vol2/03/practice_q.html">【練習問題】</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../vol2/03/practice_a.html">【解答例】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/03/practice_q.html">❓ 練習問題</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/03/practice_a.html">💡 解答例</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../vol2/04/index.html">4章 関係を見る手法</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -243,15 +252,15 @@
 <li class="toctree-l2"><a class="reference internal" href="../../vol2/04/contour.html">等値線図</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../vol2/04/line.html">折れ線グラフ</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../vol2/04/connected.html">連結散布図</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../vol2/04/practice_q.html">【練習問題】</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../vol2/04/practice_a.html">【解答例】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/04/practice_q.html">❓ 練習問題</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/04/practice_a.html">💡 解答例</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../vol2/05/index.html">5章 メディア展開データ分析①</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../vol2/05/mix_preprocess.html">メディア展開データの前処理</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../vol2/05/eda.html">メディア展開データの基礎分析</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../vol2/05/practice_q.html">【練習問題】</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../vol2/05/practice_a.html">【解答例】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/05/practice_q.html">❓ 練習問題</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/05/practice_a.html">💡 解答例</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../vol2/06/index.html">6章 メディア展開データ分析②</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -259,14 +268,16 @@
 <li class="toctree-l2"><a class="reference internal" href="../../vol2/06/dists.html">メディア展開データの分布を見る</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../vol2/06/props.html">メディア展開データの内訳を見る</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../vol2/06/assocs.html">メディア展開データの関係を見る</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../vol2/06/practice_q.html">【練習問題】</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../vol2/06/practice_a.html">【解答例】</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/06/practice_q.html">❓ 練習問題</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vol2/06/practice_a.html">💡 解答例</a></li>
 </ul>
 </details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../appendix/setup.html">本書の再現と発展</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appendix/curriculum.html">本書を用いたカリキュラム例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appendix/practice-index.html">練習問題一覧</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../appendix/references.html">参考文献</a></li>
 </ul>
 
@@ -440,7 +451,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -451,11 +464,26 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>【練習問題】</h1>
+    <h1>上巻 第6章 練習問題</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">前提</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vol1-06-q1"><span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">基礎</span> 問題1：特定列のユニーク値数の確認</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vol1-06-q2"><span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">基礎</span> 問題2：声優データの活動期間の確認</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vol1-06-q3"><span class="sd-sphinx-override sd-badge sd-bg-success sd-bg-text-success">標準</span> 問題3：特定プラットフォームに絞った価格統計</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vol1-06-q4"><span class="sd-sphinx-override sd-badge sd-bg-success sd-bg-text-success">標準</span> 問題4：特定年代に絞ったアニメ作品数</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vol1-06-q5"><span class="sd-sphinx-override sd-badge sd-bg-warning sd-bg-text-warning">発展</span> 問題5：放送日データの空白期間の特定</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vol1-06-q6"><span class="sd-sphinx-override sd-badge sd-bg-danger sd-bg-text-danger">応用</span> 問題6：年代別の声優カバー率</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vol1-06-q7"><span class="sd-sphinx-override sd-badge sd-bg-danger sd-bg-text-danger">応用</span> 問題7：マルチプラットフォーム展開のペア分析</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -466,11 +494,217 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>【練習問題】<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>作成中です。出版日（1/22）までに更新予定です。</p>
+<h1>上巻 第6章 練習問題<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p>ここでは、 <strong>本書の学習内容の定着</strong> を目的とした練習問題を掲載します。
+解答・解説は「解答例」ページを参照してください。
+なお、問題の性質上、本書で取り上げた処理と重複することがあります。
+ご了承ください。</p>
+<section id="id2">
+<h2>前提<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>以下のように、ライブラリのインポートと変数の定義が完了していることを前提とします。</p>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># pathlibモジュールのインポート</span>
+<span class="c1"># ファイルシステムのパスを扱う</span>
+<span class="c1"># 組み合わせを生成するためのitertoolsをインポート</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">itertools</span><span class="w"> </span><span class="kn">import</span> <span class="n">combinations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="c1"># pandas：データ解析ライブラリのインポート</span>
+<span class="c1"># pdという名前で参照可能</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="c1"># plotly.expressのインポート</span>
+<span class="c1"># インタラクティブなグラフ作成のライブラリ</span>
+<span class="c1"># pxという名前で参照可能</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">plotly.express</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">px</span>
+
+<span class="c1"># plotly.graph_objectsからFigureクラスのインポート</span>
+<span class="c1"># 型ヒントの利用を主目的とする</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">plotly.graph_objects</span><span class="w"> </span><span class="kn">import</span> <span class="n">Figure</span>
+</pre></div>
 </div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># アニメ・ゲームの基礎分析済みデータを読み込み</span>
+<span class="n">DIR_AN_IN</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;../../../data/an/input&quot;</span><span class="p">)</span>  <span class="c1"># アニメデータ</span>
+<span class="n">DIR_GM_IN</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;../../../data/gm/input&quot;</span><span class="p">)</span>  <span class="c1"># ゲームデータ</span>
+
+<span class="c1"># アニメ各話に関するファイル</span>
+<span class="n">FN_AE</span> <span class="o">=</span> <span class="s2">&quot;an_ae.csv&quot;</span>
+<span class="c1"># アニメ作品と声優の対応関係に関するファイル</span>
+<span class="n">FN_AC_ACT</span> <span class="o">=</span> <span class="s2">&quot;an_ac_act.csv&quot;</span>
+
+<span class="c1"># ゲームパッケージとプラットフォームの対応関係に関するファイル</span>
+<span class="n">FN_PKG_PF</span> <span class="o">=</span> <span class="s2">&quot;gm_pkg_pf.csv&quot;</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<p>以下のファイルを読み込み済みと仮定します。</p>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_ae</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">DIR_AN_IN</span> <span class="o">/</span> <span class="n">FN_AE</span><span class="p">)</span>  <span class="c1"># アニメ各話データ</span>
+<span class="n">df_ac_act</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">DIR_AN_IN</span> <span class="o">/</span> <span class="n">FN_AC_ACT</span><span class="p">)</span>  <span class="c1"># アニメ作品と声優</span>
+<span class="n">df_pkg_pf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">DIR_GM_IN</span> <span class="o">/</span> <span class="n">FN_PKG_PF</span><span class="p">)</span>  <span class="c1"># ゲームパッケージとプラットフォーム</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 日付列をdatetime型に変換</span>
+<span class="n">df_ae</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df_ae</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">])</span>
+<span class="n">df_ac_act</span><span class="p">[</span><span class="s2">&quot;first_date&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df_ac_act</span><span class="p">[</span><span class="s2">&quot;first_date&quot;</span><span class="p">])</span>
+<span class="n">df_ac_act</span><span class="p">[</span><span class="s2">&quot;last_date&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df_ac_act</span><span class="p">[</span><span class="s2">&quot;last_date&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+<section id="vol1-06-q1">
+<span id="id3"></span><h2><span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">基礎</span> 問題1：特定列のユニーク値数の確認<a class="headerlink" href="#vol1-06-q1" title="Link to this heading">#</a></h2>
+<p><strong>関連セクション</strong>: <a class="reference internal" href="gm_eda.html"><span class="doc std std-doc">ゲームデータの基礎分析</span></a></p>
+<p>本書では <code class="docutils literal notranslate"><span class="pre">df_pkg_pf.nunique()</span></code> を用いて全列のユニーク値数を確認しました。
+ここでは、特定の列（<code class="docutils literal notranslate"><span class="pre">pfname</span></code> と <code class="docutils literal notranslate"><span class="pre">publisher</span></code>）に絞ってユニーク値数を確認してみましょう。</p>
+<p><code class="docutils literal notranslate"><span class="pre">df_pkg_pf</span></code> から <code class="docutils literal notranslate"><span class="pre">pfname</span></code> 列と <code class="docutils literal notranslate"><span class="pre">publisher</span></code> 列を選択し、それぞれのユニーク値数を表示してください。</p>
+<div class="note dropdown admonition">
+<p class="admonition-title">ヒント</p>
+<ul class="simple">
+<li><p>DataFrameから複数列を選択するには <code class="docutils literal notranslate"><span class="pre">df[[&quot;列名1&quot;,</span> <span class="pre">&quot;列名2&quot;]]</span></code> のようにリストで指定します</p></li>
+<li><p>例えば <code class="docutils literal notranslate"><span class="pre">pkgname</span></code> と <code class="docutils literal notranslate"><span class="pre">date</span></code> 列のユニーク値数を確認するには <code class="docutils literal notranslate"><span class="pre">df_pkg_pf[[&quot;pkgname&quot;,</span> <span class="pre">&quot;date&quot;]].nunique()</span></code> とします</p></li>
+</ul>
+</div>
+</section>
+<section id="vol1-06-q2">
+<span id="id4"></span><h2><span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">基礎</span> 問題2：声優データの活動期間の確認<a class="headerlink" href="#vol1-06-q2" title="Link to this heading">#</a></h2>
+<p><strong>関連セクション</strong>: <a class="reference internal" href="an_eda.html"><span class="doc std std-doc">アニメデータの基礎分析</span></a></p>
+<p>本書では <code class="docutils literal notranslate"><span class="pre">df_ae[&quot;date&quot;]</span></code> 列の最小値と最大値を確認して、アニメ各話の放送期間を把握しました。
+ここでは、声優データ（<code class="docutils literal notranslate"><span class="pre">df_ac_act</span></code>）の <code class="docutils literal notranslate"><span class="pre">first_date</span></code> 列と <code class="docutils literal notranslate"><span class="pre">last_date</span></code> 列の範囲を確認してみましょう。</p>
+<p><code class="docutils literal notranslate"><span class="pre">df_ac_act</span></code> の <code class="docutils literal notranslate"><span class="pre">first_date</span></code> 列と <code class="docutils literal notranslate"><span class="pre">last_date</span></code> 列それぞれについて、最小値と最大値を表示してください。</p>
+<div class="note dropdown admonition">
+<p class="admonition-title">ヒント</p>
+<ul class="simple">
+<li><p>日付列の最小値・最大値は <code class="docutils literal notranslate"><span class="pre">.min()</span></code> と <code class="docutils literal notranslate"><span class="pre">.max()</span></code> で取得できます</p></li>
+<li><p>例えば <code class="docutils literal notranslate"><span class="pre">df_ae[&quot;date&quot;].min()</span></code> のように使用します</p></li>
+</ul>
+</div>
+</section>
+<section id="vol1-06-q3">
+<span id="id5"></span><h2><span class="sd-sphinx-override sd-badge sd-bg-success sd-bg-text-success">標準</span> 問題3：特定プラットフォームに絞った価格統計<a class="headerlink" href="#vol1-06-q3" title="Link to this heading">#</a></h2>
+<p><strong>関連セクション</strong>: <a class="reference internal" href="gm_eda.html"><span class="doc std std-doc">ゲームデータの基礎分析</span></a></p>
+<p>本文では <code class="docutils literal notranslate"><span class="pre">df_pkg_pf.describe()</span></code> を用いて全データの価格統計を確認しました。
+ここでは、特定のプラットフォーム（プレイステーション2）に絞って価格の統計を確認してみましょう。</p>
+<p><code class="docutils literal notranslate"><span class="pre">df_pkg_pf</span></code> から <code class="docutils literal notranslate"><span class="pre">pfname</span></code> が「プレイステーション2」のデータのみを抽出し、<code class="docutils literal notranslate"><span class="pre">price</span></code> 列の記述統計量を表示してください。</p>
+<div class="note dropdown admonition">
+<p class="admonition-title">ヒント</p>
+<ul class="simple">
+<li><p>特定の条件でデータを絞り込むにはブールインデックスを使用します</p></li>
+<li><p>例えば <code class="docutils literal notranslate"><span class="pre">pfname</span></code> が「プレイステーション」のデータを抽出するには <code class="docutils literal notranslate"><span class="pre">df_pkg_pf[df_pkg_pf[&quot;pfname&quot;]</span> <span class="pre">==</span> <span class="pre">&quot;プレイステーション&quot;]</span></code> とします</p></li>
+<li><p>記述統計量は <code class="docutils literal notranslate"><span class="pre">.describe()</span></code> で確認できます</p></li>
+</ul>
+</div>
+</section>
+<section id="vol1-06-q4">
+<span id="id6"></span><h2><span class="sd-sphinx-override sd-badge sd-bg-success sd-bg-text-success">標準</span> 問題4：特定年代に絞ったアニメ作品数<a class="headerlink" href="#vol1-06-q4" title="Link to this heading">#</a></h2>
+<p><strong>関連セクション</strong>: <a class="reference internal" href="an_eda.html"><span class="doc std std-doc">アニメデータの基礎分析</span></a></p>
+<p>本文で確認したように、アニメデータは1990年以前に大きな欠損があります。
+ここでは、十分余裕を持たせて2000年以降のデータに絞って分析を行ってみましょう。</p>
+<p><code class="docutils literal notranslate"><span class="pre">df_ae</span></code> から2000年以降のデータのみを抽出し、年ごとのユニークなアニメ作品数（<code class="docutils literal notranslate"><span class="pre">acid</span></code>）を集計して、作品数が多い順に上位10件を表示してください。</p>
+<div class="note dropdown admonition">
+<p class="admonition-title">ヒント</p>
+<ul class="simple">
+<li><p>日付から年を取得するには <code class="docutils literal notranslate"><span class="pre">.dt.year</span></code> を使用します</p></li>
+<li><p>2000年以降のデータを抽出するには <code class="docutils literal notranslate"><span class="pre">df_ae[df_ae[&quot;date&quot;].dt.year</span> <span class="pre">&gt;=</span> <span class="pre">2000]</span></code> とします</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.groupby()</span></code> と <code class="docutils literal notranslate"><span class="pre">.nunique()</span></code> で年ごとのユニーク数を集計し、<code class="docutils literal notranslate"><span class="pre">.sort_values(ascending=False)</span></code> で降順ソートできます</p></li>
+</ul>
+</div>
+</section>
+<section id="vol1-06-q5">
+<span id="id7"></span><h2><span class="sd-sphinx-override sd-badge sd-bg-warning sd-bg-text-warning">発展</span> 問題5：放送日データの空白期間の特定<a class="headerlink" href="#vol1-06-q5" title="Link to this heading">#</a></h2>
+<p><strong>関連セクション</strong>: <a class="reference internal" href="an_eda.html"><span class="doc std std-doc">アニメデータの基礎分析</span></a></p>
+<p>第6章で触れた通り、アニメデータには特定の期間に大規模な欠損が見られます。
+単純に <code class="docutils literal notranslate"><span class="pre">groupby</span></code> で集計すると「データが0件の年」は結果から消えてしまい、欠損の深刻さを見落とす可能性があります。</p>
+<ul class="simple">
+<li><p>データの最小年から最大年までの全ての年を含む「枠（レンジ）」を作成してください</p></li>
+<li><p>それに対して <code class="docutils literal notranslate"><span class="pre">df_ae</span></code> の作品数を紐付けてください</p></li>
+<li><p>完全にデータが欠損している年を列挙してください。</p></li>
+</ul>
+<p>なお、ここでは簡単のため「当該年にそもそもアニメが放送されていたかどうか（つまり0が正解かどうか）」には深入りしません。
+実態は別として、 <strong>データとして</strong> アニメ作品数が0の年を抽出しましょう。</p>
+<div class="note dropdown admonition">
+<p class="admonition-title">ヒント</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">range(min_year,</span> <span class="pre">max_year</span> <span class="pre">+</span> <span class="pre">1)</span></code> で全年のリストを作成できます</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pd.merge()</span></code> の <code class="docutils literal notranslate"><span class="pre">how=&quot;left&quot;</span></code> で欠損年も保持したまま結合できます</p></li>
+<li><p>欠損値は <code class="docutils literal notranslate"><span class="pre">.fillna(0)</span></code> で0に置き換えられます</p></li>
+</ul>
+</div>
+</section>
+<section id="vol1-06-q6">
+<span id="id8"></span><h2><span class="sd-sphinx-override sd-badge sd-bg-danger sd-bg-text-danger">応用</span> 問題6：年代別の声優カバー率<a class="headerlink" href="#vol1-06-q6" title="Link to this heading">#</a></h2>
+<p><strong>関連セクション</strong>: <a class="reference internal" href="an_eda.html"><span class="doc std std-doc">アニメデータの基礎分析</span></a></p>
+<p>本書で扱うアニメ作品データの中には、声優情報に欠損があるものも含まれます。
+どの時代の分析にこのデータが適しているのか、その限界を明らかにしましょう。</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">first_date</span></code> を利用して作品を「年代（10年単位）」ごとに分類してください</p></li>
+<li><p>年代別に「総作品数」と「声優情報あり作品数」を集計してください</p></li>
+<li><p>年代別の声優データカバー率を算出してください</p></li>
+</ul>
+<div class="note dropdown admonition">
+<p class="admonition-title">ヒント</p>
+<ul class="simple">
+<li><p>年代は <code class="docutils literal notranslate"><span class="pre">(year</span> <span class="pre">//</span> <span class="pre">10)</span> <span class="pre">*</span> <span class="pre">10</span></code> で計算できます（例: 1995 → 1990）</p></li>
+<li><p>声優情報の有無は <code class="docutils literal notranslate"><span class="pre">df_ac_act</span></code> に <code class="docutils literal notranslate"><span class="pre">acid</span></code> が存在するかでフラグ化できます</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.agg()</span></code> で複数の集計を一度に実行できます</p></li>
+</ul>
+</div>
+</section>
+<section id="vol1-06-q7">
+<span id="id9"></span><h2><span class="sd-sphinx-override sd-badge sd-bg-danger sd-bg-text-danger">応用</span> 問題7：マルチプラットフォーム展開のペア分析<a class="headerlink" href="#vol1-06-q7" title="Link to this heading">#</a></h2>
+<p><strong>関連セクション</strong>: <a class="reference internal" href="gm_eda.html"><span class="doc std std-doc">ゲームデータの基礎分析</span></a></p>
+<p>ゲーム業界において、複数のプラットフォームで同一タイトルが展開されることは珍しくありません。
+どのような組み合わせが多いのか、「プラットフォームのペア」を分析してみましょう。</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">df_pkg_pf</span></code> において、2つ以上のプラットフォームで発売されているタイトルを対象にしてください</p></li>
+<li><p>タイトルが3機種以上に展開されている場合、全ての2機種の組み合わせを個別にカウントしてください</p></li>
+<li><p>最も頻出するプラットフォームのペアの上位10件を表示してください</p></li>
+</ul>
+<div class="note dropdown admonition">
+<p class="admonition-title">ヒント</p>
+<ul class="simple">
+<li><p>タイトル（<code class="docutils literal notranslate"><span class="pre">pkgname</span></code>）ごとにプラットフォームのリストを <code class="docutils literal notranslate"><span class="pre">.unique()</span></code> で取得できます</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">itertools.combinations()</span></code> で2つの組み合わせを生成できます</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.value_counts()</span></code> で出現回数をカウントできます</p></li>
+</ul>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -517,7 +751,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">【解答例】</p>
+        <p class="prev-next-title">上巻 第6章 解答例</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -527,6 +761,28 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">前提</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vol1-06-q1"><span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">基礎</span> 問題1：特定列のユニーク値数の確認</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vol1-06-q2"><span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">基礎</span> 問題2：声優データの活動期間の確認</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vol1-06-q3"><span class="sd-sphinx-override sd-badge sd-bg-success sd-bg-text-success">標準</span> 問題3：特定プラットフォームに絞った価格統計</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vol1-06-q4"><span class="sd-sphinx-override sd-badge sd-bg-success sd-bg-text-success">標準</span> 問題4：特定年代に絞ったアニメ作品数</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vol1-06-q5"><span class="sd-sphinx-override sd-badge sd-bg-warning sd-bg-text-warning">発展</span> 問題5：放送日データの空白期間の特定</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vol1-06-q6"><span class="sd-sphinx-override sd-badge sd-bg-danger sd-bg-text-danger">応用</span> 問題6：年代別の声優カバー率</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vol1-06-q7"><span class="sd-sphinx-override sd-badge sd-bg-danger sd-bg-text-danger">応用</span> 問題7：マルチプラットフォーム展開のペア分析</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

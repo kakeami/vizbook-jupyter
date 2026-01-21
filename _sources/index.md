@@ -1,7 +1,7 @@
 # データ可視化技術入門
 
-こちらは、
-書籍「データ可視化技術入門」中に登場するソースコードを公開するサイトです。
+このサイトでは、
+書籍「データ可視化技術入門」の再現環境、データ、そして練習問題を公開します。
 
 ## この本について
 
@@ -12,28 +12,31 @@
 :gutter: 3
 
 :::{grid-item-card}
-:link: https://gihyo.jp/book/2026/978-4-297-15271-0
+:link: https://gihyo.jp/book
 :class-header: bg-light
 
 **上巻**：データを見る力・見せる技術
 ^^^
-```{image} images/index/vol1.png
+```{image} images/index/vol1.jpg
 :height: 200
 ```
 :::
 
 :::{grid-item-card}
-:link: https://gihyo.jp/book/2026/978-4-297-15273-4
+:link: https://gihyo.jp/book
 :class-header: bg-light
 
 **下巻**：データを問う力・伝える技術
 ^^^
-```{image} images/index/vol2.png
+```{image} images/index/vol2.jpg
 :height: 200
 ```
 :::
 ::::
 
+<!-- TODO
+書影、リンク先、タイトルを更新
+-->
 
 上巻は3部構成です。
 
@@ -61,7 +64,9 @@
 
 ## このサイトについて
 
-このサイトは、本書で紹介したソースコードを公開することを目的にしています。
+このサイトは、本書で紹介したソースコードを公開・解説することを目的にしています。
+また、各章末には**本サイト限定の練習問題**（全74問）を掲載しています。
+難易度別に整理された[練習問題一覧](./appendix/practice-index)もご活用ください。
 
 ### 上巻
 
