@@ -89,3 +89,4 @@ uc-micro-py==1.0.3
 urllib3==2.3.0
 wcwidth==0.2.5
 zipp==3.21.0
+sphinxext-opengraph==0.13.0

@@ -20,10 +20,16 @@ mypy_files.txt
 
 # --- Jupyter Book (Sphinx) ---
 _build/
+book/_build/
 *.doctree
+.jupyter_cache/
 
 # --- Project Specific (Private/Temp) ---
 private/
 refs/
 config.json
 *.pptx
+
+# --- Claude Code ---
+.claude/
+CLAUDE.md

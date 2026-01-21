@@ -12,7 +12,9 @@ parts:
       - file: vol1/03/cm_preprocess
       - file: vol1/03/eda
       - file: vol1/03/practice_q
+        title: ❓ 練習問題
       - file: vol1/03/practice_a
+        title: 💡 解答例
     - file: vol1/04/index
       sections:
       - file: vol1/04/amounts
@@ -20,14 +22,18 @@ parts:
       - file: vol1/04/props
       - file: vol1/04/assocs
       - file: vol1/04/practice_q
+        title: ❓ 練習問題
       - file: vol1/04/practice_a
+        title: 💡 解答例
     - file: vol1/05/index
       sections:
       - file: vol1/05/python
       - file: vol1/05/pandas
       - file: vol1/05/plotly
       - file: vol1/05/practice_q
+        title: ❓ 練習問題
       - file: vol1/05/practice_a
+        title: 💡 解答例
     - file: vol1/06/index
       sections:
       - file: vol1/06/an_preprocess
@@ -35,7 +41,9 @@ parts:
       - file: vol1/06/gm_preprocess
       - file: vol1/06/gm_eda
       - file: vol1/06/practice_q
+        title: ❓ 練習問題
       - file: vol1/06/practice_a
+        title: 💡 解答例
   - caption: 下巻
     numbered: False
     chapters:
@@ -46,7 +54,9 @@ parts:
       - file: vol2/01/sbar
       - file: vol2/01/heatmap
       - file: vol2/01/practice_q
+        title: ❓ 練習問題
       - file: vol2/01/practice_a
+        title: 💡 解答例
     - file: vol2/02/index
       sections:
       - file: vol2/02/hist
@@ -55,7 +65,9 @@ parts:
       - file: vol2/02/violin
       - file: vol2/02/ridge
       - file: vol2/02/practice_q
+        title: ❓ 練習問題
       - file: vol2/02/practice_a
+        title: 💡 解答例
     - file: vol2/03/index
       sections:
       - file: vol2/03/pie
@@ -65,7 +77,9 @@ parts:
       - file: vol2/03/tree
       - file: vol2/03/parallel
       - file: vol2/03/practice_q
+        title: ❓ 練習問題
       - file: vol2/03/practice_a
+        title: 💡 解答例
     - file: vol2/04/index
       sections:
       - file: vol2/04/scatter
@@ -76,13 +90,17 @@ parts:
       - file: vol2/04/line
       - file: vol2/04/connected
       - file: vol2/04/practice_q
+        title: ❓ 練習問題
       - file: vol2/04/practice_a
+        title: 💡 解答例
     - file: vol2/05/index
       sections:
       - file: vol2/05/mix_preprocess
       - file: vol2/05/eda
       - file: vol2/05/practice_q
+        title: ❓ 練習問題
       - file: vol2/05/practice_a
+        title: 💡 解答例
     - file: vol2/06/index
       sections:
       - file: vol2/06/amounts
@@ -90,10 +108,13 @@ parts:
       - file: vol2/06/props
       - file: vol2/06/assocs
       - file: vol2/06/practice_q
+        title: ❓ 練習問題
       - file: vol2/06/practice_a
+        title: 💡 解答例
   - caption: Appendix
     numbered: False
     chapters:
     - file: appendix/setup
     - file: appendix/curriculum
+    - file: appendix/practice-index
     - file: appendix/references
