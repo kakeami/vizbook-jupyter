@@ -33,3 +33,13 @@ config.json
 # --- Claude Code ---
 .claude/
 CLAUDE.md
+
+# --- Credentials & Secrets ---
+*.pem
+*.key
+*.p12
+*.pfx
+credentials*.json
+secrets*.json
+.env.*
+.netrc
